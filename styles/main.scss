@@ -16,7 +16,7 @@ button:hover {
 
 html,
 body {
-	font-family: "Inter Var";
+	font-family: "Inter Var", Helvetica, sans-serif;
 	width: 100%;
 	height: 100%;
 	overflow-x: hidden;
@@ -47,6 +47,10 @@ section {
 
 p {
 	font-size: 1.8rem;
+}
+
+h1 {
+	font-size: 3.6rem;
 }
 
 /* #root div */
@@ -89,7 +93,7 @@ svg {
 		width: 300px;
 		flex-shrink: 0;
 		overflow: hidden;
-		height: 200px;
+		height: 150px;
 		position: relative;
 
 		img {
@@ -104,57 +108,65 @@ svg {
 	.project-body {
 		margin-left: 1rem;
 		flex-grow: 1;
+		position: relative;
+		// overflow-x: hidden;
+
 		p {
 			margin-top: 1rem;
+			word-break: break-all;
+			text-overflow: ellipsis;
+			word-wrap: break-word;
 		}
 	}
 
-	.project-header {
+	h4 {
+		padding: 5px 0;
+	}
+
+	.links {
 		display: flex;
-		justify-content: flex-start;
 		align-items: center;
+		position: absolute;
+		top: 0;
+		right: 0;
 
 		div {
-			margin-left: auto;
 			display: flex;
-			align-items: center;
-			height: 100%;
+		}
+		a {
+			margin-left: 1rem;
+			display: inline-block;
+			padding: 0.8rem 1rem;
+			border-radius: 3px;
 
-			a {
-				margin-left: 1rem;
-				display: inline-block;
-				padding: 0.8rem 1rem;
-				border-radius: 3px;
+			&:hover {
+				background-color: var(--opacity-bg);
+			}
+		}
 
+		.link {
+			font-size: 1.4rem;
+			border-radius: 3px;
+			font-weight: 600;
+			line-height: 1.4rem;
+			letter-spacing: 1px;
+			margin-left: 1rem;
+			display: inline-block;
+			padding: 0.8rem 1rem;
+			border-radius: 3px;
+
+			&.live {
+				background-color: var(--blog-title-highlight);
 				&:hover {
-					background-color: var(--opacity-bg);
+					background-color: var(--blog-title-highlight);
 				}
 			}
 
-			.link {
-				font-size: 1.4rem;
-				border-radius: 3px;
-				font-weight: 600;
-				line-height: 1.4rem;
-				letter-spacing: 1px;
-				margin-left: 1rem;
-				display: inline-block;
-				padding: 0.8rem 1rem;
-				border-radius: 3px;
-
-				&.live {
-					background-color: var(--blog-title-highlight);
-					&:hover {
-						background-color: var(--blog-title-highlight);
-					}
-				}
-
-				&.disabled {
-					color: var(--disabled);
-					background: var(--opacity-bg);
-					&:hover {
-						cursor: default;
-					}
+			&.disabled {
+				color: var(--disabled);
+				background: var(--opacity-bg);
+				&:hover {
+					cursor: default;
 				}
 			}
 		}
@@ -206,7 +218,7 @@ svg {
 	padding: 0.6rem 1rem;
 	background: var(--opacity-bg);
 	border-radius: 3px;
-	font-size: 1.6rem;
+	font-size: 1.4rem;
 	flex-shrink: 0;
 }
 
@@ -294,47 +306,4 @@ svg {
 	}
 }
 
-@media screen and (max-width: 760px) {
-	.section-about {
-		.about-title {
-			flex-direction: column;
-
-			.socials {
-				display: flex;
-				justify-content: flex-start;
-
-				span {
-					display: none;
-				}
-			}
-		}
-	}
-
-	.section-portfolio {
-		align-items: center;
-	}
-
-	.project {
-		flex-direction: column;
-		align-items: center;
-		width: 80%;
-		min-width: 280px;
-
-		.img-wrapper {
-			transform-origin: center;
-			transform: scale(0.9);
-			width: 100%;
-		}
-
-		.project-body {
-			width: 100%;
-		}
-	}
-}
-
-@media screen and (min-width: 40rem) {
-	#__next {
-		padding-left: 2rem;
-		padding-right: 2rem;
-	}
-}
+@import "./media.scss";
