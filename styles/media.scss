@@ -1,0 +1,152 @@
+@media screen and (min-width: 40rem) {
+	#__next {
+		padding-left: 2rem;
+		padding-right: 2rem;
+	}
+}
+
+@media screen and (max-width: 410px) {
+	.project {
+		padding-bottom: 40px;
+
+		.links {
+			bottom: 0;
+			top: calc(100% + 15px);
+		}
+	}
+}
+
+@media screen and (max-width: 500px) {
+	.nav-wrapper {
+		transition: none;
+		display: flex;
+		justify-content: space-between;
+		padding: 0 1rem;
+
+		.darkmode-toggle {
+			margin-left: unset;
+		}
+
+		.menu-btn {
+			display: unset;
+			height: 40px;
+			width: 40px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+		&.open {
+			z-index: 100;
+			margin-top: 0;
+			position: absolute;
+			width: 100vw;
+			height: 100vh;
+			margin: 0;
+			background: var(--bg);
+			overflow: hidden;
+			flex-direction: column-reverse;
+			padding-top: 2rem;
+
+			nav {
+				width: 100%;
+				height: 100%;
+				display: flex;
+				justify-content: center;
+				align-items: flex-start;
+				padding-top: 5rem;
+
+				ul {
+					flex-direction: column;
+
+					li {
+						margin-bottom: 1rem;
+						a {
+							display: flex;
+							align-items: center;
+
+							span {
+								margin-left: 2rem;
+							}
+						}
+					}
+
+					svg {
+						display: unset;
+					}
+				}
+			}
+
+			.darkmode-toggle {
+				display: none;
+			}
+
+			.menu-btn {
+				align-self: flex-end;
+			}
+		}
+
+		&.closed {
+			nav {
+				display: none;
+			}
+		}
+	}
+
+	.blog-post-list-preview {
+		.head {
+			flex-direction: column-reverse;
+			margin-bottom: 0.5rem;
+			align-items: flex-start;
+
+			.date {
+				margin-left: auto;
+			}
+		}
+	}
+
+	.section-about {
+		.about-title {
+			flex-direction: column;
+
+			.socials {
+				display: flex;
+				justify-content: flex-start;
+
+				span {
+					display: none;
+				}
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 760px) {
+	.section-portfolio {
+		align-items: center;
+	}
+
+	.about-title {
+		span {
+			display: none;
+		}
+	}
+
+	.project {
+		flex-direction: column;
+		align-items: center;
+		width: 80%;
+		min-width: 280px;
+
+		.img-wrapper {
+			transform-origin: center;
+			transform: scale(0.9);
+			width: 100%;
+		}
+
+		.project-body {
+			width: 100%;
+			margin-top: 0.6rem;
+		}
+	}
+}
