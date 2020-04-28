@@ -1,0 +1,41 @@
+body[data-theme="light"] {
+	--bg: #fafbfc;
+	--light-bg: #f7f1e9;
+	--opacity-bg: rgba(0, 0, 0, 0.05);
+	--opacity-bg-heavy: rgba(0, 0, 0, 0.05);
+	--text-color: #3d556b;
+	--text-color-bold: #193652;
+	--highlight-color: rgb(139, 86, 26);
+	--darkmode-toggle-color: #ffa62b;
+	--blog-title-highlight: bisque;
+	--accent-color: rgb(151, 100, 5);
+	--accent-bg: #ffd800;
+	--base-bg: white;
+	--card-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1),
+		0 1px 2px 0 rgba(0, 0, 0, 0.06);
+	--disabled: rgb(100, 99, 99);
+}
+
+body[data-theme="dark"] {
+	--bg: #24293d;
+	--light-bg: #2d3553;
+	--opacity-bg: rgba(255, 255, 255, 0.05);
+	--opacity-bg-heavy: rgba(255, 255, 255, 0.15);
+	--text-color: #fafbfc;
+	--text-color-bold: #fafbfc;
+	--highlight-color: rgb(157, 157, 255);
+	--darkmode-toggle-color: #ffd800;
+	--blog-title-highlight: #6d52f3;
+	--accent-color: #749ff0;
+	--accent-bg: #6d52f3;
+	--base-bg: rgb(32, 32, 34);
+	--card-shadow: 0 1px 3px 0 rgba(255, 255, 255, 0.1),
+		0 1px 2px 0 rgba(255, 255, 255, 0.06);
+	--disabled: rgb(151, 150, 150);
+}
+
+body {
+	--transition-bg: background-color 0.3s ease;
+	--shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+		0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
