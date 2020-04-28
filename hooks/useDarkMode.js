@@ -11,5 +11,14 @@ export const useDarkMode = () => {
 		}
 	}, [darkMode]);
 
+	useEffect(() => {
+		if (
+			window.matchMedia &&
+			window.matchMedia("(prefers-color-scheme: dark)").matches
+		) {
+			setDarkMode(true);
+		}
+	}, []);
+
 	return [darkMode, setDarkMode];
 };
