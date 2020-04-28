@@ -24,20 +24,18 @@ export const PortfolioProject = ({
 				/>
 			</div>
 			<div className="project-body">
-				<div className="project-header">
-					<h4>{title}</h4>
-					<div>
-						<LinkTo href={repo}>
-							<div>
-								<Github />
-							</div>
-						</LinkTo>
-						{href ? (
-							<LinkTo className="link live">LIVE DEMO</LinkTo>
-						) : (
-							<span className="link disabled">LIVE DEMO</span>
-						)}
-					</div>
+				<h4>{title}</h4>
+				<div className="links">
+					<LinkTo href={repo}>
+						<div>
+							<Github />
+						</div>
+					</LinkTo>
+					{href ? (
+						<LinkTo className="link live">LIVE</LinkTo>
+					) : (
+						<span className="link disabled">LIVE</span>
+					)}
 				</div>
 				{tags.map((tag) => (
 					<Tag key={tag} tag={tag} />
