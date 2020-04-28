@@ -1,0 +1,57 @@
+import { PostHeader } from "../../Components/Blog/PostHeader";
+import { timestampToDate } from "../../utils/timestampToDate";
+
+export const metadata = {
+	title: "Frequently Asked Questions",
+	timestamp: 1587554902,
+	tags: ["react", "typescript"],
+	href: "/faq",
+	description:
+		"🙋 Which framework do I use? Why typescript ? Do I love redux ? Check here!",
+};
+
+<PostHeader
+	title={metadata.title}
+	dateString={timestampToDate(metadata.timestamp)}
+/>
+
+-   ### ✍️ Why do you write blog posts ?
+
+    Writing has helped me consolidate concepts inside my head. As someone who looks for blog posts when
+    trying new things I decided it was time to give back to the community !
+
+-   ### 📜 What qualifications do you have ?
+
+    None, experiment with what's written in this blog and see for yourself if things work!
+
+-   ### 🤖 What framework do you use ? Why ?
+
+    I use React and I have never had a very good reason to switch! I love
+    using it and the ecosystem built around it.
+
+-   ### 🌍 Where are you from ?
+
+    I'm from Piacenza, Italy.
+
+-   ### 💭 What is your opinion on ... ?
+
+    I am not very opinionated on frameworks or libraries. I think most of them
+    have their place in different situations!
+    Try things for yourself and see what works best!
+
+-   ### 📖 What can someone expect to find on this blog ?
+
+    I will write mainly about React, Typescript, and the surrounding ecosystem!
+
+-   ### 👨‍💻 What is your preferred tech stack ?
+
+    If I were given full control to choose a stack for a web application I would go
+    with React, Typescript, Sass as it's core, then, depending on data requirement I might go with
+    Apollo Client, Graphql, Prisma 2 or a more traditional REST backend with Postgres as it's database.
+
+-   ### 💻 What is you development environment ?
+
+    I use Windows 10 as my operative system, VSCode as my editor with the One Dark Pro theme and prettier for
+    formatting files.
+
+    I use npm as my package manager and git as my version control system.
