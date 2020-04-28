@@ -2,6 +2,9 @@ import Link from "next/link";
 import { DarkModeToggle } from "./DarkModeToggle";
 import { HamburgerClosed, HamburgerOpen } from "../assets/Hamburger";
 import { useState } from "react";
+import { Portfolio } from "../assets/Portfolio";
+import { Blog } from "../assets/Blog";
+import { About } from "../assets/About";
 
 export const Navbar = ({ section }) => {
 	const [menuOpen, setMenuOpen] = useState(false);
@@ -15,7 +18,8 @@ export const Navbar = ({ section }) => {
 								onClick={() => menuOpen && setMenuOpen(false)}
 								className={isCurrent(section, "portfolio")}
 							>
-								Portfolio
+								<Portfolio />
+								<span>Portfolio</span>
 							</a>
 						</Link>
 					</li>
@@ -26,7 +30,8 @@ export const Navbar = ({ section }) => {
 								onClick={() => menuOpen && setMenuOpen(false)}
 								className={isCurrent(section, "blog")}
 							>
-								Blog
+								<Blog />
+								<span>Blog</span>
 							</a>
 						</Link>
 					</li>
@@ -37,7 +42,8 @@ export const Navbar = ({ section }) => {
 								onClick={() => menuOpen && setMenuOpen(false)}
 								className={isCurrent(section, "about")}
 							>
-								About Me
+								<About />
+								<span>About Me</span>
 							</a>
 						</Link>
 					</li>
