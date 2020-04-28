@@ -1,0 +1,105 @@
+.code-wrapper {
+	font-size: 1.6rem;
+	margin-top: 2rem;
+	overflow: hidden;
+	border-radius: 3px;
+
+	.code-scrollable {
+		overflow-y: hidden;
+		overflow-x: auto;
+		background-color: rgb(40, 44, 52);
+	}
+
+	.file-info {
+		display: flex;
+		justify-content: flex-start;
+		align-items: center;
+		padding: 0.4rem 0.4rem;
+		background: #1e232d;
+		color: ghostwhite;
+
+		button {
+			margin-left: auto;
+			display: flex;
+			background: transparent;
+			border: none;
+			padding: 0.4rem;
+			border-radius: 3px;
+
+			&:hover {
+				background: rgba(255, 255, 255, 0.1);
+			}
+
+			svg {
+				fill: ghostwhite;
+			}
+		}
+
+		svg {
+			width: 2rem;
+			height: 2rem;
+		}
+
+		div {
+			display: flex;
+			margin-right: 2rem;
+		}
+
+		.typescript {
+			background: white;
+			svg {
+				fill: #007acc;
+			}
+		}
+
+		.javascript {
+			background: #f0db4f;
+			svg {
+				fill: #323330;
+			}
+		}
+
+		.html {
+			fill: #f06529;
+		}
+
+		.css {
+			fill: #2965f1;
+		}
+
+		.scss {
+			svg {
+				width: 3rem;
+				fill: #cf649a;
+			}
+		}
+
+		.jsx {
+			fill: #61dafb;
+		}
+
+		.tsx {
+			fill: #007acc;
+		}
+
+		.mdx {
+			fill: #fabb2f;
+		}
+
+		.md {
+			fill: #28a0e4;
+		}
+
+		.shell > svg {
+			fill: ghostwhite;
+		}
+
+		.json {
+			fill: #fbc02d;
+		}
+	}
+
+	.highlight-line {
+		background-color: red;
+	}
+}

@@ -1,0 +1,141 @@
+.section-blog-article {
+	.post-header {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+
+		a {
+			display: flex;
+			border-radius: 50%;
+			padding: 4px;
+
+			&:hover {
+				background: var(--light-bg);
+			}
+		}
+
+		svg {
+			height: 36px;
+			width: 36px;
+			fill: var(--text-color);
+		}
+	}
+
+	ul {
+		list-style-type: none;
+	}
+
+	li {
+		display: block;
+		margin: 3rem 0;
+	}
+
+	p {
+		margin-top: 1rem;
+		padding-left: 1rem;
+	}
+
+	a {
+		display: inline-block;
+	}
+
+	h3 {
+		margin: 3rem 0 1rem 0;
+	}
+
+	.tech-list {
+		margin-top: 2rem;
+		display: flex;
+		flex-direction: column;
+		border-radius: 3px;
+		overflow: hidden;
+
+		.list-header {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			padding: 0.4rem 0.8rem;
+			background-color: var(--accent-bg);
+		}
+
+		button {
+			padding: 0.4rem;
+			margin-right: 0.2rem;
+			display: flex;
+			border: none;
+			border-radius: 3px;
+			background: transparent;
+
+			&:hover {
+				background-color: var(--opacity-bg-heavy);
+			}
+		}
+
+		svg {
+			width: 3rem;
+			height: 3rem;
+			fill: var(--text-color);
+		}
+
+		&.animate {
+			ul {
+				&.expanded {
+					transition: max-height 0.6s ease;
+				}
+
+				&.hidden {
+					transition: max-height 0.3s ease;
+				}
+			}
+		}
+
+		&.expanded {
+			ul {
+				max-height: 1000px;
+			}
+		}
+
+		ul {
+			max-height: 0px;
+			overflow: hidden;
+			background-color: var(--opacity-bg);
+			padding: 0;
+		}
+	}
+
+	.tech-item {
+		display: block;
+		padding: 1rem 0.8rem;
+		margin: 0;
+		background: var(--light-bg);
+		border-top: 1px solid var(--accent-bg);
+
+		div {
+			display: flex;
+			align-items: center;
+
+			h5 {
+				color: var(--highlight-color);
+			}
+
+			a {
+				display: block;
+				margin-left: 2rem;
+				padding: 0.4rem 1rem;
+				background-color: var(--opacity-bg);
+				font-size: 1.6rem;
+				border-radius: 3px;
+
+				&:hover {
+					background-color: var(--blog-title-highlight);
+				}
+			}
+		}
+
+		p {
+			margin-top: 0.5rem;
+			padding-left: 0;
+			font-size: 1.6rem;
+		}
+	}
+}
