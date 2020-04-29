@@ -1,23 +1,27 @@
+import { useState, useEffect } from "react";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { DarkModeToggle } from "./DarkModeToggle";
 import { HamburgerClosed, HamburgerOpen } from "../assets/Hamburger";
-import { useState } from "react";
 import { Portfolio } from "../assets/Portfolio";
 import { Blog } from "../assets/Blog";
 import { About } from "../assets/About";
 
 export const Navbar = ({ section }) => {
 	const [menuOpen, setMenuOpen] = useState(false);
+	const router = useRouter();
+
+	useEffect(() => {
+		setMenuOpen(false);
+	}, [router.pathname]);
+
 	return (
 		<div className={`nav-wrapper ${menuOpen ? "open" : "closed"}`}>
 			<nav className="navbar" role="navigation">
 				<ul>
 					<li>
 						<Link href="/">
-							<a
-								onClick={() => menuOpen && setMenuOpen(false)}
-								className={isCurrent(section, "portfolio")}
-							>
+							<a className={isCurrent(section, "portfolio")}>
 								<Portfolio />
 								<span>Portfolio</span>
 							</a>
@@ -26,10 +30,7 @@ export const Navbar = ({ section }) => {
 
 					<li>
 						<Link href="/blog">
-							<a
-								onClick={() => menuOpen && setMenuOpen(false)}
-								className={isCurrent(section, "blog")}
-							>
+							<a className={isCurrent(section, "blog")}>
 								<Blog />
 								<span>Blog</span>
 							</a>
@@ -38,10 +39,7 @@ export const Navbar = ({ section }) => {
 
 					<li>
 						<Link href="/about">
-							<a
-								onClick={() => menuOpen && setMenuOpen(false)}
-								className={isCurrent(section, "about")}
-							>
+							<a className={isCurrent(section, "about")}>
 								<About />
 								<span>About Me</span>
 							</a>
