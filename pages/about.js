@@ -9,6 +9,11 @@ const About = () => {
 		<Fragment>
 			<Head>
 				<meta name="description" content="About Me" />
+				<meta name="author" content="Lorenzo Pepe" />
+				<meta
+					name="keywords"
+					content="Lorenzo Pepe, fullstack developer, italy, freelance"
+				/>
 				<title>About Me</title>
 			</Head>
 			<div className="about-title">
