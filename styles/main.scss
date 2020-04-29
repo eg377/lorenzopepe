@@ -6,9 +6,10 @@
 
 @font-face {
 	font-family: "Inter";
-	src: url("./Inter-Medium.woff2") format("woff2");
+	src: local("Inter"), url("./Inter-Medium.woff2") format("woff2");
 	font-weight: 500;
 	font-style: normal;
+	font-display: swap;
 }
 
 a:hover,
