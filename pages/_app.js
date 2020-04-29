@@ -1,6 +1,5 @@
 import { MDXProvider } from "@mdx-js/react";
 import { useRouter } from "next/router";
-
 import { Navbar } from "../Components/Navbar";
 import { CodeBlock } from "../Components/Code/CodeBlock";
 import { getSection } from "../utils/paths";
