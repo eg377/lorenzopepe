@@ -1,20 +1,21 @@
-// import Link from "next/link";
-// import { Back } from "../../assets/Back";
+import { Fragment } from "react";
+import Head from "next/head";
+import { timestampToDate } from "../../utils/timestampToDate";
 
-export const PostHeader = ({ title, dateString }) => {
+export const PostHeader = ({ metadata }) => {
+	const { title, description, tags, timestamp } = metadata;
 	return (
-		<div className="post-header">
-			<h1>{title}</h1>
-			<span className="date">{dateString}</span>
-		</div>
+		<Fragment>
+			<Head>
+				<title>{title}</title>
+				<meta name="description" content={description} />
+				<meta name="author" content="Lorenzo Pepe" />
+				<meta name="keywords" content={tags.join(" , ")} />
+			</Head>
+			<div className="post-header">
+				<h1>{title}</h1>
+				<span className="date">{timestampToDate(timestamp)}</span>
+			</div>
+		</Fragment>
 	);
 };
-
-// don'think it's very important as it's more of a webapp functionality
-// pages will be cached anyway so it's not expensive to go back!
-
-// <Link href={`/blog`}>
-// <a>
-// 	<Back />
-// </a>
-// </Link>
