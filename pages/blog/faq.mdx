@@ -1,5 +1,4 @@
 import { PostHeader } from "../../Components/Blog/PostHeader";
-import { timestampToDate } from "../../utils/timestampToDate";
 
 export const metadata = {
 	title: "Frequently Asked Questions",
@@ -11,8 +10,7 @@ export const metadata = {
 };
 
 <PostHeader
-	title={metadata.title}
-	dateString={timestampToDate(metadata.timestamp)}
+    metadata={metadata}
 />
 
 -   ### ✍️ Why do you write blog posts ?
