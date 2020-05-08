@@ -32,7 +32,9 @@ export const PortfolioProject = ({
 						</div>
 					</LinkTo>
 					{href ? (
-						<LinkTo className="link live">LIVE</LinkTo>
+						<LinkTo href={href} className="link live">
+							LIVE
+						</LinkTo>
 					) : (
 						<span className="link disabled">LIVE</span>
 					)}
