@@ -38,7 +38,7 @@ const Portfolio = () => {
 
 			<PortfolioProject
 				imgAlt="A screen of a SaaS landing page"
-				smSrc="data-saas-sm_1x.webp 1x, data-saas-sm_2x.webp 2x"
+				smSrc="data-saas-sm_2x.webp 1x, data-saas-sm_2x.webp 2x"
 				mdSrc="data-saas-md_1x.webp 1x, data-saas-md_2x.webp 2x"
 				fallback="data-saas-sm_1x.png, data-saas-sm_2x.png,"
 				repo="https://github.com/lorenzored98/landing-page-saas/tree/master"
