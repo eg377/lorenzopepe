@@ -107,14 +107,13 @@ svg {
 		flex-shrink: 0;
 		overflow: hidden;
 		height: 150px;
-		position: relative;
+		max-height: 150px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
 
 		img {
 			display: block;
-			position: absolute;
-			top: 50%;
-			left: 50%;
-			transform: translate(-50%, -50%);
 		}
 	}
 
