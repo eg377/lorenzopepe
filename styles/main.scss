@@ -318,4 +318,40 @@ svg {
 	}
 }
 
+.section-missing {
+	justify-content: center;
+	align-items: center;
+	padding-top: 20rem;
+	color: var(--text-color);
+
+	h1 {
+		font-size: 10rem;
+	}
+
+	p {
+		margin: 1rem 0;
+	}
+
+	h3 {
+		margin-top: 5rem;
+	}
+}
+
+.nav-missing {
+	margin-top: 4rem;
+
+	ul {
+		list-style-type: none;
+		display: flex;
+		justify-content: space-between;
+		padding: 2rem;
+		background: var(--accent-bg);
+		border-radius: 3px;
+	}
+
+	a {
+		margin: 0 4rem;
+	}
+}
+
 @import "./media.scss";

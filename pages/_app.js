@@ -16,7 +16,7 @@ const App = ({ Component, pageProps }) => {
 	const section = getSection(router.pathname);
 	return (
 		<MDXProvider components={components}>
-			<Navbar section={section} />
+			{section !== "missing" && <Navbar section={section} />}
 			<section className={`section-${section}`}>
 				<Component {...pageProps} />
 			</section>

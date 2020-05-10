@@ -123,6 +123,26 @@
 	}
 }
 
+@media screen and (max-width: 600px) {
+	.section-missing {
+		padding-top: 10rem;
+
+		h1 {
+			font-size: 6rem;
+		}
+
+		.nav-missing {
+			ul {
+				flex-direction: column;
+			}
+
+			li {
+				margin: 2rem 0;
+			}
+		}
+	}
+}
+
 @media screen and (max-width: 760px) {
 	.section-portfolio {
 		align-items: center;
