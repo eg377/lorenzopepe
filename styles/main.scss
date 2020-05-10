@@ -12,6 +12,14 @@
 	font-display: swap;
 }
 
+@font-face {
+	font-family: "InterBold";
+	src: local("InterBold"), url("./Inter-SemiBold.woff2") format("woff2");
+	font-weight: 600;
+	font-style: normal;
+	font-display: swap;
+}
+
 a:hover,
 button:hover {
 	cursor: pointer;
@@ -62,7 +70,9 @@ h2,
 h3,
 h4,
 h5,
-h6 {
+h6,
+strong {
+	font-family: "InterBold";
 	font-weight: 600;
 }
 
@@ -160,6 +170,7 @@ svg {
 			font-size: 1.4rem;
 			border-radius: 3px;
 			font-weight: 600;
+			font-family: "InterBold";
 			line-height: 1.4rem;
 			letter-spacing: 1px;
 			margin-left: 1rem;
@@ -237,6 +248,7 @@ svg {
 .tag {
 	font-size: 1.2rem;
 	font-weight: 600;
+	font-family: "InterBold";
 	padding: 0.6rem 1rem;
 	border-radius: 3px;
 	margin-right: 1rem;
