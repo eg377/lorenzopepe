@@ -110,15 +110,6 @@
 	.section-about {
 		.about-title {
 			flex-direction: column;
-
-			.socials {
-				display: flex;
-				justify-content: flex-start;
-
-				span {
-					display: none;
-				}
-			}
 		}
 	}
 }
