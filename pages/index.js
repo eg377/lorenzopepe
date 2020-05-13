@@ -11,9 +11,9 @@ const Portfolio = () => {
 			</Head>
 			<PortfolioProject
 				imgAlt="A screen of my portfolio about section"
-				smSrc="lorenzopepe-sm_1x.webp 1x, lorenzopepe-sm_2x.webp 2x"
-				mdSrc="lorenzopepe-md_1x.webp 1x, lorenzopepe-md_2x.webp 2x"
-				fallback="lorenzopepe-sm_1x.png, lorenzopepe-sm_2x.png,"
+				smSrc="images/lorenzopepe-sm_1x.webp 1x, images/lorenzopepe-sm_2x.webp 2x"
+				mdSrc="images/lorenzopepe-md_1x.webp 1x, images/lorenzopepe-md_2x.webp 2x"
+				fallback="images/lorenzopepe-sm_1x.png, images/lorenzopepe-sm_2x.png,"
 				repo="https://github.com/lorenzored98/lorenzopepe"
 				href=""
 				tags={["react", "next.js", "sass"]}
@@ -25,9 +25,9 @@ const Portfolio = () => {
 
 			<PortfolioProject
 				imgAlt="Discord Logo"
-				smSrc="DISC_LOGO-sm_1x.webp 1x, DISC_LOGO-sm_2x.webp 2x"
-				mdSrc="DISC_LOGO-md_1x.webp 1x, DISC_LOGO-md_2x.webp 2x"
-				fallback="DISC_LOGO-sm_1x.png, DISC_LOGO-sm_2x.png,"
+				smSrc="images/DISC_LOGO-sm_1x.webp 1x, images/DISC_LOGO-sm_2x.webp 2x"
+				mdSrc="images/DISC_LOGO-md_1x.webp 1x, images/DISC_LOGO-md_2x.webp 2x"
+				fallback="images/DISC_LOGO-sm_1x.png, images/DISC_LOGO-sm_2x.png,"
 				repo="https://github.com/lorenzored98/DiscordBot"
 				href=""
 				tags={["node.js", "api"]}
@@ -38,9 +38,9 @@ const Portfolio = () => {
 
 			<PortfolioProject
 				imgAlt="A screen of a SaaS landing page"
-				smSrc="data-saas-sm_2x.webp 1x, data-saas-sm_2x.webp 2x"
-				mdSrc="data-saas-md_1x.webp 1x, data-saas-md_2x.webp 2x"
-				fallback="data-saas-sm_1x.png, data-saas-sm_2x.png,"
+				smSrc="images/data-saas-sm_2x.webp 1x, images/data-saas-sm_2x.webp 2x"
+				mdSrc="images/data-saas-md_1x.webp 1x, images/data-saas-md_2x.webp 2x"
+				fallback="images/data-saas-sm_1x.png, images/data-saas-sm_2x.png,"
 				repo="https://github.com/lorenzored98/landing-page-saas/tree/master"
 				href="https://lorenzored98.github.io/landing-page-saas/"
 				tags={["HTML", "Css", "Svg"]}
