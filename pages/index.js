@@ -22,8 +22,7 @@ const Portfolio = () => {
 				Next.js static website to showcase my projects and my blog
 				posts.
 			</PortfolioProject>
-
-			<PortfolioProject
+			{/* <PortfolioProject
 				imgAlt="Discord Logo"
 				smSrc="images/DISC_LOGO-sm_1x.webp 1x, images/DISC_LOGO-sm_2x.webp 2x"
 				mdSrc="images/DISC_LOGO-md_1x.webp 1x, images/DISC_LOGO-md_2x.webp 2x"
@@ -34,7 +33,7 @@ const Portfolio = () => {
 				title="Discord Bot"
 			>
 				Using the Discord API to build a bot.
-			</PortfolioProject>
+			</PortfolioProject>*/}
 
 			<PortfolioProject
 				imgAlt="A screen of a SaaS landing page"
