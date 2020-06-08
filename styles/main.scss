@@ -43,7 +43,7 @@ body {
 	background-color: var(--bg);
 	transition: var(--transition-bg);
 	font-weight: 500;
-	font-family: "Inter", Helvetica, sans-serif;
+	font-family: "Inter", Arial, Helvetica, sans-serif;
 }
 
 * {
@@ -74,6 +74,10 @@ h6,
 strong {
 	font-family: "InterBold";
 	font-weight: 600;
+}
+
+*:focus {
+	outline: 2px solid var(--accent-color);
 }
 
 /* #root div */
