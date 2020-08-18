@@ -19,82 +19,98 @@
 @media screen and (max-width: 500px) {
 	.nav-wrapper {
 		transition: none;
-		display: flex;
-		justify-content: space-between;
-		padding: 0 1rem;
-
-		.darkmode-toggle {
-			margin-left: unset;
-		}
-
-		.menu-btn {
-			display: unset;
-			height: 40px;
-			width: 40px;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-		}
+		padding: 0;
+		grid-template-rows: 64px repeat(2, min-content) 1fr;
+		grid-column-gap: unset;
+		column-gap: unset;
 
 		&.open {
 			z-index: 5;
 			position: fixed;
 			width: 100vw;
 			height: 100%;
-			margin: 0;
 			background: var(--bg);
 			overflow: hidden;
-			flex-direction: column-reverse;
-			justify-content: flex-end;
-			padding-top: 2rem;
 
-			nav {
-				width: 100%;
-				display: flex;
-				justify-content: center;
-				align-items: flex-start;
-				padding-top: 5rem;
-				z-index: 5;
+			.menu-btn {
+				grid-row: 1 / 2;
+				grid-column: 2 / 3;
+			}
+
+			.navbar {
+				padding: 0.6rem 0;
+				grid-row: 2 / 3;
+				grid-column: 1 / 3;
 
 				ul {
+					display: flex;
 					flex-direction: column;
-					z-index: 5;
 
 					li {
-						margin-bottom: 1rem;
-						z-index: 5;
-						a {
-							display: flex;
-							align-items: center;
+						margin: 0.6rem 0;
 
-							span {
-								margin-left: 2rem;
-							}
+						span {
+							margin-left: 1rem;
 						}
 					}
+				}
 
-					svg {
-						display: unset;
-					}
+				svg {
+					display: unset;
 				}
 			}
 
 			.darkmode-toggle {
-				display: none;
+				grid-row: 3 /4;
+				grid-column: 1 / 3;
+				margin-top: 1rem;
 			}
 
-			.menu-btn {
-				align-self: flex-end;
+			.menu-bg-svg-wrapper {
+				grid-row: 4 /5;
+				grid-column: 1 / 3;
+				margin-top: 1rem;
+				width: 100%;
+				height: 100%;
+				display: flex;
+
+				svg {
+					width: 100%;
+					height: 100%;
+					fill: var(--accent-bg);
+					display: unset;
+				}
 			}
 		}
 
 		&.closed {
-			nav {
+			.darkmode-toggle {
+				display: none;
+			}
+
+			.nav-about {
 				display: none;
 			}
 		}
+
+		.menu-btn {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			align-self: center;
+			justify-self: center;
+		}
+
+		.logo {
+			margin-left: 0.4rem;
+		}
+
+		.navbar-grid {
+			padding: 0 1rem;
+		}
 	}
 
+	// REBUILD NAV WITH CSS GRID
 	.blog-post-list-preview {
 		.head {
 			flex-direction: column-reverse;
