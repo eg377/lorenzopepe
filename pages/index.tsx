@@ -1,8 +1,9 @@
+import Head from "next/head";
+import { GetStaticProps } from "next";
+import { Fragment } from "react";
 import { PostPreview } from "../Components/Blog/PostPreview";
 import { extractMetadata } from "../utils/extractMetadata";
 import { timestampToDate } from "../utils/timestampToDate";
-import Head from "next/head";
-import { Fragment } from "react";
 
 const BlogList = ({ postsData }) => {
 	return (
@@ -30,7 +31,7 @@ const BlogList = ({ postsData }) => {
 
 export default BlogList;
 
-export const getStaticProps = async () => {
+export const getStaticProps: GetStaticProps = async () => {
 	const postsData = await extractMetadata();
 
 	return {
