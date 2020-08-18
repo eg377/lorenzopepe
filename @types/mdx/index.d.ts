@@ -38,3 +38,7 @@ declare module "@mdx-js/react" {
 	}
 	export class MDXProvider extends React.Component<MDXProviderProps> {}
 }
+
+declare module "*.mdx" {
+	export default React.Component;
+}
