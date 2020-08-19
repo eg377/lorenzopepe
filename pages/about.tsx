@@ -1,7 +1,7 @@
 import { Fragment } from "react";
 import Head from "next/head";
-import { WorkStatus } from "../Components/WorkStatus.jsx";
-import { Socials } from "../Components/Socials.jsx";
+import { WorkStatus } from "../Components/WorkStatus";
+import { Socials } from "../Components/Socials";
 import AboutMe from "../drafts/about-me.mdx";
 
 const About = () => {
