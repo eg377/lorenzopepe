@@ -9,6 +9,7 @@
 		url("./fonts/Inter-Var.ttf") format("truetype");
 	font-family: "Inter";
 	font-weight: 100 900;
+	font-display: swap;
 }
 
 a:hover,
@@ -32,11 +33,25 @@ body {
 	font-size: 10px;
 	background-color: var(--bg);
 	transition: var(--transition-bg);
-	font-weight: 500;
+	font-weight: 400;
 	font-family: "Inter", Arial, Helvetica, sans-serif;
 	min-height: 100vh;
 	min-height: -webkit-fill-available;
 	margin-left: calc(100vw - 100%);
+}
+
+// TODO: messes up non white text
+// body[data-theme="dark"] {
+// 	font-weight: 300;
+// }
+
+body.menu-open {
+	overflow: hidden;
+	max-height: -webkit-fill-available;
+
+	#__next {
+		overflow: hidden;
+	}
 }
 
 * {
@@ -77,9 +92,7 @@ strong {
 	box-sizing: border-box;
 	min-width: 0px;
 	max-width: 70rem;
-	padding-bottom: 2rem;
-	padding-left: 0px;
-	padding-right: 0px;
+	padding: 0 0 2rem 0;
 	flex-direction: column;
 	display: flex;
 	margin: 0px auto;
