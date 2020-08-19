@@ -7,17 +7,18 @@ import { linesToHighlight } from "../../utils/linesToHighlight";
 interface CodeBlockProps {
 	className: string;
 	metastring: string;
-	codeString: string;
+	children: string;
 }
 
 export const CodeBlock: React.FC<CodeBlockProps> = ({
-	codeString,
+	children,
 	className,
 	metastring,
+	...props
 }) => {
 	const language = className.replace("language-", "");
-	const filePath = extractPathFromCode(codeString);
-	const code = codeString.replace(`\`@@${filePath}@@\``, "").trim();
+	const filePath = extractPathFromCode(children);
+	const code = children.replace(`\`@@${filePath}@@\``, "").trim();
 	const highlightLinesArr = linesToHighlight(metastring);
 	return (
 		<div className="code-wrapper">
