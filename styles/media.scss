@@ -19,7 +19,6 @@
 @media screen and (max-width: 500px) {
 	.nav-wrapper {
 		transition: none;
-		padding: 0;
 		grid-template-rows: 64px repeat(2, min-content) 1fr;
 		grid-column-gap: unset;
 		column-gap: unset;
@@ -28,7 +27,8 @@
 			z-index: 5;
 			position: fixed;
 			width: 100vw;
-			height: 100%;
+			height: 100vh;
+			height: -webkit-fill-available;
 			background: var(--bg);
 			overflow: hidden;
 
