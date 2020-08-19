@@ -3,9 +3,12 @@ import { GetStaticProps } from "next";
 import { Fragment } from "react";
 import { PostPreview } from "../Components/Blog/PostPreview";
 import { extractMetadata } from "../utils/extractMetadata";
-import { timestampToDate } from "../utils/timestampToDate";
 
-const BlogList = ({ postsData }) => {
+interface IndexProps {
+	postsMetadata: PostMetadata[];
+}
+
+const Index: React.FC<IndexProps> = ({ postsMetadata }) => {
 	return (
 		<Fragment>
 			<Head>
@@ -13,15 +16,9 @@ const BlogList = ({ postsData }) => {
 				<meta name="description" content="Lorenzo Pepe Blog" />
 			</Head>
 			<ul className="blog-post-list-preview">
-				{postsData.map((postData) => (
-					<PostPreview
-						key={postData.timestamp}
-						title={postData.title}
-						dateString={timestampToDate(postData.timestamp)}
-						tags={postData.tags}
-						href={postData.href}
-					>
-						{postData.description}
+				{postsMetadata.map((d) => (
+					<PostPreview key={d.timestamp} metadata={d}>
+						{d.description}
 					</PostPreview>
 				))}
 			</ul>
@@ -29,14 +26,22 @@ const BlogList = ({ postsData }) => {
 	);
 };
 
-export default BlogList;
+export default Index;
+
+export interface PostMetadata {
+	tags: string[];
+	timestamp: number;
+	href: string;
+	title: string;
+	description: string;
+}
 
 export const getStaticProps: GetStaticProps = async () => {
-	const postsData = await extractMetadata();
+	const postsMetadata = await extractMetadata();
 
 	return {
 		props: {
-			postsData,
+			postsMetadata,
 		},
 	};
 };
