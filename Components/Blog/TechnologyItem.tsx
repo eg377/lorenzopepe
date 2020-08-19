@@ -1,6 +1,15 @@
 import { LinkTo } from "../LinkTo";
 
-export const TechnologyItem = ({ title, href, children }) => {
+interface TechnologyItemProps {
+	title: string;
+	href: string;
+}
+
+export const TechnologyItem: React.FC<TechnologyItemProps> = ({
+	title,
+	href,
+	children,
+}) => {
 	return (
 		<li className="tech-item">
 			<div>

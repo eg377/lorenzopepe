@@ -1,8 +1,14 @@
 import { Fragment } from "react";
 import Head from "next/head";
 import { timestampToDate } from "../../utils/timestampToDate";
+import { PostMetadata } from "../../pages";
 
-export const PostHeader = ({ metadata }) => {
+interface PostHeaderProps {
+	metadata: PostMetadata;
+}
+
+export const PostHeader: React.FC<PostHeaderProps> = ({ metadata }) => {
+	console.log(metadata);
 	const { title, description, tags, timestamp } = metadata;
 	return (
 		<Fragment>

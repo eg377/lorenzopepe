@@ -1,13 +1,20 @@
 import { useState, useEffect, useRef } from "react";
 import { Hide, Show } from "../../assets/Chevrons";
 
-export const TechnologyList = ({ initState = false, children }) => {
+interface TechnologyListProps {
+	initState?: boolean;
+}
+
+export const TechnologyList: React.FC<TechnologyListProps> = ({
+	initState = false,
+	children,
+}) => {
 	const [isOpen, setOpen] = useState(initState);
-	const listRef = useRef();
-	const animate = useRef(false);
+	const listRef = useRef<HTMLDivElement | null>(null);
+	const animate = useRef<boolean>(false);
 
 	useEffect(() => {
-		if (animate.current) {
+		if (animate.current && listRef.current) {
 			listRef.current.classList.add("animate");
 			if (isOpen) {
 				listRef.current.classList.add("expanded");
@@ -15,7 +22,7 @@ export const TechnologyList = ({ initState = false, children }) => {
 				listRef.current.classList.remove("expanded");
 			}
 		} else {
-			if (isOpen) {
+			if (isOpen && listRef.current) {
 				listRef.current.classList.add("expanded");
 			}
 			animate.current = true;
