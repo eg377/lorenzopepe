@@ -1,4 +1,4 @@
-export const linesToHighlight = (linesString) => {
+export const linesToHighlight = (linesString: string) => {
 	if (!linesString) {
 		return [];
 	}

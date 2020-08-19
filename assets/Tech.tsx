@@ -6,7 +6,7 @@ export const Terminal = () => (
 	</svg>
 );
 
-export const Jsx = ({ className }) => (
+export const Jsx = ({ className }: { className?: string }) => (
 	<svg viewBox="0 0 512 512" className={className}>
 		<title>Jsx Icon</title>
 		<desc>Indicates a Jsx codeblock / snippet / file</desc>

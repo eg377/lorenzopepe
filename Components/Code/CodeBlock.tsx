@@ -4,10 +4,20 @@ import { FileInfo } from "./FileInfo";
 import { extractPathFromCode } from "../../utils/paths";
 import { linesToHighlight } from "../../utils/linesToHighlight";
 
-export const CodeBlock = ({ children, className, metastring }) => {
+interface CodeBlockProps {
+	className: string;
+	metastring: string;
+	codeString: string;
+}
+
+export const CodeBlock: React.FC<CodeBlockProps> = ({
+	codeString,
+	className,
+	metastring,
+}) => {
 	const language = className.replace("language-", "");
-	const filePath = extractPathFromCode(children);
-	const code = children.replace(`\`@@${filePath}@@\``, "").trim();
+	const filePath = extractPathFromCode(codeString);
+	const code = codeString.replace(`\`@@${filePath}@@\``, "").trim();
 	const highlightLinesArr = linesToHighlight(metastring);
 	return (
 		<div className="code-wrapper">
@@ -16,8 +26,8 @@ export const CodeBlock = ({ children, className, metastring }) => {
 				<Highlight
 					{...defaultProps}
 					code={code}
-					language={language}
-					theme={oneDarkPro}
+					language={language as any}
+					theme={oneDarkPro as any}
 				>
 					{({ style, tokens, getLineProps, getTokenProps }) => (
 						<pre

@@ -10,7 +10,11 @@ import {
 	Json,
 } from "../../assets/Tech";
 
-export const LanguageToIcon = ({ language }) => {
+interface LanguageToIconProps {
+	language: string;
+}
+
+export const LanguageToIcon: React.FC<LanguageToIconProps> = ({ language }) => {
 	switch (language) {
 		case "jsx":
 			return <Jsx />;

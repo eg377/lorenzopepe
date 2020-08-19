@@ -2,9 +2,18 @@ import { Copy } from "../../assets/Copy";
 import { useRef } from "react";
 import { LanguageToIcon } from "./LanguageToIcon";
 
-export const FileInfo = ({ language, pathName, code }) => {
-	const codeRef = useRef(null);
-	const buttonRef = useRef(null);
+interface FileInfoProps {
+	language: string;
+	pathName: string | null;
+	code: string;
+}
+
+export const FileInfo: React.FC<FileInfoProps> = ({
+	language,
+	pathName,
+	code,
+}) => {
+	const codeRef = useRef<HTMLTextAreaElement | null>(null);
 	return (
 		<div className="file-info">
 			<div className={language}>
@@ -12,10 +21,11 @@ export const FileInfo = ({ language, pathName, code }) => {
 			</div>
 			{pathName && <span>{pathName}</span>}
 			<button
-				ref={buttonRef}
 				onClick={() => {
-					codeRef.current.focus();
-					document.execCommand("copy");
+					if (codeRef.current) {
+						codeRef.current.focus();
+						document.execCommand("copy");
+					}
 				}}
 			>
 				<Copy />
@@ -24,7 +34,7 @@ export const FileInfo = ({ language, pathName, code }) => {
 			<textarea
 				ref={codeRef}
 				style={{
-					visbility: "hidden",
+					visibility: "hidden",
 					width: "0px",
 					height: "0px",
 					color: "transparent",
@@ -36,10 +46,10 @@ export const FileInfo = ({ language, pathName, code }) => {
 				readOnly={true}
 				onCopy={(e) => {
 					e.preventDefault();
-					if (e.clipboardData) {
+					if (e.clipboardData && codeRef.current) {
 						e.clipboardData.setData(
 							"text/plain",
-							codeRef.current.textContent
+							codeRef.current.textContent as string
 						);
 					}
 				}}

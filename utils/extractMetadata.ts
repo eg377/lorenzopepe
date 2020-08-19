@@ -1,6 +1,8 @@
 import fs from "fs";
+import { PostMetadata } from "../pages";
 
-export const extractMetadata = async () => {
+// TODO: add metadata type
+export const extractMetadata = async (): Promise<PostMetadata[]> => {
 	const files = fs.readdirSync("./pages/blog");
 	const paths = files.filter((filename) => filename.includes(".mdx"));
 	const promiseMetadataArr = [];
