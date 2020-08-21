@@ -12,6 +12,12 @@
 	font-display: swap;
 }
 
+// text select
+
+::selection {
+	background: var(--text-selected);
+}
+
 a:hover,
 button:hover {
 	cursor: pointer;
@@ -205,13 +211,64 @@ svg {
 	}
 }
 
+.blog-search {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin: 3rem 0 2rem 0;
+
+	.search-wrapper {
+		width: 70%;
+		display: flex;
+		position: relative;
+		background: var(--opacity-bg);
+
+		svg {
+			position: absolute;
+			top: 9px;
+			left: 9px;
+		}
+		input {
+			padding: 1rem 1rem 1rem 4rem;
+			font-size: 1.6rem;
+			width: 100%;
+			border-radius: 3px;
+			border: 1px solid rgb(119, 119, 151);
+			background: transparent;
+			color: var(--text-color);
+		}
+	}
+
+	.search-tags {
+		margin-top: 1rem;
+		width: 70%;
+		display: flex;
+		justify-content: flex-start;
+		align-items: flex-start;
+		flex-wrap: wrap;
+
+		button {
+			margin: 0 0.6rem 0.6rem 0;
+			flex-shrink: 0;
+			padding: 0.6rem 0.8rem;
+			font-size: 1.2rem;
+			background: var(--accent-bg);
+			color: var(--text-color);
+			border: none;
+			border-radius: 3px;
+			font-weight: 500;
+		}
+	}
+}
+
 .blog-post-list-preview {
 	list-style-type: none;
 
 	li {
 		display: flex;
 		flex-direction: column;
-		margin-bottom: 4rem;
+		margin: 2rem 0 5rem 0;
 		padding: 1rem;
 	}
 
@@ -220,6 +277,7 @@ svg {
 		flex-direction: row;
 		justify-content: space-between;
 		align-items: center;
+		margin-bottom: 0.6rem;
 
 		a {
 			border-radius: 3px;
@@ -230,9 +288,10 @@ svg {
 			}
 		}
 
-		h3 {
+		h2 {
 			word-wrap: break-word;
-			padding: 0.6rem 1rem;
+			padding: 0.2rem 1rem;
+			font-weight: 900;
 		}
 	}
 
@@ -240,7 +299,7 @@ svg {
 		padding: 0 1rem 0.6rem 1rem;
 
 		p {
-			margin-top: 1.2rem;
+			margin-top: 3rem;
 			font-size: 1.8rem;
 		}
 	}
@@ -264,6 +323,58 @@ svg {
 	color: var(--accent-color);
 	background: var(--light-bg);
 	display: inline-block;
+}
+
+// blog index pagination
+
+.pagination {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top: 4rem;
+	transition: none;
+
+	button {
+		padding: 0.6rem 1.2rem;
+		border: none;
+		background: transparent;
+		border-radius: 3px;
+		border: 2px solid transparent;
+		margin: 0 0.4rem;
+		display: flex;
+		font-size: 1.6rem;
+		font-weight: 500;
+		color: var(--text-color);
+
+		&.disabled {
+			border-color: var(--disabled);
+			pointer-events: none;
+
+			svg {
+				fill: var(--disabled);
+			}
+		}
+
+		&:hover {
+			background: var(--opacity-bg);
+		}
+
+		&.current {
+			background: var(--accent-bg);
+			&:hover {
+				background: var(--accent-bg);
+			}
+		}
+
+		&.nav {
+			border-color: var(--opacity-bg-heavy);
+		}
+
+		svg {
+			width: 28px;
+			height: 28px;
+		}
+	}
 }
 
 .section-about {
