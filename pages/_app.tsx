@@ -16,7 +16,7 @@ const App = ({ Component, pageProps }: AppProps) => {
 	const router = useRouter();
 	const section = getSection(router.pathname);
 
-	console.log(pageProps);
+	// console.log(pageProps);
 	return (
 		<MDXProvider components={components}>
 			{section !== "missing" && <Navbar section={section} />}
