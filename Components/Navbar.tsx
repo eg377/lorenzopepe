@@ -25,8 +25,6 @@ export const Navbar: React.FC<NavbarProps> = ({ section }) => {
 		}
 	}, [menuOpen]);
 
-	console.log(section);
-
 	return (
 		<header className={`nav-wrapper ${menuOpen ? "open" : "closed"}`}>
 			<nav className="navbar" role="navigation">
