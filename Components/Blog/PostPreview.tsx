@@ -17,7 +17,7 @@ export const PostPreview: React.FC<PostPreviewProps> = ({
 			<div className="head">
 				<Link href={`/blog${href}`}>
 					<a>
-						<h3>{title}</h3>
+						<h2>{title}</h2>
 					</a>
 				</Link>
 				<span className="date">{timestampToDate(timestamp)}</span>
