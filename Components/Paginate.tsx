@@ -32,10 +32,12 @@ export const Paginate: React.FC<PaginateProps> = ({
 		);
 
 		// ideal is 1 before and 1 after
-		if (currentPage !== 1 || currentPage !== maxPage) {
-			pagesArr = pagesArr.filter(
-				(p) => p >= currentPage - 1 && p <= currentPage + 1
-			);
+		if (currentPage !== 1 && currentPage !== maxPage) {
+			pagesArr = pagesArr.filter((p) => {
+				const start = currentPage === maxPage - 1 ? 2 : 1;
+				const end = currentPage === 2 ? 2 : 1;
+				return p >= currentPage - start && p <= currentPage + end;
+			});
 		}
 
 		pagesArr.sort((a, b) => a - b);
