@@ -14,6 +14,7 @@ body[data-theme="light"] {
 	--card-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1),
 		0 1px 2px 0 rgba(0, 0, 0, 0.06);
 	--disabled: rgb(100, 99, 99);
+	--text-selected: rgba(187, 153, 91, 0.5);
 }
 
 body[data-theme="dark"] {
@@ -32,6 +33,7 @@ body[data-theme="dark"] {
 	--card-shadow: rgba(0, 0, 0, 0.9) 0px 1px 2px 0px,
 		rgba(0, 0, 0, 0.9) 0px 0px 2px 0px;
 	--disabled: rgb(151, 150, 150);
+	--text-selected: rgba(136, 149, 207, 0.815);
 }
 
 body {
