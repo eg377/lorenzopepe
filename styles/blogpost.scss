@@ -5,13 +5,15 @@
 		align-items: flex-start;
 		flex-wrap: wrap;
 
-		h1 {
+		h2 {
 			margin-right: 1rem;
 			font-weight: 900;
+			text-align: center;
 		}
 
 		.date {
 			margin-top: 1rem;
+			margin-left: auto;
 		}
 	}
 
@@ -35,6 +37,7 @@
 
 	h3 {
 		margin: 3rem 0 1rem 0;
+		font-weight: 800;
 	}
 
 	.tech-list {
@@ -42,7 +45,8 @@
 		display: flex;
 		flex-direction: column;
 		border-radius: 3px;
-		overflow: hidden;
+		overflow-y: hidden;
+		height: 48px;
 
 		.list-header {
 			display: flex;
@@ -50,6 +54,8 @@
 			align-items: center;
 			padding: 0.4rem 0.8rem;
 			background-color: var(--accent-bg);
+			flex-shrink: 0;
+			height: 48px;
 		}
 
 		button {
@@ -71,26 +77,7 @@
 			fill: var(--text-color);
 		}
 
-		&.animate {
-			ul {
-				&.expanded {
-					transition: max-height 0.6s ease;
-				}
-
-				&.hidden {
-					transition: max-height 0.3s ease;
-				}
-			}
-		}
-
-		&.expanded {
-			ul {
-				max-height: 1000px;
-			}
-		}
-
 		ul {
-			max-height: 0px;
 			overflow: hidden;
 			background-color: var(--opacity-bg);
 			padding: 0;

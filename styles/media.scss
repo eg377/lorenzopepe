@@ -110,19 +110,6 @@
 		}
 	}
 
-	// REBUILD NAV WITH CSS GRID
-	.blog-post-list-preview {
-		.head {
-			flex-direction: column-reverse;
-			margin-bottom: 0.5rem;
-			align-items: flex-start;
-
-			.date {
-				margin-left: auto;
-			}
-		}
-	}
-
 	.section-about {
 		.about-title {
 			flex-direction: column;
@@ -153,6 +140,19 @@
 @media screen and (max-width: 760px) {
 	.section-portfolio {
 		align-items: center;
+	}
+
+	.blog-post-list-preview {
+		li {
+			grid-template-rows: repeat(3, minmax(min-content, max-content));
+			grid-template-columns: unset;
+
+			.date {
+				grid-row: 3 / 4;
+				justify-self: flex-end;
+				margin-top: 0.6rem;
+			}
+		}
 	}
 
 	.about-title {
