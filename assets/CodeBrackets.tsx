@@ -1,4 +1,4 @@
-export const Blog = () => (
+export const CodeBrackets = () => (
 	<svg viewBox="0 0 512 512">
 		<title>Blog Icon</title>
 		<desc>Navigate to blog section</desc>
