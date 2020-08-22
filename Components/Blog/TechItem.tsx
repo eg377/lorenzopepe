@@ -1,11 +1,11 @@
 import { LinkTo } from "../LinkTo";
 
-interface TechnologyItemProps {
+interface TechItemProps {
 	title: string;
 	href: string;
 }
 
-export const TechnologyItem: React.FC<TechnologyItemProps> = ({
+export const TechItem: React.FC<TechItemProps> = ({
 	title,
 	href,
 	children,
