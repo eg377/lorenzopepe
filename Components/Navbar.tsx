@@ -59,9 +59,13 @@ export const Navbar: React.FC<NavbarProps> = ({ section }) => {
 
 			{menuOpen ? (
 				<div className="menu-bg-svg-wrapper">
-					<svg className="menu-bg-svg" viewBox="0 0 698.97 611.5">
+					<svg
+						className="menu-bg-svg"
+						viewBox="0 0 698.97 611.5"
+						preserveAspectRatio="none"
+					>
 						<path
-							transform="scale(1.3) translate(-100, -60)"
+							transform="scale(1.2, 1) translate(-50)"
 							strokeMiterlimit="10"
 							d="M30.7 301.86c-29.19 21.81-50 90.7 0 309.14h647.83c30.2-456.79 22.72-606.36 0-610.42C648.28-4.81 602.24 249.79 522.66 249c-54.85-.53-72.92-121.87-130.54-121.41-65.44.53-72.24 157.26-170.48 194.48-82.8 31.4-144.95-54.57-190.94-20.21z"
 						/>
