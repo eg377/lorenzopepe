@@ -8,7 +8,6 @@ interface PostHeaderProps {
 }
 
 export const PostHeader: React.FC<PostHeaderProps> = ({ metadata }) => {
-	console.log(metadata);
 	const { title, description, tags, timestamp } = metadata;
 	return (
 		<Fragment>
@@ -19,7 +18,7 @@ export const PostHeader: React.FC<PostHeaderProps> = ({ metadata }) => {
 				<meta name="keywords" content={tags.join(" , ")} />
 			</Head>
 			<div className="post-header">
-				<h1>{title}</h1>
+				<h2>{title}</h2>
 				<span className="date">{timestampToDate(timestamp)}</span>
 			</div>
 		</Fragment>
