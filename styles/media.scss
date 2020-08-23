@@ -119,7 +119,8 @@
 
 @media screen and (max-width: 600px) {
 	.section-missing {
-		padding-top: 10rem;
+		// height: ;
+		max-height: -webkit-fill-available;
 
 		h1 {
 			font-size: 6rem;
