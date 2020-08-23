@@ -69,6 +69,7 @@ section {
 	padding: 1rem;
 	display: flex;
 	flex-direction: column;
+	margin-top: 2rem;
 }
 
 p {
@@ -268,8 +269,7 @@ svg {
 
 	li {
 		display: grid;
-		margin: 2rem 0 5rem 0;
-		padding: 1rem;
+		margin-bottom: 5rem;
 		grid-template-rows: repeat(2, minmax(min-content, max-content));
 		grid-template-columns: 1fr minmax(min-content, max-content);
 		align-items: center;
