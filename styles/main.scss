@@ -280,6 +280,7 @@ svg {
 	a {
 		border-radius: 3px;
 		transition: background-color 0.2s ease;
+		justify-self: flex-start;
 
 		&:hover {
 			background-color: var(--blog-title-highlight);
@@ -447,58 +448,30 @@ svg {
 	justify-content: center;
 	align-items: center;
 	color: var(--text-color);
-	margin: 0;
-	height: 100vh;
-	max-height: 100vh;
-	position: relative;
+	min-height: 80vh;
 
 	h1 {
 		font-size: 10rem;
+		color: var(--accent-color);
 	}
 
 	p {
 		margin: 1rem 0;
+		text-align: center;
 	}
 
-	h3 {
-		margin-top: 5rem;
+	nav {
+		margin-top: 4rem;
 	}
-
-	#missing-svg {
-		width: 100%;
-		height: 100%;
-		pointer-events: none;
-		position: absolute;
-		top: 0;
-		left: 0;
-
-		.pointer {
-			fill: var(--accent-bg);
-			fill-opacity: 0.5;
-		}
-
-		symbol,
-		circle {
-			// fill: var(--bg);
-			fill: black;
-		}
-	}
-}
-
-.nav-missing {
-	margin-top: 4rem;
 
 	ul {
 		list-style-type: none;
-		display: flex;
-		justify-content: space-between;
-		padding: 2rem;
-		background: var(--accent-bg);
-		border-radius: 3px;
-	}
 
-	a {
-		margin: 0 4rem;
+		a {
+			background: var(--accent-bg);
+			padding: 1.6rem 3rem;
+			border-radius: 3px;
+		}
 	}
 }
 

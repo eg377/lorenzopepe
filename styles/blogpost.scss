@@ -81,38 +81,38 @@
 	}
 
 	.tech-item {
-		display: block;
 		padding: 1rem 0.8rem;
 		margin: 0;
 		background: var(--light-bg);
 		border-top: 1px solid var(--accent-bg);
+		display: flex;
+		align-items: center;
+		justify-content: flex-start;
 
-		div {
-			display: flex;
-			align-items: center;
+		h5 {
+			color: var(--highlight-color);
+			flex-shrink: 0;
+		}
 
-			h5 {
-				color: var(--highlight-color);
-			}
+		a {
+			display: block;
+			margin-left: auto;
+			padding: 0.4rem 1rem;
+			background-color: var(--opacity-bg);
+			font-size: 1.6rem;
+			border-radius: 3px;
+			text-overflow: ellipsis;
+			overflow: hidden;
+			white-space: nowrap;
 
-			a {
-				display: block;
-				margin-left: 2rem;
-				padding: 0.4rem 1rem;
-				background-color: var(--opacity-bg);
-				font-size: 1.6rem;
-				border-radius: 3px;
-
-				&:hover {
-					background-color: var(--blog-title-highlight);
-				}
+			&:hover {
+				background-color: var(--blog-title-highlight);
 			}
 		}
 
-		p {
-			margin-top: 0.5rem;
-			padding-left: 0;
-			font-size: 1.6rem;
+		span {
+			margin: 0 2rem;
+			font-size: 1.4rem;
 		}
 	}
 }
