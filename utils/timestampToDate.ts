@@ -1,5 +1,10 @@
-import dayjs from "dayjs";
-
 export const timestampToDate = (timestamp: number) => {
-	return dayjs.unix(timestamp).format("MMMM D, YYYY");
+	const formatted = Intl.DateTimeFormat(undefined, {
+		month: "long",
+		day: "numeric",
+		year: "numeric",
+	}).format(new Date(timestamp * 1000));
+
+	// TODO: should month be uppercase in certain languages?
+	return formatted;
 };
