@@ -18,6 +18,7 @@ export const TechList: React.FC<TechListProps> = ({
 	children,
 }) => {
 	const [isOpen, setOpen] = useState(initState);
+	const [showContent, setShowContent] = useState(true);
 	const listRef = useRef<HTMLDivElement | null>(null);
 	const prevOpenStateRef = useRef<boolean>(initState);
 
@@ -50,12 +51,33 @@ export const TechList: React.FC<TechListProps> = ({
 		}
 	}, [isOpen, listRef]);
 
+	// unmount animation
+	useEffect(() => {
+		const cleanup = setTimeout(() => {
+			if (!isOpen) {
+				setShowContent(false);
+			}
+		}, 700);
+
+		return () => {
+			console.log("A ?");
+			clearTimeout(cleanup);
+		};
+	}, [isOpen]);
+
 	return (
 		<div ref={listRef} className="tech-list">
 			<div className="list-header">
-				<CodeBrackets />
-				<h5>Technologies Used</h5>
-				<button onClick={() => setOpen(!isOpen)}>
+				<h5>
+					<span>📦</span>{" "}
+					<span style={{ marginLeft: "1rem" }}>PACKAGE.JSON</span>
+				</h5>
+				<button
+					onClick={() => {
+						setShowContent(true);
+						setOpen(!isOpen);
+					}}
+				>
 					{isOpen ? <Hide /> : <Show />}
 				</button>
 			</div>
@@ -63,7 +85,7 @@ export const TechList: React.FC<TechListProps> = ({
 				className={isOpen ? "expanded" : "hidden"}
 				aria-hidden={!isOpen}
 			>
-				{children}
+				{showContent && children}
 			</ul>
 		</div>
 	);
