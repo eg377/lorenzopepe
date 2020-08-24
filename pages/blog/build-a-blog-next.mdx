@@ -1,12 +1,12 @@
 import { PostHeader } from "../../Components/Blog/PostHeader";
-import { TechnologyList } from '../../Components/Blog/TechnologyList';
-import { TechnologyItem } from '../../Components/Blog/TechnologyItem';
+import { TechList } from '../../Components/Blog/TechList';
+import { TechItem } from '../../Components/Blog/TechItem';
 import { timestampToDate } from "../../utils/timestampToDate";
 
 export const metadata = {
 	tags: ["react", "next.js", "javascript", "mdx"],
-	timestamp: 1587582248,
-	title: "Build a blog with Next.js!",
+	timestamp: 1598283725,
+	title: "Building a blog with Next.js!",
 	href: "/build-a-blog-next",
 	description: "⚡ Build a lightning fast blog with Next.js and MDX!",
 };
@@ -15,11 +15,12 @@ export const metadata = {
 	metadata={metadata}
 />
 
-<TechnologyList>
-	<TechnologyItem title="Next.js" href="https://nextjs.org">Next.js is a React framework that helps you build isomorphic react applications.</TechnologyItem>
-	<TechnologyItem title="MDX" href="https://mdxjs.com/">MDX is a format that combines the best of JSX and Markdown!</TechnologyItem>
-	<TechnologyItem title="Day.js" href="https://day.js.org/">Dayjs is a minimalist javascript library that parses, validates, manipulates, and displays dates and times.</TechnologyItem>
-</TechnologyList>
+<TechList>
+	<TechItem title="Next.js" href="https://nextjs.org" />
+	<TechItem title="MDX" href="https://mdxjs.com/" />
+	<TechItem title="Typescript" href="https://www.typescriptlang.org/" />
+	<TechItem title="Prism React Renderer" href="https://github.com/FormidableLabs/prism-react-renderer" />
+</TechList>
 
 What better post to inaugurate my blog than explaining how I built it?
 In this post I'll explain the build process of creating a static site with next.js.
@@ -36,3 +37,4 @@ achieved the same result using **Gatsby.js**.
 `@@ src/123.tsx @@`
 	npm install next dayjs mdx
 ```
+
