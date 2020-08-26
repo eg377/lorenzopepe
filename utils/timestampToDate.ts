@@ -1,4 +1,4 @@
-export const timestampToDate = (timestamp: number) => {
+export const timestampToDate = (timestamp: number): string => {
 	const formatted = Intl.DateTimeFormat(undefined, {
 		month: "long",
 		day: "numeric",
