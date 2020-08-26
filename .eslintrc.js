@@ -12,13 +12,17 @@ module.exports = {
 		"eslint:recommended",
 		"plugin:@typescript-eslint/eslint-recommended",
 		"plugin:@typescript-eslint/recommended",
-		"plugin:react/recommended",
+		"plugin:react-hooks/recommended",
 		"plugin:jsx-a11y/recommended",
+		"plugin:react/recommended",
 		"prettier",
 	],
 	rules: {
 		"react/prop-types": "off",
 		"react/react-in-jsx-scope": "off",
+		"react/no-unescaped-entities": 0,
+		"react-hooks/rules-of-hooks": "error",
+		"react-hooks/exhaustive-deps": "warn",
 		"jsx-a11y/label-has-associated-control": [
 			"error",
 			{
