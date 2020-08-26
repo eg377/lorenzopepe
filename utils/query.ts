@@ -1,12 +1,11 @@
-import { UpdateQuery } from "../pages";
 import { NextRouter } from "next/router";
 
 export const getSearch = (router: NextRouter): string => {
 	// fallback to asPath if no query exists (happens on first render)
-	if (router.query.hasOwnProperty("q")) {
+	if (Object.prototype.hasOwnProperty.call(router.query, "q")) {
 		return Array.isArray(router.query.q) ? "" : (router.query.q as string);
 	} else {
-		const searchMatch = router.asPath.match(/(\?|\&)q=\w*/gm);
+		const searchMatch = router.asPath.match(/(\?|&)q=\w*/gm);
 		const initSearch = searchMatch
 			? searchMatch[0].replace("?q=", "").replace("&q=", "")
 			: "";
@@ -21,7 +20,7 @@ export const getPage = (
 ): string => {
 	// fallback to asPath if no query exists (happens on first render)
 	let page = "1";
-	if (router.query.hasOwnProperty("p")) {
+	if (Object.prototype.hasOwnProperty.call(router.query, "p")) {
 		const p = Array.isArray(router.query.p)
 			? "1"
 			: (router.query.p as string);
@@ -30,7 +29,7 @@ export const getPage = (
 			page = pageMatch[0];
 		}
 	} else {
-		const pageMatch = router.asPath.match(/(\?|\&)p=\d*$/gm);
+		const pageMatch = router.asPath.match(/(\?|&)p=\d*$/gm);
 		page = pageMatch
 			? pageMatch[0].replace("?p=", "").replace("&p=", "")
 			: "1";
