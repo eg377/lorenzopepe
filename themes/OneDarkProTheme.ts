@@ -1,7 +1,5 @@
-// @flow
 // Converted automatically using ./tools/themeFromVsCode
-
-let theme = {
+const theme: Record<string, any> = {
 	plain: {
 		color: "#abb2bf",
 		backgroundColor: "#282c34",
