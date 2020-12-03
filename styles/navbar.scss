@@ -9,8 +9,12 @@
 	.darkmode-toggle {
 		justify-self: center;
 		align-self: center;
-
 		display: flex;
+
+		&.no-js-hidden {
+			display: none;
+			pointer-events: none;
+		}
 	}
 
 	.menu-btn {
@@ -43,6 +47,7 @@
 		grid-template-columns: 1fr 1fr;
 		align-items: center;
 		justify-items: flex-end;
+		color: var(--text-color-bold);
 	}
 
 	li {
@@ -54,26 +59,14 @@
 	a {
 		display: flex;
 		align-items: center;
+		font-weight: 900;
 		&.current {
-			font-weight: 500;
+			// font-weight: 400;
 			color: var(--accent-color);
 		}
 	}
 
 	.logo {
 		justify-self: flex-start;
-		svg {
-			width: 48px;
-			height: 48px;
-			display: block;
-		}
-
-		span {
-			display: inline-block;
-			font-size: 1.6rem;
-			font-weight: 700;
-			margin-left: 0.4rem;
-			line-height: 1.6rem;
-		}
 	}
 }

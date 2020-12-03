@@ -5,17 +5,6 @@
 	}
 }
 
-@media screen and (max-width: 410px) {
-	.project {
-		padding-bottom: 40px;
-
-		.links {
-			bottom: 0;
-			top: calc(100% + 15px);
-		}
-	}
-}
-
 @media screen and (max-width: 500px) {
 	.nav-wrapper {
 		transition: none;
@@ -91,6 +80,8 @@
 			.nav-about {
 				display: none;
 			}
+
+			align-items: center;
 		}
 
 		.menu-btn {
@@ -103,6 +94,7 @@
 
 		.logo {
 			margin-left: 0.4rem;
+			grid-column: 1 / 3;
 		}
 
 		.navbar-grid {
@@ -115,6 +107,10 @@
 			flex-direction: column;
 		}
 	}
+
+	.section-missing {
+		padding-top: 8rem;
+	}
 }
 
 @media screen and (max-width: 600px) {
@@ -126,10 +122,6 @@
 }
 
 @media screen and (max-width: 760px) {
-	.section-portfolio {
-		align-items: center;
-	}
-
 	.blog-post-list-preview {
 		li {
 			grid-template-rows: repeat(3, minmax(min-content, max-content));
@@ -140,30 +132,6 @@
 				justify-self: flex-end;
 				margin-top: 0.6rem;
 			}
-		}
-	}
-
-	.about-title {
-		span {
-			display: none;
-		}
-	}
-
-	.project {
-		flex-direction: column;
-		align-items: center;
-		width: 80%;
-		min-width: 280px;
-
-		.img-wrapper {
-			transform-origin: center;
-			// transform: scale(0.9);
-			width: 100%;
-		}
-
-		.project-body {
-			width: 100%;
-			margin-top: 0.6rem;
 		}
 	}
 }
