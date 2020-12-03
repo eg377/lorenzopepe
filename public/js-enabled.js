@@ -1,1 +1,1 @@
-document.body.setAttribute("data-theme", "hidden");
+document.documentElement.setAttribute("data-theme", "hidden");
