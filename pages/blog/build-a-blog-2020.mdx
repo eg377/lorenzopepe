@@ -1,0 +1,547 @@
+import { PostHeader } from "../../Components/Blog/PostHeader";
+import { PostImage } from "../../Components/Blog/PostImage";
+import { PostFooter } from "../../Components/Blog/PostFooter";
+import { Emoji } from '../../Components/Emoji';
+import { IrradiationIllusion} from '../../Components/BlogPostsSnippets/IrradiationIllusion';
+import { LinkTo } from '../../Components/LinkTo';
+export const images = [
+	{
+		alt: "Use at own risk sign on a fence near some plants.",
+		src: "/images/blog_image.jpg",
+		placeholderImage :"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/4QAiRXhpZgAATU0AKgAAAAgAAQESAAMAAAABAAEAAAAAAAD/2wBDAAIBAQIBAQICAgICAgICAwUDAwMDAwYEBAMFBwYHBwcGBwcICQsJCAgKCAcHCg0KCgsMDAwMBwkODw0MDgsMDAz/2wBDAQICAgMDAwYDAwYMCAcIDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAz/wAARCAAUACUDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD4F8I+P/F/xx8D/YfFdprwns78zR+JLFnkmtTH5AuIJYtiu7vFGyozAyiRF3tlt1dN4Y+AviT4f+O7fUtN+EPjbRdU0/RrK78xbC9+z3V/E7rJDJkmJopXlilYuTMiW8gVldwgi8Kftj+HdElury68baCttqusQXTCytnt4Wt0gtrc7RMC4Krbt8oO0knGBwfom/8A+Cmnw58R3C3Gm3Wn3kNjH88klo20qFAaWQRlgT3JKquSc4JFfH3gruV0j63LsppYl2nVUX5uOv3s+X/h78H/ABBefHK/8UeOvhv441nR9SlmgvtJn8OalthEwP72N0jYSeU6gBWRkKwRusiyCKuS0/XvFn7K+u3FrqGn+PNLsdaummuluHkh0+eLbJb3VoLeRN8hMEoijlSRnR0jILqymvreX/gpJ8O3tLVDdeDXhhjjc3BhuonnIiKFX3R4OSWYkcFlJ45Fc348/b68G+Lhpa6d4q0fw+2nPK9w1hebBcp8uM7thywO3K7sBBjHWnKpDpf0sdmK4boUqLrU8RFtdFKDbu+ylf8ADQ+WfEUPn/EnxFJHbeG49AadV0e0i8MvqUFnbLuSNYy00ewGJYX4LBt+47XL5K+i7z/goLo9lett17T9ThkRWTz9chgMHUleH+bknkgHAXOWySVl7d9vwX+R4Dy+F9ZL+vmfBMjrqfh37ZJDEt5NplrcPOg2szT3DQNkfdJEQKqxG8bmO4sd1OmtUtdRurxv3sjXy2LJ/qo3hZ4l2FY9oKgKuB0yM4zzRRXsfZfrb8jjXT5HR+HvC9n4n+FjQ3SP5f21bmNI3McUDv5yMY4lxGnHOAoGQOwAriPGHhSyt/Gem6cIsw3UcbSuceZIxne3JLD1VFbHTdk4wSKKKKcnzyRk9/uLuj+EoIPhho+uCWRr3Vby8tphLHFMipB5QjC70JH+sbPPPFFFFaOEW22ur/Mca00rJv7z/9k=",
+	},
+	{
+		alt:"Woff2 support chart",
+		src:"/images/woff2_support.png",
+		placeholderColor:"rgb(247, 232, 206)",
+		width:740,
+		height:413,
+	}
+];
+
+export const metadata = {
+	tags: ["react", "next.js", "javascript", "mdx"],
+	timestamp: 1606877483 ,
+	title: "Building a blog in 2020",
+	href: "/build-a-blog-2020",
+	description: "⚡ Build a lightning fast blog with Next.js and MDX!",
+	imageSrc: `https://lorenzopepe.dev${images[0].src}`,
+	imageAlt: images[0].alt
+};
+
+<PostHeader metadata={metadata} />
+
+<PostImage
+	imageData={images[0]}
+>
+	Photo by <LinkTo href="https://unsplash.com/@janilson123">Janilson Furtado</LinkTo> on <LinkTo href="https://unsplash.com/photos/AhAGyHoYqB0">Unsplash</LinkTo>
+</PostImage>
+
+Let's go through the steps needed to build a modern, performant blog in 2020!
+
+## Goals
+
+Before going over the what I used to build this blog, I think it's helpful to list the features I planned to have.
+
+- It needed to be performant and bloat-free (as much as possible). Being a blog, most of the content is static so I wanted to have something
+that works well with caching and can be served statically.
+
+- Has to be accessible and respect web standards, this may seem obvious for such a relatively simple website, but often enough I've browsed through blogs 
+with disabled focus or insufficient color contrast. On this note, if you find something inaccessible, by all means, let me know and I'll fix it!
+
+- I wanted to use a modern framework, preferably based on React since that's what I'm most comfortable using and Markdown for blog posts.
+
+- Ideally, I wanted to have a pipeline in which I don't have to manage anything besides coding the website and writing the blog posts.
+
+## Choosing a suitable tech stack
+
+I chose to use [React](https://reactjs.org/) for this blog, which is usually used in single page applications or web apps, so why did I decide to use it on a website 
+that screams build me with HTML, CSS and Javascript? 
+
+Being that some of the arguments I want to write about are Data Visualization, WebGL, and SVG I wanted to empower my blog posts with many kinds of interactive components
+and experience taught me that a website of this kind can get out of hand pretty fast if built on vanilla javascript. It seemed pretty likely that I would end up 
+building a worse version of a framework trying to implement these features. I also wanted to keep the advantages of having a static website and this is where 
+[Next.js](https://nextjs.org/) comes through.
+
+> I also chose to use [Typescript](https://www.typescriptlang.org/) because it's in my opinion a relatively small overhead for the given advantages, but this is a topic for another blog post.
+
+I won't go super in-depth about Next.js as their documentation is top-notch, but what made me choose this framework was that under 
+[certain conditions](https://nextjs.org/docs/basic-features/pages#static-generation-recommended) it allows the developer to write React code 
+which will get transformed to HTML pages at build time. This lets me keep all the advantages of working with React without having to worry about the user downloading
+a MB of javascript when visiting my website. 
+
+Next.js is not the only player in this field, you might have heard of [Gatsby](https://www.gatsbyjs.com/) for React, 
+[Nuxt.js](https://nuxtjs.org/) for Vue, [Sapper](https://svelte.dev/) for Svelte, and many others. I'm sure you could get equally good results using any of those
+frameworks, the reason I chose Next.js is because it's API is a very thin layer on top of React with 2 or 3 functions added on top depending on your use case. Not only it's that simple, 
+but the later versions also ship with some very nice components like an [image component](https://nextjs.org/docs/api-reference/next/image) which handles all the
+tedious image optimization for you with just a starting image.
+
+For my hosting, I decided to take advantage of the great [deployment workflow](https://nextjs.org/docs/deployment) provided by Vercel, which is both the easiest and recommended way of doing things
+when using Next.js. I keep my files inside a public [Github Repository](https://github.com/lorenzored98/lorenzopepe) and every time I `git-push` it automatically rebuilds and deploys the new
+website. Magic.
+
+> After rereading this section I have to point out one thing, this is _unfortunately_ <Emoji value="😆" description="laughing"/> not 
+sponsored nor paid for by the Next.js guys.
+
+## Styling
+
+I decided to use [Sass](https://sass-lang.com/) as it's what I normally use and I like my CSS decoupled from my components as much as possible.
+Again this honestly _does not matter_ as I could have achieved the same result with plain CSS, Tailwind, Less, CSS in JS, you name it.
+
+After some research I decided to go with a single column layout, it's a very intuitive and popular layout for blogs. I've taken inspiration for the design
+from some of the blogs I follow, notably [Josh W. Comeau](https://www.joshwcomeau.com/) or [Amelia Wattenberger](https://wattenberger.com/).
+
+One of the advantages of using this layout is that it's intrinsically responsive, only a small handful of components needs to be styled differently for
+smaller devices.
+
+I chose to use [Inter](https://rsms.me/inter/) by [Rasmus Andersson](https://twitter.com/rsms) for my website font.
+Thankfully this font has a [variable](https://web.dev/variable-fonts/) version and with the help of the CSS `@font-face` rule, loading it
+takes as little as 6 lines of code.
+
+```scss [main.scss] numbered
+@font-face {
+	src: url("../public/fonts/Inter-Var.woff2") format("woff2"),
+		url("../public/fonts/Inter-Var.ttf") format("truetype");
+	font-family: "Inter";
+	font-weight: 100 900;
+	font-display: swap;
+}
+```
+
+This rule will take care of loading the correct version of the font, based on the user browser. All modern browsers support woff2 files nowadays, still it's nice to have a fallback.
+
+<PostImage 
+	imageData={images[1]}
+>
+	Woff2 support chart by <LinkTo href="https://caniuse.com?search=woff2">Caniuse</LinkTo>
+</PostImage>
+
+You might have noticed I have `font-display: swap` enabled. This means that loading the font won't block the website's rendering. So it's very likely that if you have
+a slower connection you will see text styled with your system font and whenever my font is loaded it will swap.  
+
+Code snippets are styled use a different combination of fonts based on what's available on the user system.
+
+### Colors
+
+Choosing the _perfect_ color scheme is never an easy task. Initially, I tried using various palette generators but no matter which I used I was never satisfied.
+
+Some gave me way too many colors and I was getting confused. I didn't need 9 shades of my primary color and 27 shades of white, black, and gray. Some didn't respect accessibility 
+and others were just plain ugly.
+
+At that point, I decided to go with the _tried and tested_ <Emoji value="😉" description="I'm joking!" /> way of choosing a starting color, `#7646fd` <span className="color-block light"/> for light mode, `#ffa7c4` <span className="color-block dark"/> 
+for dark mode and fiddle with them until I get something I like. The ending result is a very small palette looks quite pretty. 
+My initial idea was to design with pastel colors but I was unable to get a satisfying result.
+
+I didn't mess with the starting colors at _random_ until I got the results I wanted. While I was doing it I was considering what I wanted to convey with colors.
+
+The end goal is for users to have a pleasant reading experience so I decided to avoid bright colors and only use them to highlight emphasized content. At the same time, colors are only one way 
+of doing that, being over-reliant on colors to show the UI state may become problematic.
+
+> If you are looking for more in-depth design tips and tricks, I'd like to recommend [Steve Schoger](https://twitter.com/steveschoger). He has helped me immensely thanks to his tweets on design and  
+[Refactoring Ui](https://refactoringui.com/), the book he co-wrote. 
+
+### Dark mode secrets
+
+The blog was designed with dark mode support from the get-go. There are many good articles about implementing dark modes with the pros and cons of various
+approaches, notably this one by [CSS Tricks](https://css-tricks.com/a-complete-guide-to-dark-mode-on-the-web/).
+
+When using React a popular approach is to have a top-level context to handle it but I'd rather do it with CSS variables and a custom hook.
+
+Here's how I've done it.
+
+1. I've created a separate vanilla file called `variables.css` which _surprisingly_ stores all the variables that change between modes. It will style
+based on a `data-theme` attribute applied to the `<html>` element.
+
+2. ### Building the useDarkMode hook
+	To manage dark mode I've decided to go with a custom hook that will determine whether we are in dark mode or not and modify the `data-theme` attribute
+	accordingly. With CSS variables being intrinsically reactive a simple change of attribute is sufficient for our needs.
+
+	First of all, we need a way to keep track of the user preference inside our code, so let's build a custom hook that does that.
+
+	```typescript numbered [useDarkMode.ts]
+	import { useState } from "react";
+
+	type ReturnProps = [
+		boolean | undefined,
+		React.Dispatch<React.SetStateAction<boolean | undefined>>
+	];
+
+	export const useDarkMode = (): ReturnProps => {
+		const [darkMode, setDarkMode] = useState<boolean | undefined>(undefined);
+
+		return [darkMode, setDarkMode];
+	};
+	```
+
+	Right now this is a glorified wrapper over `useState` and it could very well be placed inside our `DarkModeToggle` component, it's a 
+	personal preference of mine to keep them in separate files. 
+
+	It still lacks two things, first let's add a way to edit the `data-theme` attribute.
+
+	```typescript numbered [useDarkMode.ts] {12-21, 26-32}
+	import { useState } from "react";
+
+	type ReturnProps = [
+		boolean | undefined,
+		React.Dispatch<React.SetStateAction<boolean | undefined>>
+	];
+
+	export const useDarkMode = (): ReturnProps => {
+		const [darkMode, setDarkMode] = useState<boolean | undefined>(undefined);
+
+		useEffect(() => {
+			if (darkMode !== undefined) {
+				if (darkMode) {
+					document.documentElement.setAttribute("data-theme", "dark");
+				} else {
+					document.documentElement.setAttribute("data-theme", "light");
+				}
+				setLocalStorageDarkMode(darkMode);
+			}
+		}, [darkMode]);
+
+		return [darkMode, setDarkMode];
+	};
+
+	const setLocalStorageDarkMode = (isDark: boolean): void => {
+		if (isDark) {
+			window.localStorage.setItem("dark-mode", "dark-mode-active");
+		} else {
+			window.localStorage.removeItem("dark-mode");
+		}
+	};
+	```
+
+	You may have noticed that the code won't run if `darkMode` is `undefined` and we initially set `useState(undefined)`. Why?
+	That's because on the first load we have no way of knowing whether the user wants dark mode or not. This is easily solved 
+	by storing a cookie containing the user preference inside `window.localStorage` and retrieve it whenever he visits the website. 
+	The `setLocalStorageDarkMode` function does half of this, it takes care of setting the cookie.
+
+	But what if the user has never visited our website? Should we display light mode as the default option? Luckily, thanks to the 
+	CSS media query [prefers-color-scheme](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme) we have a way to know 
+	if the user requested his operating system to use a light or dark theme. While we check this it makes also sense to retrieve the cookie if it was previously stored.
+
+	This is the completed hook with our new addiction:
+
+	```typescript numbered [useDarkMode.ts] {22-34, 39-42}
+	import { useState, useEffect } from "react";
+
+	type ReturnProps = [
+		boolean | undefined,
+		React.Dispatch<React.SetStateAction<boolean | undefined>>
+	];
+
+	export const useDarkMode = (): ReturnProps => {
+		const [darkMode, setDarkMode] = useState<boolean | undefined>(undefined);
+
+		useEffect(() => {
+			if (darkMode !== undefined) {
+				if (darkMode) {
+					document.documentElement.setAttribute("data-theme", "dark");
+				} else {
+					document.documentElement.setAttribute("data-theme", "light");
+				}
+				setLocalStorageDarkMode(darkMode);
+			}
+		}, [darkMode]);
+
+		useEffect(() => {
+			let darkModeVal = getLocalStorageDarkMode();
+			if (
+				window.matchMedia &&
+				window.matchMedia("(prefers-color-scheme: dark)").matches
+			) {
+				if (darkModeVal === null) {
+					darkModeVal = true;
+				}
+			}
+
+			setDarkMode(!!darkModeVal);
+		}, []);
+
+		return [darkMode, setDarkMode];
+	};
+
+	const getLocalStorageDarkMode = (): true | null => {
+		const darkMode = window.localStorage.getItem("dark-mode");
+		return darkMode ? true : null;
+	};
+
+	const setLocalStorageDarkMode = (isDark: boolean): void => {
+		if (isDark) {
+			window.localStorage.setItem("dark-mode", "dark-mode-active");
+		} else {
+			window.localStorage.removeItem("dark-mode");
+		}
+	};
+	```
+
+	And it can be easily hooked up to a component such as this:
+
+	```tsx numbered [DarkModeToggle.tsx]
+	import { useDarkMode } from "../hooks/useDarkMode";
+
+	export const DarkModeToggle: React.FC = () => {
+		const [darkMode, setDarkMode] = useDarkMode();
+
+		return (
+			<button
+				onClick={() => setDarkMode(!darkMode)}
+				role="switch"
+				aria-checked={darkMode}
+				aria-label={`dark mode is ${darkMode ? "active" : "not active"}`}
+			>
+				TOGGLE
+			</button>
+		);
+	};
+	```
+
+	_Be careful_ that this solution may not work in all cases and it's something that it's tailor-made for my use case.
+	What happens if I include `useDarkMode` in a component that is not rendered? It won't update the `data-theme=hidden`
+	attribute from the `<html>` element and nothing will be seen. 
+	
+	Since my `DarkModeToggle` component is always going to get rendered I can just
+	use the hook there but if you have your dark mode settings behind some menu I advise to also use the hook in one of the
+	first rendered components.
+
+3. To avoid [FOUC](https://en.wikipedia.org/wiki/Flash_of_unstyled_content), a blocking script is placed in the document head which sets 
+	`data-theme` to `hidden`. This attribute will set `visibility` to `hidden` and remove `pointer-events` from the website. Once the hook 
+	evaluates the correct setting it will style it accordingly. 
+    
+	With this approachm I can keep `data-theme=light` as the default
+	option so users with javascript disabled will still see the blog styled correctly.
+
+4. Dark mode is not only about having two color palettes and swapping them accordingly. There are other settings you may want to change.
+
+	- It's very rare to see `black` or `white` background color or text color, it's almost always a shade of very dark / very light gray.
+	- You may want to apply filters to images to reduce contrast or brightness. This may vary from image to image so it's a bit tricky to get right 
+		without going over each case.
+	- Certain elements like shadows or trying to add depth to the UI are harder to do when using dark mode. Dark mode doesn't mean black,
+		and it's important to not sacrifice clarity over a pretty palette, it's perfectly normal to use lighter shades of your color of choice
+		for these features.
+	- Lastly, I wanted to go over choosing the right `font-weight` based on the background color.
+		Thanks to a phenomenon called [Irradiation Illusion](https://en.wikipedia.org/wiki/Irradiation_illusion) identically sized
+		elements may appear bigger if they are white on a black background. This is easily visible in the following example.
+
+		<IrradiationIllusion />
+
+		I'm not sure if this effect is more noticeable because of the font I'm using or how much `font-weight` to use. 
+		For example`400` for light mode and `300` for dark mode passed the eye test for this blog paragraph text.
+
+
+## Writing blog posts
+
+One of the key points for this blog was the ability to write posts in Markdown. Unfortunately, I very quickly realized that Markdown was not going to cut it
+for what I wanted to do, anything slightly more complex made me miss the rigidity of HTML and the abstraction layer that components allow me to have.
+Next, I tried to write each blog post as a React component. This fixed the aforementioned issues but it was getting a bit tedious having to write
+blog post in HTML, it was less readable than Markdown and much more verbose. 
+
+At this point, I was a bit lost. I was looking for a sweet spot in the middle and after some research, I found this amazing project called [MDX](https://mdxjs.com/).
+
+MDX is exactly what I was looking for, a format that lets you write JSX components inside Markdown documents. Luckily there is an official [plugin](https://mdxjs.com/getting-started/next) 
+to integrate MDX and Next.js. The documentation shows very clearly how to integrate them so I'll go over some key points that may be confusing.
+
+Inside a Next.js project, there are a few "special" directories reserved for a particular use. One of those is the [pages](https://nextjs.org/docs/basic-features/pages) directory.
+
+Next.js at build time looks into the `pages` directory and for every file ending with `.js`, `.jsx`, `.ts`, `.tsx` and , it creates a route based on the file name.
+Thanks to the `next/mdx` plugin, `.md` and `.mdx` files also generate a route.
+
+Now that we have blog posts working I wanted to show a list of available blog posts on the home page. Given the small size, I could have hardcoded the content. Instead, Next.js provides
+a function called `getStaticProps` that gets called at build time. This function allows us to fetch data and pass it to a component. MDX allows to export variables from inside the file so I decided
+that every blog post should have a `metadata` object containing various properties, here's the metadata from this page:
+
+```javascript [blog.mdx]
+export const metadata = {
+	tags: ["react", "next.js", "javascript", "mdx"],
+	timestamp: 1606877483 ,
+	title: "Building a blog in 2020",
+	href: "/build-a-blog-2020",
+	description: "⚡ Build a lightning fast blog with Next.js and MDX!",
+	imageSrc: `https://lorenzopepe.dev${images[0].src}`,
+	imageAlt: images[0].alt
+};
+```
+
+I've created a simple function that loops over the files inside my blog folder and extracts the metadata for each of them.
+This function is called inside `getStaticProps`. The data returned from this function will be passed to a component that will render the 
+post previews like in the example below.
+
+```tsx numbered [index.tsx]
+import Head from "next/head";
+import { GetStaticProps } from "next";
+import { Fragment } from "react";
+import { PostPreview } from "../Components/Blog/PostPreview";
+import { extractMetadata } from "../utils/extractMetadata";
+
+export interface PostMetadata {
+	tags: string[];
+	timestamp: number;
+	href: string;
+	title: string;
+	description: string;
+	imageSrc: string;
+	imageAlt: string;
+}
+
+interface IndexProps {
+	postsMetadata: PostMetadata[];
+}
+
+const Index: React.FC<IndexProps> = ({ postsMetadata }) => {
+	return (
+		<Fragment>
+			<Head>
+				<title>Blog</title>
+				<meta name="description" content="Lorenzo Pepe Blog" />
+			</Head>
+			<ul className="blog-post-list-preview">
+				{postsMetadata
+					.sort((a, b) => {
+						if (a.timestamp < b.timestamp) {
+							return 1;
+						} else if (a.timestamp > b.timestamp) {
+							return -1;
+						} else {
+							return 0;
+						}
+					})
+					.map((d) => (
+						<PostPreview key={d.timestamp} metadata={d}>
+							{d.description}
+						</PostPreview>
+					))}
+			</ul>
+		</Fragment>
+	);
+};
+
+export default Index;
+
+export const getStaticProps: GetStaticProps = async () => {
+	const postsMetadata = await extractMetadata();
+	return {
+		props: {
+			postsMetadata,
+		},
+	};
+};
+```
+
+> Note that this file is called `index.tsx`. There is a reasoning for that. Being inside the `pages` directory, a file called `index` will take the 
+	directory name as its route. Given that this component sits at the lowest level it defaults to my website URL.
+
+With this, I managed to have a fully functioning blog. Now it's time to point out some of the issues I have with MDX.
+
+1. Typically, inside a Next.js blog with simple Markdown there exist a way of using dynamic routes with `getStaticPaths` and `getStaticProps` to fetch
+	your content. I was not able to do this with MDX as I had trouble parsing it's output and rendering it as a component. I remember
+	reading a [blog post](https://blog.tailwindcss.com/building-the-tailwind-blog) by the tailwind.css guys and they did face similar problems.
+
+2. I'm not exactly sure if this is on VSCode or MDX but the extension which is recommended to use does not seem to work well. It has problems 
+	with autocomplete and importing components is kind of a pain. Same for components props or syntax highlighting which for
+	some strange reason at the moment of writing this is completely broken.
+
+3. This blog post is not overly long and changes to the file take a very long time compiling, sometimes even as much as 20 seconds. I'm not coding on
+	a supercomputer but it's still a decent machine, so you may wanna consider a different workflow such as writing section by section and combining them
+	at a later time. This kinda sucks and it's by far the most annoying thing about working with MDX.
+
+## Syntax Highlighting
+
+Syntax highlighting is a crucial piece of blog posts. I wanted to get it right and the most popular solutions didn't fit my needs.
+
+The way I've seen most frequently _in the wild_ is to use something like [prism-react-renderer](https://www.npmjs.com/package/prism-react-renderer), connecting
+it to the output from MDX code blocks and let it take care of tokenizing and highlighting based on the provided theme.
+
+Unfortunately, the results weren't good enough. I wanted something that highlighted the code exactly as VSCode does, which prism-react-renderer unfortunately fell short of and
+I didn't want to load a library to do this at runtime. Ideally, this would be all done at build time since my code blocks are not editable.
+
+Luckily, after some research, I found [Shiki](https://shiki.matsu.io/). Shiki is a syntax highlighter that under the hood uses the same method of VSCode. It also does it's thing
+at build time which works perfectly with our statically generated pages.
+
+Thanks to the fact that MDX is part of the [unified](https://github.com/unifiedjs) collective, it has access to `remark` and `rehype` [plugins](https://mdxjs.com/advanced/plugins).
+
+I could have written a plugin for Shiki but it turns out there is already something like that called _surprisingly_ [rehype-shiki](https://github.com/rsclarke/rehype-shiki).
+
+The usage is straightforward. First of all you need to grab a theme.If you are using VSCode you can use `CTRL + Shift + P` to open the Command Palette and choose the 
+`Developer: Generate Color Theme From Current Settings` setting. This will create a json file that you can use inside Shiki. 
+Additionally Inside [Shiki's github repo](https://github.com/shikijs/shiki/tree/master/packages/themes/data) you can find some default themes pre-generated.
+
+> I'm using `material-theme-palenight` with some changes to fix accessibility issues.
+
+After selecting the theme, download `shiki` and `rehype-shiki` from npm and edit the `withMDX` plugin on `next.config.js` to look something like this:
+
+```javascript [next.config.js]
+const rehypeShiki = require("rehype-shiki");
+
+const withMDX = require("@next/mdx")({
+	extension: /\.mdx?$/,
+	options: {
+		rehypePlugins: [
+			[
+				rehypeShiki,
+				{
+					theme: "./utils/material-theme-palenight.json",
+					useBackground: true,
+				},
+			],
+		],
+	},
+});
+```
+
+Taking advantage of the `MDXProvider` component we can pass an object that follows this scheme:
+
+```javascript [mdxComponents]
+const mdxComponents = {
+	h1: (props) => <MyFancyHeading props={props}/>
+}
+``` 
+
+The object key is the HTML element we are targeting and its value is the component we want to render when MDX encounters that element. Here you can find more info on
+[MDX Provider](https://mdxjs.com/guides/wrapper-customization#wrapper-customization) here.
+
+In my case, I use a custom `<CodeBlock>` component every time I encounter a `<pre>` element. This allows me to easily add other features 
+such as line highlighting, the file name, the file extension and, lines numbers.
+
+## Interesting tidbits
+
+I think I've covered pretty much everything I wanted but I'm left with a handful of interesting things I discovered.
+
+Emoji aren't accessible, they need to be wrapped up in a `<span>` with a role of `img` and an `aria-label` with a description.
+
+Copying text to the user clipboard is a real pain depending on the device he's using. I think I got it right from testing it on various devices but there might be some edge cases that I haven't detected yet.
+Of course, it has to be this way because of the security and privacy concerns regarding the user clipboard so I can't complain too much although the way I've set it up feels a bit _hacky_. 
+
+This website should be perfectly readable without javascript enabled. It didn't take much work and it only miss certain features such as copying code snippets and dark mode. 
+This seems like a good compromise to me and I don't expect many people to have javascript disabled but still, it may happen so it has to be taken care of. The only downside which I haven't got around to 
+fix yet is that mobile users with disabled javascript can not open the hamburger menu.
+
+Writing in English has been harder than expected. I always thought I was quite good at writing and reading, with pronunciation as my Achille's heel. Turns out I need extra english practice. In the meantime
+hopefully [Grammarly](https://www.grammarly.com/) can save me <Emoji value="😁" description="Smiling Face" />.
+
+And last but not least accessibility is _queen_. At this point, I feel like I'm repeating myself so I also want to point out that there are almost always going to be edge cases where certain users
+may experience difficulties on your website. Just testing for color blindness alone is very hard. By using the console built-in `Emulate vision deficiencies` console feature you can see 
+that even this same website, after how much I emphasized accessibility, maybe be difficult to read for some users. 
+	
+Accessibility is a complex and broad topic which isn't only affected by the styling of the website and would need its own series of blog posts but there are also some _easy_ to fix problems
+such as not breaking the user zoom, avoid breaking scroll and, respecting the WCAG color contrast scores. Browsers are also getting very good at telling you where the problems are and how to fix them.
+
+## Ending Thoughts
+
+Coding this blog was slightly harder than I initially thought but not because of technical issues. What gave me the most trouble
+was overthinking stuff as if I expected thousands of people to browse it on launch day or that a single mistake would tarnish my reputation forever <Emoji value="😨" description="Worried face" />.
+
+At one point I added features such as a complex search system, dropdowns with fancy animations and, a lot of small, pretty (and frankly a bit useless) components
+without actually having written a single word let alone a single blog post. That finally made me realize that I was missing the point of writing a blog in the first place.
+Of course, it has to look good but what should matter the most is the content and I can worry about most of the features I want to add or improve existing features at a later time.
+
+Ultimately this was a good reminder that while thinking and planning about what you are going to do is a great skill to have, it can easily get out of hand. This, in my experience, will
+snowball into not seeing any _tangible_ progress and will lead to losing interest in the project. Sometimes it's best to just bite the bullet and ship things that may not be perfect _yet_.
+
+On the technical side of things, it has been nothing but a pleasure. Next.js dev experience is fantastic, honestly, I cannot recommend it enough. I've found tons of resources
+about the problems I encountered and it has an extremely active and growing community.
+
+Overall building this kind of website was a good exercise that allowed me to review many concepts that are key to modern web development. 
+The source code is available and free to use at [lorenzored98/lorenzopepe](https://github.com/lorenzored98/lorenzopepe).
+
+<PostFooter timestamp={metadata.timestamp} title={metadata.title} href={metadata.href}/>
