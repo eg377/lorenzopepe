@@ -23,6 +23,7 @@ module.exports = {
 		"react/no-unescaped-entities": 0,
 		"react-hooks/rules-of-hooks": "error",
 		"react-hooks/exhaustive-deps": "warn",
+		"react/display-name": 0,
 		"jsx-a11y/label-has-associated-control": [
 			"error",
 			{
