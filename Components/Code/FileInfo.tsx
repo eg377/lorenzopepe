@@ -1,11 +1,10 @@
-import { createPortal } from "react-dom";
-import { Copy } from "../../assets/Copy";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { LanguageToIcon } from "./LanguageToIcon";
+import { Emoji } from "../Emoji";
 
 interface FileInfoProps {
 	language: string;
-	pathName: string | null;
+	pathName?: string;
 	code: string;
 }
 
@@ -31,6 +30,9 @@ export const FileInfo: React.FC<FileInfoProps> = ({
 	code,
 }) => {
 	const copiedRef = useRef<boolean>(false);
+	const [copyMessageRef, setCopyMessageRef] = useState<HTMLDivElement | null>(
+		null
+	);
 
 	return (
 		<div className="file-info">
@@ -39,14 +41,14 @@ export const FileInfo: React.FC<FileInfoProps> = ({
 			</div>
 			{pathName && <span>{pathName}</span>}
 			<button
-				onClick={() => {
+				onClick={(e) => {
 					if (!copiedRef.current) {
-						console.log("am copy");
 						const textarea = document.createElement("textarea");
 						textarea.style.fontSize = "16px";
 						textarea.value = code;
+						// prevent weird scrolling when focused
+						textarea.readOnly = true;
 						document.body.appendChild(textarea);
-
 						if (iOS()) {
 							const range = document.createRange();
 							range.selectNodeContents(textarea);
@@ -60,21 +62,94 @@ export const FileInfo: React.FC<FileInfoProps> = ({
 							textarea.select();
 						}
 						const copied = document.execCommand("copy");
-
+						e.currentTarget.focus();
 						document.body.removeChild(textarea);
 						if (copied) {
 							copiedRef.current = true;
+							if (copyMessageRef) {
+								showNotification(
+									copyMessageRef,
+									e.currentTarget.getBoundingClientRect()
+								);
+							}
 							setTimeout(() => {
 								copiedRef.current = false;
-							}, 3000);
+								if (copyMessageRef) {
+									hideNotification(copyMessageRef);
+								}
+							}, 1200);
 						}
-
-						// TODO: add animation on success
 					}
 				}}
 			>
-				<Copy />
+				<svg viewBox="0 0 512 512">
+					<title>Copy Code</title>
+					<desc>Click here to copy</desc>
+					<path d="M408,480H184a72,72,0,0,1-72-72V184a72,72,0,0,1,72-72H408a72,72,0,0,1,72,72V408A72,72,0,0,1,408,480Z" />
+					<path d="M160,80H395.88A72.12,72.12,0,0,0,328,32H104a72,72,0,0,0-72,72V328a72.12,72.12,0,0,0,48,67.88V160A80,80,0,0,1,160,80Z" />
+				</svg>
 			</button>
+			<CopyNotification setCopyMessageRef={setCopyMessageRef} />
 		</div>
 	);
+};
+
+interface CopyNotificationProps {
+	setCopyMessageRef: React.Dispatch<
+		React.SetStateAction<HTMLDivElement | null>
+	>;
+}
+
+const CopyNotification: React.FC<CopyNotificationProps> = ({
+	setCopyMessageRef,
+}) => {
+	return (
+		<div ref={(elem) => setCopyMessageRef(elem)} id="copy-notification">
+			Copied <Emoji value="🎉" description="Copied With Success!" />
+		</div>
+	);
+};
+
+const showNotification = (
+	elem: HTMLDivElement,
+	positionBbox: DOMRect
+): void => {
+	let x = positionBbox.left + positionBbox.width / 2 - elem.clientWidth / 2;
+	const y =
+		positionBbox.top +
+		positionBbox.height / 2 +
+		window.scrollY -
+		elem.clientHeight / 2;
+
+	while (x + elem.clientWidth > window.innerWidth) {
+		x -= 5;
+	}
+
+	// style
+	elem.style.left = `${x}px`;
+	elem.style.top = `${y}px`;
+	elem.style.opacity = "1";
+
+	if (y < window.scrollY + elem.clientHeight) {
+		elem.style.transform = "translateY(100%)";
+	} else {
+		elem.style.transform = "translateY(-100%)";
+	}
+
+	// accessibility
+	elem.removeAttribute("aria-hidden");
+	elem.setAttribute("aria-label", "Code copied succesfully.");
+	elem.setAttribute("role", "alert");
+};
+
+const hideNotification = (elem: HTMLDivElement): void => {
+	// style
+	elem.style.left = `$0px`;
+	elem.style.top = `$0px`;
+	elem.style.opacity = "0";
+	elem.style.transform = "translateY(0%)";
+
+	// accessibility
+	elem.removeAttribute("role");
+	elem.setAttribute("aria-hidden", "true");
 };

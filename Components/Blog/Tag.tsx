@@ -3,5 +3,5 @@ interface TagProps {
 }
 
 export const Tag: React.FC<TagProps> = ({ tag }) => {
-	return <span className={`tag ${tag}`}>{tag.toUpperCase()}</span>;
+	return <span className={`post-tag ${tag}`}>{tag.toUpperCase()}</span>;
 };

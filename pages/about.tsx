@@ -1,10 +1,11 @@
 import { Fragment } from "react";
 import Head from "next/head";
-import { WorkStatus } from "../Components/WorkStatus";
 import { Socials } from "../Components/Socials";
-import AboutMe from "../drafts/about-me.mdx";
+import AboutMe from "../Components/about-me.mdx";
+import { Emoji } from "../Components/Emoji";
+import { LinkTo } from "../Components/LinkTo";
 
-const About = () => {
+const About: React.FC = () => {
 	return (
 		<Fragment>
 			<Head>
@@ -12,16 +13,26 @@ const About = () => {
 				<meta name="author" content="Lorenzo Pepe" />
 				<meta
 					name="keywords"
-					content="Lorenzo Pepe, fullstack developer, italy, freelance"
+					content="Lorenzo Pepe, frontend developer, italy, freelance, react, Data Visualization, WebGL, creative"
 				/>
 				<title>About Me</title>
 			</Head>
 			<div className="about-title">
-				<h2>Ciao! I'm Lorenzo 👋</h2>
+				<h2>
+					Ciao! I'm Lorenzo{" "}
+					<Emoji value="👋" description="Waving hand, hello" />
+				</h2>
 				<Socials />
 			</div>
 			<AboutMe />
-			<WorkStatus searching={true} />
+			<footer>
+				<p>Feel free to reach out! </p>
+				<span>
+					<LinkTo href="mailto:info@lorenzopepe.dev">
+						info@lorenzopepe.dev
+					</LinkTo>
+				</span>
+			</footer>
 		</Fragment>
 	);
 };

@@ -1,24 +1,63 @@
 import { AppProps } from "next/app";
+import { useEffect } from "react";
 import { MDXProvider } from "@mdx-js/react";
 import { useRouter } from "next/router";
 import { Navbar } from "../Components/Navbar";
-import { CodeBlock } from "../Components/Code/CodeBlock";
+import CodeBlock from "../Components/Code/CodeBlock";
 import { getSection } from "../utils/paths";
+import { LinkTo } from "../Components/LinkTo";
 
 import "../styles/main.scss";
 
-const components = {
-	code: (props: any) => <CodeBlock {...props} />,
-	// blockquote: (props) => console.log(props),
+const mdxComponents = {
+	pre: (props: any) => (
+		<CodeBlock
+			background={props.style[0]}
+			language={props.children.props.className}
+			metastring={props.children.props.metastring}
+		>
+			{props.children.props.children}
+		</CodeBlock>
+	),
+	a: (props: any) => {
+		return (
+			<LinkTo href={props.href} className="blog-link">
+				{props.children}
+			</LinkTo>
+		);
+	},
+	inlineCode: (props: any) => (
+		<code className="inline-code">{props.children}</code>
+	),
+	h2: (props: any) => {
+		const id = props.children.replace(/\s/g, "-");
+		return (
+			<h2 id={`${id}`}>
+				<a href={`#${id}`}>{props.children}</a>
+			</h2>
+		);
+	},
 };
 
-const App = ({ Component, pageProps }: AppProps) => {
+const App: React.FC<AppProps> = ({ Component, pageProps }: AppProps) => {
 	const router = useRouter();
 	const section = getSection(router.pathname);
 
-	// console.log(pageProps);
+	// disable focus ring when using mouse / touch
+	useEffect(() => {
+		window.addEventListener("mousedown", isUsingMouse);
+		window.addEventListener("touchstart", isUsingMouse);
+		window.addEventListener("keydown", isUsingKeyboard);
+
+		return () => {
+			window.removeEventListener("mousedown", isUsingMouse);
+			window.removeEventListener("touchstart", isUsingMouse);
+			window.removeEventListener("keydown", isUsingKeyboard);
+		};
+	}, []);
+
 	return (
-		<MDXProvider components={components}>
+		<MDXProvider components={mdxComponents}>
 			{section !== "missing" && <Navbar section={section} />}
 			<section className={`section-${section}`}>
 				<Component {...pageProps} />
@@ -28,3 +67,11 @@ const App = ({ Component, pageProps }: AppProps) => {
 };
 
 export default App;
+
+const isUsingMouse = (): void => {
+	document.body.classList.add("mouse");
+};
+
+const isUsingKeyboard = (): void => {
+	document.body.classList.remove("mouse");
+};
