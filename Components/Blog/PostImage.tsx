@@ -83,9 +83,18 @@ export const PostImage: React.FC<{ imageData: ImageData }> = ({
 					loading="lazy"
 					className="article-image"
 					onLoad={() => {
-						canvasRef.current?.classList.add("unblur");
-						canvasRef.current?.setAttribute("role", "presentation");
-						canvasRef.current?.setAttribute("aria-hidden", "true");
+						// issue of seeing blank space without this
+						setTimeout(() => {
+							canvasRef.current?.classList.add("unblur");
+							canvasRef.current?.setAttribute(
+								"role",
+								"presentation"
+							);
+							canvasRef.current?.setAttribute(
+								"aria-hidden",
+								"true"
+							);
+						}, 100);
 					}}
 				/>
 			</div>
