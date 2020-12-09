@@ -152,7 +152,7 @@ Here's how I've done it.
 1. I've created a separate vanilla file called `variables.css` which _surprisingly_ stores all the variables that change between modes. It will style
 based on a `data-theme` attribute applied to the `<html>` element.
 
-2. ### Building the useDarkMode hook
+2. #### Building the useDarkMode hook
 	To manage dark mode I've decided to go with a custom hook that will determine whether we are in dark mode or not and modify the `data-theme` attribute
 	accordingly. With CSS variables being intrinsically reactive a simple change of attribute is sufficient for our needs.
 
