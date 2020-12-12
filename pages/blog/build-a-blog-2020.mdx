@@ -2,7 +2,7 @@ import { PostHeader } from "../../Components/Blog/PostHeader";
 import { PostImage } from "../../Components/Blog/PostImage";
 import { PostFooter } from "../../Components/Blog/PostFooter";
 import { Emoji } from '../../Components/Emoji';
-import { IrradiationIllusion} from '../../Components/BlogPostsSnippets/IrradiationIllusion';
+import { IrradiationIllusion } from '../../BlogPostsComponents';
 import { LinkTo } from '../../Components/LinkTo';
 export const images = [
 	{
@@ -276,7 +276,7 @@ based on a `data-theme` attribute applied to the `<html>` element.
 	};
 	```
 
-	And it can be easily hooked up to a component such as this:
+	And it can be used in a component like this:
 
 	```tsx numbered [DarkModeToggle.tsx]
 	import { useDarkMode } from "../hooks/useDarkMode";
