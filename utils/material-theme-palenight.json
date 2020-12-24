@@ -589,7 +589,7 @@
 		"tab.inactiveModifiedBorder": "#904348",
 		"tab.unfocusedActiveModifiedBorder": "#c05a60",
 		"tab.unfocusedInactiveModifiedBorder": "#904348",
-		"editor.background": "#292D3E",
+		"editor.background": "#282c34",
 		"editor.foreground": "#A6ACCD",
 		"editorLineNumber.foreground": "#3A3F58",
 		"editorLineNumber.activeForeground": "#ef88cf",
