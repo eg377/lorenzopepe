@@ -4,7 +4,7 @@ import { MDXProvider } from "@mdx-js/react";
 import { useRouter } from "next/router";
 import { Navbar } from "../Components/Navbar";
 import CodeBlock from "../Components/Code/CodeBlock";
-import { getSection } from "../utils/paths";
+import { getContentPath } from "../utils/paths";
 import { LinkTo } from "../Components/LinkTo";
 
 import "../styles/main.scss";
@@ -41,7 +41,7 @@ const mdxComponents = {
 
 const App: React.FC<AppProps> = ({ Component, pageProps }: AppProps) => {
 	const router = useRouter();
-	const section = getSection(router.pathname);
+	const contentPath = getContentPath(router.pathname);
 
 	// disable focus ring when using mouse / touch
 	useEffect(() => {
@@ -58,10 +58,10 @@ const App: React.FC<AppProps> = ({ Component, pageProps }: AppProps) => {
 
 	return (
 		<MDXProvider components={mdxComponents}>
-			{section !== "missing" && <Navbar section={section} />}
-			<section className={`section-${section}`}>
+			{contentPath !== "missing" && <Navbar contentPath={contentPath} />}
+			<main className={`main-${contentPath}`}>
 				<Component {...pageProps} />
-			</section>
+			</main>
 		</MDXProvider>
 	);
 };
