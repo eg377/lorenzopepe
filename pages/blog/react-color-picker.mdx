@@ -1,0 +1,55 @@
+import { PostHeader } from "../../Components/Blog/PostHeader";
+import { PostImage } from "../../Components/Blog/PostImage";
+import { PostFooter } from "../../Components/Blog/PostFooter";
+import { Emoji } from '../../Components/Emoji';
+import { LinkTo } from '../../Components/LinkTo';
+import { ColorPickerDemo } from '../../BlogDemos';
+
+export const images = [
+	{
+		alt: "A Color palette",
+		src: "/images/react_color_picker.jpg",
+		placeholderImage :"data:image/jpeg;base64,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",
+	},
+];
+
+export const metadata = {
+	tags: ["react", "javascript"],
+	timestamp: 1606977483 ,
+	title: "A React Color Picker",
+	href: "/react-color-picker",
+	description: "🎨 Picasso step aside!",
+	imageSrc: `https://lorenzopepe.dev${images[0].src}`,
+	imageAlt: images[0].alt
+};
+
+<PostHeader metadata={metadata} />
+
+<PostImage
+	imageData={images[0]}
+>
+	Photo by <LinkTo href="https://unsplash.com/@ymoran">MORAN</LinkTo> on <LinkTo href="https://unsplash.com/photos/lcNOgk19b7w">Unsplash</LinkTo>
+</PostImage>
+
+At the end of the day everything on this screen is just a colored pixel.
+
+maybe add a small prelude abotu why i'm doing this, example:
+Recently while working on a tool (maybe add that i will shocase later/ what the tool is about => it will probably be the gradient generator) I neded a color picker...
+never done before so i tought I would note my struggles and create a blog post about what i find ecc...
+
+<section>
+
+## A word of caution
+The blog post hasn't even started and I'm already here with a _warning_ <Emoji value="🤦" description="I'm embarassed"/>. Color pickers are usually displayed inside
+a [Modal](https://en.wikipedia.org/wiki/Modal_window) or a dropdown. Coding those components properly so that they have proper UX and behave as _expected_ 
+is not trivial.
+
+Being that this is not the main focus of this blog post, our `<ColorPicker>` will be coded as if it's always visibile. 
+
+Also, this is not a tutorial _on_ React, some knowledge will be taken for granted.
+
+</section>
+
+<ColorPickerDemo />
+
+<PostFooter timestamp={metadata.timestamp} title={metadata.title} href={metadata.href}/>
