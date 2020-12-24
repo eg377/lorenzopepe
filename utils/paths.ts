@@ -8,11 +8,11 @@ export const extractPathFromCode = (str: string): string | null => {
 
 type Section = "index" | "about" | "article" | "missing";
 
-export const getSection = (sectionPath: string): Section => {
-	if (sectionPath === "/") return "index";
-	if (sectionPath === "/about") return "about";
+export const getContentPath = (contentPath: string): Section => {
+	if (contentPath === "/") return "index";
+	if (contentPath === "/about") return "about";
 
-	if (sectionPath.includes("/blog/")) {
+	if (contentPath.includes("/blog/")) {
 		return "article";
 	}
 
