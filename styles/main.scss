@@ -3,7 +3,9 @@
 @import "./navbar.scss";
 @import "./code.scss";
 @import "./blogpost.scss";
-@import "./components.scss";
+
+@import "./demos.scss";
+
 @font-face {
 	src: url("../public/fonts/Inter-Var.woff2") format("woff2"),
 		url("../public/fonts/Inter-Var.ttf") format("truetype");
@@ -62,7 +64,7 @@ body.menu-open {
 		overflow: hidden;
 	}
 
-	section {
+	main {
 		height: 0;
 	}
 }
@@ -77,7 +79,7 @@ body.mouse {
 	font-family: inherit;
 }
 
-section {
+main {
 	padding: 1rem;
 	display: flex;
 	flex-direction: column;
@@ -145,7 +147,7 @@ svg {
 .blog-post-list-preview {
 	list-style-type: none;
 
-	li {
+	article {
 		display: grid;
 		margin-bottom: 5rem;
 		grid-template-rows: repeat(2, minmax(min-content, max-content));
@@ -202,7 +204,7 @@ svg {
 	display: inline-block;
 }
 
-.section-about {
+.main-about {
 	padding-bottom: 3rem;
 
 	.about-title {
@@ -242,6 +244,7 @@ svg {
 		padding: 0.8rem 1.2rem;
 		display: inline-block;
 		border-radius: 3px;
+		margin: 0 0.4rem;
 
 		&:hover {
 			background-color: var(--opacity-bg);
@@ -260,7 +263,7 @@ svg {
 	}
 }
 
-.section-missing {
+.main-missing {
 	color: var(--text-color);
 	margin: 0;
 	padding: 15rem 0 0 0;

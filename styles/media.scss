@@ -102,19 +102,19 @@
 		}
 	}
 
-	.section-about {
+	.main-about {
 		.about-title {
 			flex-direction: column;
 		}
 	}
 
-	.section-missing {
+	.main-missing {
 		padding-top: 8rem;
 	}
 }
 
 @media screen and (max-width: 600px) {
-	.section-missing {
+	.main-missing {
 		h1 {
 			font-size: 6rem;
 		}
@@ -123,7 +123,7 @@
 
 @media screen and (max-width: 760px) {
 	.blog-post-list-preview {
-		li {
+		article {
 			grid-template-rows: repeat(3, minmax(min-content, max-content));
 			grid-template-columns: unset;
 
