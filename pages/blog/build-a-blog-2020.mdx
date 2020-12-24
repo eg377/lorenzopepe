@@ -2,7 +2,7 @@ import { PostHeader } from "../../Components/Blog/PostHeader";
 import { PostImage } from "../../Components/Blog/PostImage";
 import { PostFooter } from "../../Components/Blog/PostFooter";
 import { Emoji } from '../../Components/Emoji';
-import { IrradiationIllusion } from '../../BlogPostsComponents';
+import { IrradiationIllusion } from '../../BlogDemos';
 import { LinkTo } from '../../Components/LinkTo';
 export const images = [
 	{
@@ -24,7 +24,7 @@ export const metadata = {
 	timestamp: 1606877483 ,
 	title: "Building a blog in 2020",
 	href: "/build-a-blog-2020",
-	description: "⚡ Build a lightning fast blog with Next.js and MDX!",
+	description: "😹 Only valid until the end of 2020 of course!",
 	imageSrc: `https://lorenzopepe.dev${images[0].src}`,
 	imageAlt: images[0].alt
 };
@@ -39,6 +39,8 @@ export const metadata = {
 
 Let's go through the steps needed to build a modern, performant blog in 2020!
 
+<section>
+
 ## Goals
 
 Before going over the what I used to build this blog, I think it's helpful to list the features I planned to have.
@@ -46,12 +48,16 @@ Before going over the what I used to build this blog, I think it's helpful to li
 - It needed to be performant and bloat-free (as much as possible). Being a blog, most of the content is static so I wanted to have something
 that works well with caching and can be served statically.
 
-- Has to be accessible and respect web standards, this may seem obvious for such a relatively simple website, but often enough I've browsed through blogs 
+- Has to be accessible and respect web standards. This may seem obvious for such a relatively simple website, but often enough I've browsed through blogs 
 with disabled focus or insufficient color contrast. On this note, if you find something inaccessible, by all means, let me know and I'll fix it!
 
 - I wanted to use a modern framework, preferably based on React since that's what I'm most comfortable using and Markdown for blog posts.
 
 - Ideally, I wanted to have a pipeline in which I don't have to manage anything besides coding the website and writing the blog posts.
+
+</section>
+
+<section>
 
 ## Choosing a suitable tech stack
 
@@ -82,6 +88,10 @@ website. Magic.
 
 > After rereading this section I have to point out one thing, this is _unfortunately_ <Emoji value="😆" description="laughing"/> not 
 sponsored nor paid for by the Next.js guys.
+
+</section>
+
+<section>
 
 ## Styling
 
@@ -178,7 +188,7 @@ based on a `data-theme` attribute applied to the `<html>` element.
 
 	It still lacks two things, first let's add a way to edit the `data-theme` attribute.
 
-	```typescript numbered [useDarkMode.ts] {12-21, 26-32}
+	```typescript numbered [useDarkMode.ts] {12-21, 26-31}
 	import { useState } from "react";
 
 	type ReturnProps = [
@@ -330,6 +340,10 @@ based on a `data-theme` attribute applied to the `<html>` element.
 		For example`400` for light mode and `300` for dark mode passed the eye test for this blog paragraph text.
 
 
+</section>
+
+<section>
+
 ## Writing blog posts
 
 One of the key points for this blog was the ability to write posts in Markdown. Unfortunately, I very quickly realized that Markdown was not going to cut it
@@ -445,6 +459,10 @@ With this, I managed to have a fully functioning blog. Now it's time to point ou
 	a supercomputer but it's still a decent machine, so you may wanna consider a different workflow such as writing section by section and combining them
 	at a later time. This kinda sucks and it's by far the most annoying thing about working with MDX.
 
+</section>
+
+<section>
+
 ## Syntax Highlighting
 
 Syntax highlighting is a crucial piece of blog posts. I wanted to get it right and the most popular solutions didn't fit my needs.
@@ -462,8 +480,8 @@ Thanks to the fact that MDX is part of the [unified](https://github.com/unifiedj
 
 I could have written a plugin for Shiki but it turns out there is already something like that called _surprisingly_ [rehype-shiki](https://github.com/rsclarke/rehype-shiki).
 
-The usage is straightforward. First of all you need to grab a theme.If you are using VSCode you can use `CTRL + Shift + P` to open the Command Palette and choose the 
-`Developer: Generate Color Theme From Current Settings` setting. This will create a json file that you can use inside Shiki. 
+The usage is straightforward. First of all you need to grab a theme.If you are using VSCode you can use <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>P</kbd> to 
+open the Command Palette and choose the `Developer: Generate Color Theme From Current Settings` setting. This will create a json file that you can use inside Shiki. 
 Additionally Inside [Shiki's github repo](https://github.com/shikijs/shiki/tree/master/packages/themes/data) you can find some default themes pre-generated.
 
 > I'm using `material-theme-palenight` with some changes to fix accessibility issues.
@@ -503,6 +521,10 @@ The object key is the HTML element we are targeting and its value is the compone
 In my case, I use a custom `<CodeBlock>` component every time I encounter a `<pre>` element. This allows me to easily add other features 
 such as line highlighting, the file name, the file extension and, lines numbers.
 
+</section>
+
+<section>
+
 ## Interesting tidbits
 
 I think I've covered pretty much everything I wanted but I'm left with a handful of interesting things I discovered.
@@ -526,6 +548,10 @@ that even this same website, after how much I emphasized accessibility, maybe be
 Accessibility is a complex and broad topic which isn't only affected by the styling of the website and would need its own series of blog posts but there are also some _easy_ to fix problems
 such as not breaking the user zoom, avoid breaking scroll and, respecting the WCAG color contrast scores. Browsers are also getting very good at telling you where the problems are and how to fix them.
 
+</section>
+
+<section>
+
 ## Ending Thoughts
 
 Coding this blog was slightly harder than I initially thought but not because of technical issues. What gave me the most trouble
@@ -543,5 +569,7 @@ about the problems I encountered and it has an extremely active and growing comm
 
 Overall building this kind of website was a good exercise that allowed me to review many concepts that are key to modern web development. 
 The source code is available and free to use at [lorenzored98/lorenzopepe](https://github.com/lorenzored98/lorenzopepe).
+
+</section>
 
 <PostFooter timestamp={metadata.timestamp} title={metadata.title} href={metadata.href}/>
