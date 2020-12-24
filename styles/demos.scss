@@ -1,1 +1,162 @@
 @import "../BlogDemos/IrradiationIllusion/";
+@import "../BlogDemos/ColorPicker";
+
+// do not pollute with component specific styles
+// those go into own folder in BlogDemos
+
+.demo-wrapper {
+	background: var(--opacity-bg);
+	overflow: auto;
+	margin: 2rem 0;
+	border-radius: 3px;
+	overflow: hidden;
+
+	.header {
+		display: flex;
+		justify-content: flex-end;
+		align-items: center;
+
+		a {
+			display: flex;
+			padding: 0.6rem;
+			margin: 0.3rem 0.6rem;
+
+			&:hover {
+				svg {
+					fill: var(--accent-color);
+				}
+			}
+		}
+	}
+
+	.body {
+		width: 100%;
+		height: 100%;
+		position: relative;
+	}
+}
+
+.loading-indicator {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-37%, -40%) scale(0.7);
+	width: 120px;
+	height: 120px;
+	perspective: 500px;
+	display: grid;
+	grid-template-columns: 60px 60px;
+	grid-template-rows: 60px 60px;
+
+	.cube {
+		position: relative;
+		width: 60px;
+		height: 60px;
+		transform-style: preserve-3d;
+
+		// Probably should use math instead of guessing pixels and trying 500 times
+		&.nw {
+			transform: rotateX(-40deg) rotateY(50deg);
+		}
+
+		&.ne {
+			transform: translate3D(-14.5px, 24.5px, 30px) rotateX(-40deg)
+				rotateY(50deg);
+
+			animation-delay: 0.3s;
+		}
+
+		&.sw {
+			transform: translate3D(-38.5px, -31.5px, 32px) rotateX(-40deg)
+				rotateY(50deg);
+			animation-delay: 0.9s;
+		}
+
+		&.se {
+			transform: translate3D(-52.5px, -6.5px, 64px) rotateX(-40deg)
+				rotateY(50deg);
+			animation-delay: 0.6s;
+		}
+
+		div {
+			width: 60px;
+			height: 60px;
+			position: absolute;
+		}
+	}
+
+	.top {
+		background: #9f97ee;
+		animation-duration: 1.5s;
+		animation-name: animateTop;
+		animation-iteration-count: infinite;
+		animation-delay: inherit;
+		animation-timing-function: ease-in-out;
+
+		transform: rotateX(90deg) translateZ(30px);
+	}
+
+	.front {
+		background: #e5e9fd;
+		animation-duration: 1.5s;
+		animation-name: animateFront;
+		animation-iteration-count: infinite;
+		animation-delay: inherit;
+		animation-timing-function: ease-in-out;
+
+		transform: rotateY(0deg) translateZ(30px);
+	}
+
+	.left {
+		background: #e0d6fa;
+		animation-duration: 1.5s;
+		animation-name: animateLeft;
+		animation-iteration-count: infinite;
+		animation-delay: inherit;
+		animation-timing-function: ease-in-out;
+
+		transform: rotateY(-90deg) translateZ(30px);
+	}
+}
+
+@keyframes animateTop {
+	from {
+		transform: rotateX(90deg) translateZ(30px);
+	}
+
+	50% {
+		transform: rotateX(90deg) translateZ(90px);
+	}
+
+	to {
+		transform: rotateX(90deg) translateZ(30px);
+	}
+}
+
+@keyframes animateFront {
+	from {
+		transform: rotateY(0deg) translateZ(30px) translateY(0) scaleY(1);
+	}
+
+	50% {
+		transform: rotateY(0deg) translateZ(30px) translateY(-30px) scaleY(2);
+	}
+
+	to {
+		transform: rotateY(0deg) translateZ(30px) translateY(0) scaleY(1);
+	}
+}
+
+@keyframes animateLeft {
+	from {
+		transform: rotateY(-90deg) translateZ(30px) translateY(0) scaleY(1);
+	}
+
+	50% {
+		transform: rotateY(-90deg) translateZ(30px) translateY(-30px) scaleY(2);
+	}
+
+	to {
+		transform: rotateY(-90deg) translateZ(30px) translateY(0) scaleY(1);
+	}
+}
