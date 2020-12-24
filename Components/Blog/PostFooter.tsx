@@ -18,7 +18,12 @@ export const PostFooter: React.FC<PostFooterProps> = ({
 	const twitterHandle = "@lorenzopepe98";
 	return (
 		<footer>
-			<span className="date">{timestampToDate(timestamp)}</span>
+			<time
+				className="date"
+				dateTime={new Date(timestamp * 1000).toDateString()}
+			>
+				{timestampToDate(timestamp)}
+			</time>
 			<div>
 				<p>
 					<span role="img" aria-label="Light bulb emoji">

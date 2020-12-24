@@ -14,18 +14,25 @@ export const PostPreview: React.FC<PostPreviewProps> = ({
 	const { href, title, timestamp, tags } = metadata;
 	return (
 		<li>
-			<Link href={`/blog${href}`}>
-				<a href={`/blog${href}`}>
-					<h1>{title}</h1>
-				</a>
-			</Link>
-			<span className="date">{timestampToDate(timestamp)}</span>
-			<div className="body">
-				{tags.map((tag) => (
-					<Tag key={tag} tag={tag} />
-				))}
-				<p>{children}</p>
-			</div>
+			<article>
+				<Link href={`/blog${href}`}>
+					<a href={`/blog${href}`}>
+						<h1>{title}</h1>
+					</a>
+				</Link>
+				<time
+					dateTime={new Date(timestamp * 1000).toDateString()}
+					className="date"
+				>
+					{timestampToDate(timestamp)}
+				</time>
+				<div className="body">
+					{tags.map((tag) => (
+						<Tag key={tag} tag={tag} />
+					))}
+					<p>{children}</p>
+				</div>
+			</article>
 		</li>
 	);
 };
