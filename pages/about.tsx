@@ -13,7 +13,7 @@ const About: React.FC = () => {
 				<meta name="author" content="Lorenzo Pepe" />
 				<meta
 					name="keywords"
-					content="Lorenzo Pepe, frontend developer, italy, freelance, react, Data Visualization, WebGL, creative"
+					content="Lorenzo Pepe, Frontend Developer, Web Developer, Italy, Freelance, React.js, Data Visualization, WebGL, Creative Coding"
 				/>
 				<title>About Me</title>
 			</Head>
