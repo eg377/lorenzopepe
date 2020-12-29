@@ -45,12 +45,12 @@ const App: React.FC<AppProps> = ({ Component, pageProps }: AppProps) => {
 
 	// disable focus ring when using mouse / touch
 	useEffect(() => {
-		window.addEventListener("mousedown", isUsingMouse);
+		window.addEventListener("pointerdown", isUsingMouse);
 		window.addEventListener("touchstart", isUsingMouse);
 		window.addEventListener("keydown", isUsingKeyboard);
 
 		return () => {
-			window.removeEventListener("mousedown", isUsingMouse);
+			window.removeEventListener("pointerdown", isUsingMouse);
 			window.removeEventListener("touchstart", isUsingMouse);
 			window.removeEventListener("keydown", isUsingKeyboard);
 		};
