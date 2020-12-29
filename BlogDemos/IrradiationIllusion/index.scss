@@ -1,7 +1,6 @@
 .irradiation-illusion {
 	padding: 1rem;
 	margin-top: 2rem;
-	background: var(--light-bg);
 	border-radius: 5px;
 	display: inline-block;
 
@@ -28,5 +27,17 @@
 			background-color: #24293d;
 			color: #e4e1f1;
 		}
+	}
+}
+
+[data-theme="light"] {
+	.irradiation-illusion {
+		background-color: var(--opacity-bg);
+	}
+}
+
+[data-theme="dark"] {
+	.irradiation-illusion {
+		background-color: var(--light-bg);
 	}
 }
