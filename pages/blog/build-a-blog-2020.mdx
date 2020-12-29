@@ -88,7 +88,7 @@ when using Next.js. I keep my files inside a public [Github Repository](https://
 website. Magic.
 
 > After rereading this section I have to point out one thing, this is _unfortunately_ <Emoji value="😆" description="laughing"/> not 
-sponsored nor paid for by the Next.js guys.
+sponsored nor paid for by the Next.js team.
 
 </section>
 
@@ -325,20 +325,23 @@ based on a `data-theme` attribute applied to the `<html>` element.
 
 4. Dark mode is not only about having two color palettes and swapping them accordingly. There are other settings you may want to change.
 
-	- It's very rare to see `black` or `white` background color or text color, it's almost always a shade of very dark / very light gray.
-	- You may want to apply filters to images to reduce contrast or brightness. This may vary from image to image so it's a bit tricky to get right 
-		without going over each case.
-	- Certain elements like shadows or trying to add depth to the UI are harder to do when using dark mode. Dark mode doesn't mean black,
-		and it's important to not sacrifice clarity over a pretty palette, it's perfectly normal to use lighter shades of your color of choice
-		for these features.
-	- Lastly, I wanted to go over choosing the right `font-weight` based on the background color.
-		Thanks to a phenomenon called [Irradiation Illusion](https://en.wikipedia.org/wiki/Irradiation_illusion) identically sized
-		elements may appear bigger if they are white on a black background. This is easily visible in the following example.
+	It's very rare to see `black` or `white` background color or text color, it's almost always a shade of very dark / very light gray.
+	
+	You may want to apply filters to images to reduce contrast or brightness. This may vary from image to image so it's a bit tricky to get right 
+	without going over each case.
+	
+	Certain elements like shadows or trying to add depth to the UI are harder to do when using dark mode. Dark mode doesn't mean black,
+	and it's important to not sacrifice clarity over a pretty palette, it's perfectly normal to use lighter shades of your color of choice
+	for these features.
 
-		<IrradiationIllusion />
+	Lastly, I wanted to go over choosing the right `font-weight` based on the background color.
+	Thanks to a phenomenon called [Irradiation Illusion](https://en.wikipedia.org/wiki/Irradiation_illusion) identically sized
+	elements may appear bigger if they are white on a black background. This is easily visible in the following example.
 
-		I'm not sure if this effect is more noticeable because of the font I'm using or how much `font-weight` to use. 
-		For example`400` for light mode and `300` for dark mode passed the eye test for this blog paragraph text.
+	<IrradiationIllusion />
+
+	I'm not sure if this effect is more noticeable because of the font I'm using or how much `font-weight` to use. 
+	For example`400` for light mode and `300` for dark mode passed the eye test for this blog paragraph text.
 
 
 </section>
@@ -450,7 +453,7 @@ With this, I managed to have a fully functioning blog. Now it's time to point ou
 
 1. Typically, inside a Next.js blog with simple Markdown there exist a way of using dynamic routes with `getStaticPaths` and `getStaticProps` to fetch
 	your content. I was not able to do this with MDX as I had trouble parsing it's output and rendering it as a component. I remember
-	reading a [blog post](https://blog.tailwindcss.com/building-the-tailwind-blog) by the tailwind.css guys and they did face similar problems.
+	reading a [blog post](https://blog.tailwindcss.com/building-the-tailwind-blog) by the tailwind.css team and they did face similar problems.
 
 2. I'm not exactly sure if this is on VSCode or MDX but the extension which is recommended to use does not seem to work well. It has problems 
 	with autocomplete and importing components is kind of a pain. Same for components props or syntax highlighting which for
