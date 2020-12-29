@@ -1,35 +1,31 @@
 [data-theme="light"] {
 	--bg: #fafbfc;
 	--light-bg: #f6ecff;
-	--opacity-bg: rgba(0, 0, 0, 0.05);
-	--opacity-bg-heavy: rgba(0, 0, 0, 0.05);
+	--opacity-bg: rgb(231, 240, 248);
 	--text-color: #314150;
 	--text-color-bold: #151944;
 	--accent-color: #7646fd;
 	--accent-bg: #c9bbf7;
-	--disabled: rgb(100, 99, 99);
 	--text-selected: rgba(223, 172, 255, 0.5);
 	--paragraph-weight: 400;
+	--bold-weight: 500;
 	--separator: rgb(196, 195, 201);
 	--link-highlight: #b72bfd;
 	--img-filters: brightness(1) contrast(1);
-	--bold-weight: 500;
 }
 
 [data-theme="dark"] {
 	--bg: #1d1f27;
 	--light-bg: #2a3044;
 	--opacity-bg: rgba(255, 255, 255, 0.05);
-	--opacity-bg-heavy: rgba(255, 255, 255, 0.15);
 	--text-color: #e4e1f1;
 	--text-color-bold: #fafbfc;
 	--accent-color: #ffa7c4;
 	--accent-bg: #be4a99;
-	--disabled: rgb(151, 150, 150);
 	--text-selected: rgba(255, 172, 248, 0.5);
 	--paragraph-weight: 300;
+	--bold-weight: 400;
 	--separator: rgb(72, 70, 73);
 	--link-highlight: #da0079;
 	--img-filters: brightness(0.9) contrast(1.1);
-	--bold-weight: 400;
 }
