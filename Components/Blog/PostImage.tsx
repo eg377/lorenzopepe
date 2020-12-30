@@ -76,16 +76,18 @@ export const PostImage: React.FC<{ imageData: ImageData }> = ({
 					className="article-image"
 					decoding="async"
 					onLoad={(e) => {
-						const image = e.currentTarget as
-							| HTMLImageElement
-							| undefined;
+						setTimeout(() => {
+							const image = e.currentTarget as
+								| HTMLImageElement
+								| undefined;
 
-						if (!image || image.tagName !== "IMG") {
-							return;
-						}
+							if (!image || image.tagName !== "IMG") {
+								return;
+							}
 
-						image.style.backgroundImage = "none";
-						image.style.backgroundColor = "none";
+							image.style.backgroundImage = "none";
+							image.style.backgroundColor = "none";
+						}, 300);
 					}}
 				/>
 			</div>
