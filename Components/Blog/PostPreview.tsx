@@ -27,9 +27,11 @@ export const PostPreview: React.FC<PostPreviewProps> = ({
 					{timestampToDate(timestamp)}
 				</time>
 				<div className="body">
-					{tags.map((tag) => (
-						<Tag key={tag} tag={tag} />
-					))}
+					{tags
+						.sort((a, b) => a.localeCompare(b))
+						.map((tag) => (
+							<Tag key={tag} tag={tag} />
+						))}
 					<p>{children}</p>
 				</div>
 			</article>
