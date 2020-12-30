@@ -5,7 +5,7 @@
 		font-weight: 900;
 		text-align: center;
 		font-size: 5rem;
-		margin-bottom: 1.6rem;
+		margin-bottom: 3rem;
 		color: var(--accent-color);
 	}
 
@@ -102,23 +102,29 @@
 		}
 	}
 
-	.image-container {
-		width: 100%;
-		position: relative;
-		border-radius: 10px;
-		overflow: hidden;
-	}
-
-	.image-credits {
+	figure {
 		display: flex;
-		justify-content: flex-end;
-		font-size: 1.4rem;
-		margin-top: 0.6rem;
+		flex-direction: column;
+		margin-bottom: 2rem;
 
-		a {
-			margin: 0 0.4rem;
-			color: var(--accent-color);
-			font-weight: 400;
+		.image-container {
+			width: 100%;
+			position: relative;
+			border-radius: 10px;
+			overflow: hidden;
+		}
+
+		figcaption {
+			display: flex;
+			justify-content: flex-end;
+			font-size: 1.4rem;
+			margin-top: 1rem;
+
+			a {
+				margin: 0 0.4rem;
+				color: var(--accent-color);
+				font-weight: 400;
+			}
 		}
 	}
 
@@ -192,3 +198,6 @@
 		background-color: #ffa7c4;
 	}
 }
+
+// only allow 1 between margin top and bottom ?
+// remove margin from h2s and add it to sections?
