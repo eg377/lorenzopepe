@@ -1,10 +1,8 @@
 import NextImage from "next/image";
-import { useEffect, useRef } from "react";
-
 interface ImageData {
 	src: string;
 	alt: string;
-	placeholderImage?: string;
+	placeholderSvg?: string;
 	placeholderColor?: string;
 	width?: number;
 	height?: number;
@@ -16,33 +14,12 @@ export const PostImage: React.FC<{ imageData: ImageData }> = ({
 }) => {
 	const {
 		src,
-		placeholderImage,
+		placeholderSvg,
 		placeholderColor,
 		alt,
 		width = 740,
 		height = 400,
 	} = imageData;
-
-	const canvasRef = useRef<HTMLCanvasElement | null>(null);
-
-	useEffect(() => {
-		if (canvasRef.current) {
-			const ctx = canvasRef.current.getContext("2d");
-			if (ctx) {
-				if (placeholderImage) {
-					const image = new Image();
-					image.onload = function () {
-						ctx.drawImage(image, 0, 0, width, height);
-					};
-					image.src = placeholderImage;
-				} else if (placeholderColor) {
-					ctx.fillStyle = placeholderColor;
-					ctx.fillRect(0, 0, width, height);
-					ctx.fill();
-				}
-			}
-		}
-	}, [placeholderImage, placeholderColor, width, height]);
 
 	return (
 		<figure
@@ -52,13 +29,28 @@ export const PostImage: React.FC<{ imageData: ImageData }> = ({
 				marginBottom: "2rem",
 			}}
 		>
-			<div className="image-container">
-				<canvas
-					width={width}
-					height={height}
-					className="placeholder-canvas"
-					ref={canvasRef}
-				/>
+			<div
+				className="image-container"
+				// unfortunately the image is not exposed by next and it's not possible to use a ref there
+				// using a placeholder as a background image
+				ref={(node) => {
+					if (node !== null) {
+						const image = node.childNodes[1].childNodes[1] as
+							| HTMLImageElement
+							| undefined;
+						if (!image) return;
+
+						if (placeholderSvg) {
+							image.style.backgroundSize = "cover";
+							image.style.backgroundImage = `url("${placeholderSvg}")`;
+						}
+
+						if (placeholderColor) {
+							image.style.backgroundColor = placeholderColor;
+						}
+					}
+				}}
+			>
 				{/* REMOVE WHEN MERGED INTO IMAGE COMPONENT */}
 				<noscript>
 					<img
@@ -82,19 +74,18 @@ export const PostImage: React.FC<{ imageData: ImageData }> = ({
 					height={height}
 					loading="lazy"
 					className="article-image"
-					onLoad={() => {
-						// issue of seeing blank space without this
-						setTimeout(() => {
-							canvasRef.current?.classList.add("unblur");
-							canvasRef.current?.setAttribute(
-								"role",
-								"presentation"
-							);
-							canvasRef.current?.setAttribute(
-								"aria-hidden",
-								"true"
-							);
-						}, 100);
+					decoding="async"
+					onLoad={(e) => {
+						const image = e.currentTarget as
+							| HTMLImageElement
+							| undefined;
+
+						if (!image || image.tagName !== "IMG") {
+							return;
+						}
+
+						image.style.backgroundImage = "none";
+						image.style.backgroundColor = "none";
 					}}
 				/>
 			</div>

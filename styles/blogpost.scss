@@ -107,28 +107,6 @@
 		position: relative;
 		border-radius: 10px;
 		overflow: hidden;
-
-		div {
-			z-index: -1;
-
-			img {
-				transition: none;
-			}
-		}
-
-		.placeholder-canvas {
-			transition: opacity 0.5s ease;
-			position: absolute;
-			pointer-events: none;
-			top: 0;
-			left: 0;
-			width: 100%;
-			height: 100%;
-
-			&.unblur {
-				opacity: 0;
-			}
-		}
 	}
 
 	.image-credits {
