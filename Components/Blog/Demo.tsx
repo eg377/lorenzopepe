@@ -1,5 +1,3 @@
-import { useEffect, useRef, useState } from "react";
-
 interface DemoProps {
 	height?: string;
 	className?: string;
@@ -7,33 +5,8 @@ interface DemoProps {
 }
 
 export const Demo: React.FC<DemoProps> = ({ height, className, children }) => {
-	// const [showComponent, setShowComponent] = useState(false);
-	// const componentRef = useRef<HTMLDivElement | null>(null);
-
-	// useEffect(() => {
-	// 	if (!showComponent) {
-	// 		const observer = new IntersectionObserver(([entry]) => {
-	// 			if (entry.isIntersecting) {
-	// 				setShowComponent(true);
-	// 				// setTimeout(() => {
-	// 				// 	if (componentRef.current) {
-	// 				// 		componentRef.current.style.height = "100%";
-	// 				// 	}
-	// 				// }, 100);
-	// 			}
-	// 		});
-
-	// 		if (componentRef.current) {
-	// 			observer.observe(componentRef.current);
-	// 		}
-
-	// 		return () => observer.disconnect();
-	// 	}
-	// }, [showComponent]);
-
 	return (
 		<div
-			// ref={componentRef}
 			className={className ? `demo-wrapper ${className}` : "demo-wrapper"}
 		>
 			<div className="header">
@@ -55,8 +28,6 @@ export const Demo: React.FC<DemoProps> = ({ height, className, children }) => {
 					minHeight: height,
 				}}
 			>
-				{/* {showComponent ? children : null}
-				<DemoLoading /> */}
 				{children}
 			</div>
 		</div>
@@ -65,7 +36,7 @@ export const Demo: React.FC<DemoProps> = ({ height, className, children }) => {
 
 export const DemoLoading: React.FC = () => {
 	return (
-		<div className="loading-indicator">
+		<div className="demo-loading">
 			<div className="cube nw">
 				<div className="top" />
 				<div className="front" />
