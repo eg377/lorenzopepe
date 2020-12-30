@@ -45,7 +45,7 @@ export const PostImage: React.FC<{ imageData: ImageData }> = ({
 	}, [placeholderImage, placeholderColor, width, height]);
 
 	return (
-		<div
+		<figure
 			style={{
 				display: "flex",
 				flexDirection: "column",
@@ -98,7 +98,9 @@ export const PostImage: React.FC<{ imageData: ImageData }> = ({
 					}}
 				/>
 			</div>
-			{children ? <div className="image-credits">{children}</div> : null}
-		</div>
+			{children ? (
+				<figcaption className="image-credits">{children}</figcaption>
+			) : null}
+		</figure>
 	);
 };
