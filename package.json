@@ -11,7 +11,7 @@
 	"dependencies": {
 		"@mdx-js/loader": "^1.6.21",
 		"@next/mdx": "^9.5.5",
-		"next": "^10.0.2",
+		"next": "^10.0.4",
 		"react": "^17.0.1",
 		"react-dom": "^17.0.1",
 		"rehype-shiki": "0.0.9",
