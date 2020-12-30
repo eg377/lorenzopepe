@@ -1,6 +1,5 @@
 .code-wrapper {
 	font-size: 1.6rem;
-	margin-top: 1.4rem;
 	overflow: hidden;
 	border-radius: 3px;
 	font-weight: 400 !important;
@@ -126,20 +125,20 @@
 		user-select: none;
 		-moz-user-select: none;
 	}
-}
 
-#copy-notification {
-	position: absolute;
-	background: rgb(138, 240, 138);
-	padding: 0.6rem 1.6rem;
-	border-radius: 3px;
-	color: rgb(30, 30, 32);
-	font-weight: 500;
-	pointer-events: none;
-	opacity: 0;
-	top: 0px;
-	left: 0px;
-	transition: opacity 0.3s ease, transform 0.3s ease;
-	transform-origin: center;
-	margin: 0;
+	.copy-notification {
+		position: absolute;
+		background: rgb(138, 240, 138);
+		padding: 0.6rem 1.6rem;
+		border-radius: 3px;
+		color: rgb(30, 30, 32);
+		font-weight: 500;
+		pointer-events: none;
+		opacity: 0;
+		top: 0px;
+		left: 0px;
+		transition: opacity 0.3s ease, transform 0.3s ease;
+		transform-origin: center;
+		margin: 0;
+	}
 }

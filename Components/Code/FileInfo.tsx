@@ -104,7 +104,10 @@ const CopyNotification: React.FC<CopyNotificationProps> = ({
 	setCopyMessageRef,
 }) => {
 	return (
-		<div ref={(elem) => setCopyMessageRef(elem)} id="copy-notification">
+		<div
+			ref={(elem) => setCopyMessageRef(elem)}
+			className="copy-notification"
+		>
 			Copied <Emoji value="🎉" description="Copied With Success!" />
 		</div>
 	);
