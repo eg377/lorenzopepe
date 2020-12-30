@@ -6,6 +6,7 @@ interface ImageData {
 	placeholderColor?: string;
 	width?: number;
 	height?: number;
+	quality?: number;
 }
 
 export const PostImage: React.FC<{ imageData: ImageData }> = ({
@@ -19,16 +20,11 @@ export const PostImage: React.FC<{ imageData: ImageData }> = ({
 		alt,
 		width = 740,
 		height = 400,
+		quality = 75,
 	} = imageData;
 
 	return (
-		<figure
-			style={{
-				display: "flex",
-				flexDirection: "column",
-				marginBottom: "2rem",
-			}}
-		>
+		<figure>
 			<div
 				className="image-container"
 				// unfortunately the image is not exposed by next and it's not possible to use a ref there
@@ -75,6 +71,7 @@ export const PostImage: React.FC<{ imageData: ImageData }> = ({
 					loading="lazy"
 					className="article-image"
 					decoding="async"
+					quality={quality}
 					onLoad={(e) => {
 						setTimeout(() => {
 							const image = e.currentTarget as
@@ -91,9 +88,7 @@ export const PostImage: React.FC<{ imageData: ImageData }> = ({
 					}}
 				/>
 			</div>
-			{children ? (
-				<figcaption className="image-credits">{children}</figcaption>
-			) : null}
+			{children ? <figcaption>{children}</figcaption> : null}
 		</figure>
 	);
 };
