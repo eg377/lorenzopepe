@@ -6,6 +6,13 @@ class MyDocument extends Document {
 			<Html lang="en" data-theme="light">
 				<Head>
 					<link
+						rel="preload"
+						href="/fonts/Inter-Var.woff2"
+						as="font"
+						type="font/woff2"
+						crossOrigin="anonymous"
+					/>
+					<link
 						rel="apple-touch-icon"
 						sizes="180x180"
 						href="/apple-touch-icon.png"
