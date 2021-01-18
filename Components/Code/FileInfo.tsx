@@ -36,10 +36,10 @@ export const FileInfo: React.FC<FileInfoProps> = ({
 
 	return (
 		<div className="file-info">
-			<div className={language}>
+			<div className={language} aria-label="File Language">
 				<LanguageToIcon language={language} />
 			</div>
-			{pathName && <span>{pathName}</span>}
+			{pathName && <span aria-label="File Name">{pathName}</span>}
 			<button
 				onClick={(e) => {
 					if (!copiedRef.current) {
