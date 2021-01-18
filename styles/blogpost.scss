@@ -17,7 +17,7 @@
 
 	h3 {
 		margin-top: 3rem;
-		font-weight: 900;
+		font-weight: 700;
 		padding-left: 1rem;
 	}
 
@@ -63,10 +63,6 @@
 		padding: 0 1rem;
 	}
 
-	a {
-		display: inline-block;
-	}
-
 	strong {
 		color: var(--text-color-bold);
 		font-weight: 600;
@@ -92,9 +88,9 @@
 
 	.blog-link {
 		color: var(--accent-color);
-		border-bottom: 2px solid var(--accent-color);
-		padding: 0 0.1rem;
-		line-height: 2.2rem;
+		text-decoration: underline;
+		text-underline-offset: 3px;
+		text-decoration-thickness: 0.15em;
 
 		&:hover {
 			color: var(--link-highlight);
