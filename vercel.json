@@ -8,6 +8,24 @@
 					"value": "public, max-age=31536000, immutable"
 				}
 			]
+		},
+		{
+			"source": "/images/sun3D.png",
+			"headers": [
+				{
+					"key": "Cache-Control",
+					"value": "public, max-age=31536000, immutable"
+				}
+			]
+		},
+		{
+			"source": "/images/moon3D.png",
+			"headers": [
+				{
+					"key": "Cache-Control",
+					"value": "public, max-age=31536000, immutable"
+				}
+			]
 		}
 	]
 }
