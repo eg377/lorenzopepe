@@ -1,7 +1,7 @@
 .nav-wrapper {
 	display: grid;
 	grid-template-rows: 1fr;
-	grid-template-columns: 1fr 60px;
+	grid-template-columns: 1fr 100px;
 	column-gap: 2rem;
 	grid-column-gap: 2rem;
 	padding: 0.6rem 0 0 0;
@@ -39,6 +39,7 @@
 
 .navbar {
 	width: 100%;
+	align-self: center;
 
 	ul {
 		list-style-type: none;
