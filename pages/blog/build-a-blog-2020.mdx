@@ -1,22 +1,23 @@
 import { PostHeader } from "../../Components/Blog/PostHeader";
 import { PostImage } from "../../Components/Blog/PostImage";
 import { PostFooter } from "../../Components/Blog/PostFooter";
+import { Aside } from '../../Components/Blog/Aside';
 import { Emoji } from '../../Components/Emoji';
-import { IrradiationIllusion } from '../../BlogDemos/IrradiationIllusion';
 import { LinkTo } from '../../Components/LinkTo';
+import { IrradiationIllusion } from '../../BlogDemos/IrradiationIllusion';
 
 export const images = [
 	{
 		alt: "Use at own risk sign on a fence near some plants.",
-		src: "/images/blog_image.jpg",
+		src: "/images/blog/blog_image.jpg",
 		placeholderSvg: "data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 162'%3e%3cdefs/%3e%3cfilter id='a'%3e%3cfeGaussianBlur stdDeviation='12'/%3e%3c/filter%3e%3crect width='100%25' height='100%25' fill='%23535233'/%3e%3cg filter='url(%23a)'%3e%3cg fill-opacity='.5' transform='translate(.6 .6) scale(1.17188)'%3e%3cpath fill='%23ff90a9' d='M188.1 48.3l.8 45-137 2.4-.8-45z'/%3e%3cellipse cx='106' cy='133' rx='236' ry='38'/%3e%3ccircle r='1' fill='%23050600' transform='matrix(11.918 -11.34937 31.35603 32.92707 188 19.4)'/%3e%3ccircle r='1' fill='%23ab7169' transform='matrix(2.24345 17.62752 -61.89346 7.87718 208.2 73)'/%3e%3ccircle cx='247' cy='31' r='22'/%3e%3cpath d='M35 33L13.4 58-13 35 8.6 10z'/%3e%3ccircle r='1' fill='%23010000' transform='matrix(15.36676 -26.55662 12.06319 6.98026 129 20.5)'/%3e%3ccircle r='1' fill='%23090400' transform='matrix(-1.09686 22.47335 -148.05311 -7.22608 170.3 126.7)'/%3e%3c/g%3e%3c/g%3e%3c/svg%3e",
 	},
 	{
 		alt: "Woff2 support chart",
-		src: "/images/woff2_support.png",
+		src: "/images/blog/woff2_support.png",
 		placeholderSvg: "data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 167'%3e%3cdefs/%3e%3cfilter id='a'%3e%3cfeGaussianBlur stdDeviation='12'/%3e%3c/filter%3e%3crect width='100%25' height='100%25' fill='%23525f38'/%3e%3cg filter='url(%23a)'%3e%3cg fill-opacity='.5' transform='translate(.6 .6) scale(1.17188)'%3e%3ccircle r='1' fill='white' transform='matrix(-254.99535 1.53996 -.42607 -70.5507 122.4 105.7)'/%3e%3cellipse cx='131' cy='8' fill='%23ff4f00' rx='255' ry='20'/%3e%3ccircle r='1' fill='white' transform='rotate(174.1 91.4 39) scale(74.72863 30.06946)'/%3e%3cellipse cx='86' cy='55' fill='%23ffffea' rx='255' ry='18'/%3e%3cellipse cx='174' cy='122' fill='%23ffd' rx='255' ry='14'/%3e%3cellipse cx='59' cy='101' fill='%233b680e' rx='47' ry='13'/%3e%3cellipse cx='45' cy='78' fill='%23fff0de' rx='113' ry='12'/%3e%3cpath fill='%23ffefdc' d='M210 38h46v64h-46z'/%3e%3c/g%3e%3c/g%3e%3c/svg%3e",
 		width: 740,
-		height: 413,
+		height: 242,
 		quality: 100
 	}
 ];
@@ -71,7 +72,11 @@ and experience taught me that a website of this kind can get out of hand pretty 
 building a worse version of a framework trying to implement these features. I also wanted to keep the advantages of having a static website and this is where 
 [Next.js](https://nextjs.org/) comes through.
 
-> I also chose to use [Typescript](https://www.typescriptlang.org/) because it's in my opinion a relatively small overhead for the given advantages, but this is a topic for another blog post.
+<Aside type="success">
+
+I'm also using [Typescript](https://www.typescriptlang.org/) because it's a relatively small overhead compared to the advantages it provides.
+
+</Aside>
 
 I won't go super in-depth about Next.js as their documentation is top-notch, but what made me choose this framework was that under 
 [certain conditions](https://nextjs.org/docs/basic-features/pages#static-generation-recommended) it allows the developer to write React code 
@@ -88,8 +93,12 @@ For my hosting, I decided to take advantage of the great [deployment workflow](h
 when using Next.js. I keep my files inside a public [Github Repository](https://github.com/lorenzored98/lorenzopepe) and every time I `git-push` it automatically rebuilds and deploys the new
 website. Magic.
 
-> After rereading this section I have to point out one thing, this is _unfortunately_ <Emoji value="😆" description="laughing"/> not 
+<Aside type="info">
+
+After rereading this section I have to point out one thing, this is _unfortunately_ <Emoji value="😆" description="laughing"/> not 
 sponsored nor paid for by the Next.js team.
+
+</Aside>
 
 </section>
 
@@ -106,32 +115,62 @@ from some of the blogs I follow, notably [Josh W. Comeau](https://www.joshwcomea
 One of the advantages of using this layout is that it's intrinsically responsive, only a small handful of components needs to be styled differently for
 smaller devices.
 
-I chose to use [Inter](https://rsms.me/inter/) by [Rasmus Andersson](https://twitter.com/rsms) for my website font.
-Thankfully this font has a [variable](https://web.dev/variable-fonts/) version and with the help of the CSS `@font-face` rule, loading it
-takes as little as 6 lines of code.
+I chose to use [Inter](https://rsms.me/inter/) by [Rasmus Andersson](https://twitter.com/rsms) for my website font, specifically its [variable](https://web.dev/variable-fonts/) version.
 
-```scss [main.scss] numbered
+>To optimize font loading I recommend this [great blog post](https://leerob.io/blog/fonts) by Lee Robinson. He goes in depth about optmization and different approaches to solve this problem.
+
+Inside our [custom document](https://nextjs.org/docs/advanced-features/custom-document) head we can preload the font and then use the CSS `@font-face` rule to load it.
+
+```tsx [_document.tsx]
+<link
+	rel="preload"
+	href="/fonts/Inter-Var.woff2"
+	as="font"
+	type="font/woff2"
+	crossOrigin="anonymous"
+/>
+```
+
+```scss [main.scss]
 @font-face {
-	src: url("../public/fonts/Inter-Var.woff2") format("woff2"),
-		url("../public/fonts/Inter-Var.ttf") format("truetype");
+	src: url("/fonts/Inter-Var.woff2") format("woff2");
 	font-family: "Inter";
 	font-weight: 100 900;
 	font-display: swap;
 }
 ```
 
-This rule will take care of loading the correct version of the font, based on the user browser. All modern browsers support woff2 files nowadays, still it's nice to have a fallback.
+Most browsers support woff2 files nowadays.
 
 <PostImage 
 	imageData={images[1]}
 >
-	Woff2 support chart by <LinkTo href="https://caniuse.com?search=woff2">Caniuse</LinkTo>
+	Woff2 support chart by <LinkTo href="https://caniuse.com/woff2">Caniuse</LinkTo>
 </PostImage>
 
-You might have noticed I have `font-display: swap` enabled. This means that loading the font won't block the website's rendering. So it's very likely that if you have
-a slower connection you will see text styled with your system font and whenever my font is loaded it will swap.  
+You might have noticed I have font-display: swap enabled. This means that loading the font won't block the website's rendering. 
+It's likely that the user will see text styled with his system font and whenever `Inter` loads it will swap between them. I personally don't mind this given that it happens only before the
+font gets saved in the cache.
 
-Code snippets are styled use a different combination of fonts based on what's available on the user system.
+Next.js by default doesn't add the appropriate header for our font, but we can set it up ourselves in the [vercel.json](https://vercel.com/docs/configuration) file.
+
+```json [vercel.json] 
+{
+	"headers": [
+		{
+			"source": "/fonts/Inter-Var.woff2",
+			"headers": [
+				{
+					"key": "Cache-Control",
+					"value": "public, max-age=31536000, immutable"
+				}
+			]
+		}
+	]
+}
+```
+
+Code snippets are styled use a different combination of fonts based on what's available on the user system. This is known as the [system font stack](https://systemfontstack.com/).
 
 ### Colors
 
@@ -142,15 +181,19 @@ and others were just plain ugly.
 
 At that point, I decided to go with the _tried and tested_ <Emoji value="😉" description="I'm joking!" /> way of choosing a starting color, `#7646fd` <span className="color-block light"/> for light mode, `#ffa7c4` <span className="color-block dark"/> 
 for dark mode and fiddle with them until I get something I like. The ending result is a very small palette looks quite pretty. 
-My initial idea was to design with pastel colors but I was unable to get a satisfying result.
+My initial idea was to use pastel colors but I was unable to get a satisfying result.
 
 I didn't mess with the starting colors at _random_ until I got the results I wanted. While I was doing it I was considering what I wanted to convey with colors.
 
 The end goal is for users to have a pleasant reading experience so I decided to avoid bright colors and only use them to highlight emphasized content. At the same time, colors are only one way 
 of doing that, being over-reliant on colors to show the UI state may become problematic.
 
-> If you are looking for more in-depth design tips and tricks, I'd like to recommend [Steve Schoger](https://twitter.com/steveschoger). He has helped me immensely thanks to his tweets on design and  
-[Refactoring Ui](https://refactoringui.com/), the book he co-wrote. 
+<Aside type="info">
+
+If you are looking for more in-depth design tips and tricks, I'd like to recommend [Steve Schoger](https://twitter.com/steveschoger). His twitter is full of good design tips and he co-wrote 
+[Refactoring Ui](https://refactoringui.com/), one of the best book about web design.
+
+</Aside>
 
 ### Dark mode secrets
 
@@ -161,8 +204,8 @@ When using React a popular approach is to have a top-level context to handle it 
 
 Here's how I've done it.
 
-1. I've created a separate vanilla file called `variables.css` which _surprisingly_ stores all the variables that change between modes. It will style
-based on a `data-theme` attribute applied to the `<html>` element.
+1. I've created a separate file called `variables.css` which _unsurprisingly_ stores all the variables that change between modes. Styles will be applied to the `<html>` element
+based on the `data-theme` attribute value.
 
 2. #### Building the useDarkMode hook
 	To manage dark mode I've decided to go with a custom hook that will determine whether we are in dark mode or not and modify the `data-theme` attribute
@@ -229,9 +272,9 @@ based on a `data-theme` attribute applied to the `<html>` element.
 	by storing a cookie containing the user preference inside `window.localStorage` and retrieve it whenever he visits the website. 
 	The `setLocalStorageDarkMode` function does half of this, it takes care of setting the cookie.
 
-	But what if the user has never visited our website? Should we display light mode as the default option? Luckily, thanks to the 
+	But what if the user has never visited our website? Should we display light mode as the default option? Luckily, with the 
 	CSS media query [prefers-color-scheme](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme) we have a way to know 
-	if the user requested his operating system to use a light or dark theme. While we check this it makes also sense to retrieve the cookie if it was previously stored.
+	if the user requested his operating system to use a light or dark theme. While we are checking this it makes sense to retrieve the cookie if it was previously stored.
 
 	This is the completed hook with our new addiction:
 
@@ -308,27 +351,26 @@ based on a `data-theme` attribute applied to the `<html>` element.
 		);
 	};
 	```
-
-	_Be careful_ that this solution may not work in all cases and it's something that it's tailor-made for my use case.
+	<Aside type="warning">
+	
+	This solution may not work in all cases and it's somewhat tailor-made for my use case.
 	What happens if I include `useDarkMode` in a component that is not rendered? It won't update the `data-theme=hidden`
 	attribute from the `<html>` element and nothing will be seen. 
-	
-	Since my `DarkModeToggle` component is always going to get rendered I can just
-	use the hook there but if you have your dark mode settings behind some menu I advise to also use the hook in one of the
-	first rendered components.
+
+	</Aside>
 
 3. To avoid [FOUC](https://en.wikipedia.org/wiki/Flash_of_unstyled_content), a blocking script is placed in the document head which sets 
 	`data-theme` to `hidden`. This attribute will set `visibility` to `hidden` and remove `pointer-events` from the website. Once the hook 
 	evaluates the correct setting it will style it accordingly. 
     
-	With this approachm I can keep `data-theme=light` as the default
+	With this approach I can keep `data-theme=light` as the default
 	option so users with javascript disabled will still see the blog styled correctly.
 
-4. Dark mode is not only about having two color palettes and swapping them accordingly. There are other settings you may want to change.
+4. Dark mode is not just having two color palettes and swapping them accordingly. There are other settings you may want to change.
 
-	It's very rare to see `black` or `white` background color or text color, it's almost always a shade of very dark / very light gray.
+	It's very rare to see `black` or `white` backgrounds or text color, it's almost always a shade of very dark / very light gray.
 	
-	You may want to apply filters to images to reduce contrast or brightness. This may vary from image to image so it's a bit tricky to get right 
+	You may want to apply filters to images to reduce contrast or brightness. This varies from image to image so it's a bit tricky to get right 
 	without going over each case.
 	
 	Certain elements like shadows or trying to add depth to the UI are harder to do when using dark mode. Dark mode doesn't mean black,
@@ -341,9 +383,7 @@ based on a `data-theme` attribute applied to the `<html>` element.
 
 	<IrradiationIllusion />
 
-	I'm not sure if this effect is more noticeable because of the font I'm using or how much `font-weight` to use. 
-	For example`400` for light mode and `300` for dark mode passed the eye test for this blog paragraph text.
-
+	I'm not sure if this effect is more noticeable because of the font I'm using or how much `font-weight` to use, I've eyeballed it.
 
 </section>
 
@@ -351,9 +391,9 @@ based on a `data-theme` attribute applied to the `<html>` element.
 
 ## Writing blog posts
 
-One of the key points for this blog was the ability to write posts in Markdown. Unfortunately, I very quickly realized that Markdown was not going to cut it
-for what I wanted to do, anything slightly more complex made me miss the rigidity of HTML and the abstraction layer that components allow me to have.
-Next, I tried to write each blog post as a React component. This fixed the aforementioned issues but it was getting a bit tedious having to write
+One of the key points for this blog was the ability to write posts in Markdown. I realized very quickly that Markdown was not going to cut it
+for what I wanted to do. Anything slightly complex made me miss the rigidity of HTML and the abstraction layer that components allow me to have,
+so I tried to write each blog post as a React component. This fixed the aforementioned issues but it was getting a bit tedious having to write
 blog post in HTML, it was less readable than Markdown and much more verbose. 
 
 At this point, I was a bit lost. I was looking for a sweet spot in the middle and after some research, I found this amazing project called [MDX](https://mdxjs.com/).
@@ -363,11 +403,13 @@ to integrate MDX and Next.js. The documentation shows very clearly how to integr
 
 Inside a Next.js project, there are a few "special" directories reserved for a particular use. One of those is the [pages](https://nextjs.org/docs/basic-features/pages) directory.
 
-Next.js at build time looks into the `pages` directory and for every file ending with `.js`, `.jsx`, `.ts`, `.tsx` and , it creates a route based on the file name.
-Thanks to the `next/mdx` plugin, `.md` and `.mdx` files also generate a route.
+Next.js, at build time, looks into the `pages` directory and, for every file ending with `.js`, `.jsx`, `.ts`, `.tsx`, creates a route based on the file name.
+With the `next/mdx` plugin, `.md` and `.mdx` files will also be included in this list.
 
-Now that we have blog posts working I wanted to show a list of available blog posts on the home page. Given the small size, I could have hardcoded the content. Instead, Next.js provides
-a function called `getStaticProps` that gets called at build time. This function allows us to fetch data and pass it to a component. MDX allows to export variables from inside the file so I decided
+Now that we have blog posts working I wanted to show a list of available blog posts on the home page. Given the small size, I could have hardcoded the content but Next.js provides
+a function called `getStaticProps` that is going to solve this problem. 
+
+This function gets called at build time and allows us to fetch data and pass it to a component. MDX allows to export variables from inside the file so I decided
 that every blog post should have a `metadata` object containing various properties, here's the metadata from this page:
 
 ```javascript [blog.mdx]
@@ -447,8 +489,11 @@ export const getStaticProps: GetStaticProps = async () => {
 };
 ```
 
-> Note that this file is called `index.tsx`. There is a reasoning for that. Being inside the `pages` directory, a file called `index` will take the 
-	directory name as its route. Given that this component sits at the lowest level it defaults to my website URL.
+<Aside type="warning">
+
+This file has to be called `index.tsx`. Next.js file-system based router will automatically route files named index to the root of the directory. 
+
+</Aside>
 
 With this, I managed to have a fully functioning blog. Now it's time to point out some of the issues I have with MDX.
 
@@ -472,26 +517,36 @@ With this, I managed to have a fully functioning blog. Now it's time to point ou
 
 Syntax highlighting is a crucial piece of blog posts. I wanted to get it right and the most popular solutions didn't fit my needs.
 
-The way I've seen most frequently _in the wild_ is to use something like [prism-react-renderer](https://www.npmjs.com/package/prism-react-renderer), connecting
-it to the output from MDX code blocks and let it take care of tokenizing and highlighting based on the provided theme.
+The way I've seen it done most frequently _in the wild_ is to use something like [prism-react-renderer](https://www.npmjs.com/package/prism-react-renderer), connecting
+it to the output of a MDX code block and let it take care of tokenizing and highlighting based on the provided theme.
 
-Unfortunately, the results weren't good enough. I wanted something that highlighted the code exactly as VSCode does, which prism-react-renderer unfortunately fell short of and
+Unfortunately, the results weren't good enough. I wanted something that highlighted the code exactly like VSCode does. prism-react-renderer unfortunately was not doing this and
 I didn't want to load a library to do this at runtime. Ideally, this would be all done at build time since my code blocks are not editable.
 
-Luckily, after some research, I found [Shiki](https://shiki.matsu.io/). Shiki is a syntax highlighter that under the hood uses the same method of VSCode. It also does it's thing
-at build time which works perfectly with our statically generated pages.
+After some research, I found [Shiki](https://shiki.matsu.io/). Shiki is a syntax highlighter that under the hood uses TextMate grammar to tokenize strings and color tokens. 
+This is how popular editors like VSCode, Sublime and Atom handle syntax highlighting. It also does this at build time which works perfectly with this blog statically generated pages.
 
-Thanks to the fact that MDX is part of the [unified](https://github.com/unifiedjs) collective, it has access to `remark` and `rehype` [plugins](https://mdxjs.com/advanced/plugins).
+We need to connect MDX code blocks to Shiki. Since MDX is part of the [unified](https://github.com/unifiedjs) collective we can use to `remark` and `rehype` [plugins](https://mdxjs.com/advanced/plugins) 
+to transform its content. To connect them we can use the [rehype-shiki](https://github.com/rsclarke/rehype-shiki) plugin. 
 
-I could have written a plugin for Shiki but it turns out there is already something like that called _surprisingly_ [rehype-shiki](https://github.com/rsclarke/rehype-shiki).
+<Aside type="info">
 
-The usage is straightforward. First of all you need to grab a theme.If you are using VSCode you can use <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>P</kbd> to 
+It's not too hard to write it yourself if you don't want to use a package, but I'm lazy <Emoji value="😁" description="Joking!" />.
+
+</Aside>
+
+The usage is straightforward. First thing we need to do is to choose a theme. If you are using VSCode you can use <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>P</kbd> to 
 open the Command Palette and choose the `Developer: Generate Color Theme From Current Settings` setting. This will create a json file that you can use inside Shiki. 
-Additionally Inside [Shiki's github repo](https://github.com/shikijs/shiki/tree/master/packages/themes/data) you can find some default themes pre-generated.
 
-> I'm using `material-theme-palenight` with some changes to fix accessibility issues.
+Inside [Shiki's github repo](https://github.com/shikijs/shiki/tree/master/packages/themes/data) you can find some default themes pre-generated.
 
-After selecting the theme, download `shiki` and `rehype-shiki` from npm and edit the `withMDX` plugin on `next.config.js` to look something like this:
+<Aside type="info">
+
+I'm using `material-theme-palenight` with some changes to fix accessibility issues.
+
+</Aside>
+
+After selecting the theme, download `shiki` and `rehype-shiki` from npm and edit the `withMDX` plugin on `next.config.js` with your theme and preferences.
 
 ```javascript [next.config.js]
 const rehypeShiki = require("rehype-shiki");
@@ -511,8 +566,7 @@ const withMDX = require("@next/mdx")({
 	},
 });
 ```
-
-Taking advantage of the `MDXProvider` component we can pass an object that follows this scheme:
+To use our code blocks we can take advantage of the `MDXProvider` component. To do that we can pass an object that follows this scheme:
 
 ```javascript [mdxComponents]
 const mdxComponents = {
@@ -524,7 +578,21 @@ The object key is the HTML element we are targeting and its value is the compone
 [MDX Provider](https://mdxjs.com/guides/wrapper-customization#wrapper-customization) here.
 
 In my case, I use a custom `<CodeBlock>` component every time I encounter a `<pre>` element. This allows me to easily add other features 
-such as line highlighting, the file name, the file extension and, lines numbers.
+such as line highlighting, the file name, the file extension and line numbers.
+
+```tsx [_app.tsx]
+const mdxComponents = {
+	pre: (props: any) => (
+		<CodeBlock
+			background={props.style[0]}
+			language={props.children.props.className}
+			metastring={props.children.props.metastring}
+		>
+			{props.children.props.children}
+		</CodeBlock>
+	)
+}
+```
 
 </section>
 
@@ -534,17 +602,17 @@ such as line highlighting, the file name, the file extension and, lines numbers.
 
 I think I've covered pretty much everything I wanted but I'm left with a handful of interesting things I discovered.
 
-Emoji aren't accessible, they need to be wrapped up in a `<span>` with a role of `img` and an `aria-label` with a description.
+Emojis aren't accessible, they need to be wrapped up in a `<span>` with a role of `img` and an `aria-label` with a description.
 
 Copying text to the user clipboard is a real pain depending on the device he's using. I think I got it right from testing it on various devices but there might be some edge cases that I haven't detected yet.
 Of course, it has to be this way because of the security and privacy concerns regarding the user clipboard so I can't complain too much although the way I've set it up feels a bit _hacky_. 
 
-This website should be perfectly readable without javascript enabled. It didn't take much work and it only miss certain features such as copying code snippets and dark mode. 
-This seems like a good compromise to me and I don't expect many people to have javascript disabled but still, it may happen so it has to be taken care of. The only downside which I haven't got around to 
-fix yet is that mobile users with disabled javascript can not open the hamburger menu.
+This website should be readable without javascript enabled. It didn't take much work and it only a few features such as copying code snippets and dark mode are missing.  
+This seems like a good compromise to me. I don't expect many people to have javascript disabled but it may happen. The only issue I have yet to fix is that mobile users with 
+disabled javascript can't open the hamburger menu.
 
-Writing in English has been harder than expected. I always thought I was quite good at writing and reading, with pronunciation as my Achille's heel. Turns out I need extra english practice. In the meantime
-hopefully [Grammarly](https://www.grammarly.com/) can save me <Emoji value="😁" description="Smiling Face" />.
+Writing in English has been harder than expected. I always thought I was quite good at writing and reading, with pronunciation being my Achille's heel. Turns out I need extra english practice. In the meantime
+hopefully [Grammarly](https://www.grammarly.com/) can save me <Emoji value="😁" description="I suck at English" />.
 
 And last but not least accessibility is _queen_. At this point, I feel like I'm repeating myself so I also want to point out that there are almost always going to be edge cases where certain users
 may experience difficulties on your website. Just testing for color blindness alone is very hard. By using the console built-in `Emulate vision deficiencies` console feature you can see 
@@ -560,14 +628,14 @@ such as not breaking the user zoom, avoid breaking scroll and, respecting the WC
 ## Ending Thoughts
 
 Coding this blog was slightly harder than I initially thought but not because of technical issues. What gave me the most trouble
-was overthinking stuff as if I expected thousands of people to browse it on launch day or that a single mistake would tarnish my reputation forever <Emoji value="😨" description="Worried face" />.
+was overthinking stuff as if I expected thousands of people to browse it on launch day or that a single mistake would tarnish my reputation forever <Emoji value="😨" description="I was very worried" />.
 
 At one point I added features such as a complex search system, dropdowns with fancy animations and, a lot of small, pretty (and frankly a bit useless) components
 without actually having written a single word let alone a single blog post. That finally made me realize that I was missing the point of writing a blog in the first place.
-Of course, it has to look good but what should matter the most is the content and I can worry about most of the features I want to add or improve existing features at a later time.
+Of course, it has to look good but what should matter the most is the content and I can worry about most of the features I want to add in the future.
 
 Ultimately this was a good reminder that while thinking and planning about what you are going to do is a great skill to have, it can easily get out of hand. This, in my experience, will
-snowball into not seeing any _tangible_ progress and will lead to losing interest in the project. Sometimes it's best to just bite the bullet and ship things that may not be perfect _yet_.
+snowball into not seeing any _tangible_ progress and will lead to losing interest in the project. Sometimes it's best to bite the bullet and ship things that may not be perfect _yet_.
 
 On the technical side of things, it has been nothing but a pleasure. Next.js dev experience is fantastic, honestly, I cannot recommend it enough. I've found tons of resources
 about the problems I encountered and it has an extremely active and growing community.
