@@ -5,7 +5,7 @@ import { Color } from "./index";
 	hue: 0-360
 	saturation: 0-100
 	value: 0-100
-	alpha: 0-100
+	alpha: 0-1
 */
 
 // For the sake of the blog post
