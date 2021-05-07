@@ -21,9 +21,16 @@
 		display: none;
 	}
 
+	a {
+		padding: 0.8rem 1rem;
+	}
+
+	button {
+		padding: 0.4rem;
+	}
+
 	a,
 	button {
-		padding: 0.8rem 1rem;
 		border: none;
 		border-radius: 3px;
 		background: transparent;
@@ -62,7 +69,6 @@
 		align-items: center;
 		font-weight: 900;
 		&.current {
-			// font-weight: 400;
 			color: var(--accent-color);
 		}
 	}

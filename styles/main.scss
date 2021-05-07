@@ -4,7 +4,7 @@
 @import "./code.scss";
 @import "./blogpost.scss";
 
-@import "./demos.scss";
+@import "./demo.scss";
 
 @font-face {
 	src: url("/fonts/Inter-Var.woff2") format("woff2");
@@ -22,7 +22,6 @@ html,
 body {
 	// width: 100%;
 	overflow-x: hidden;
-	overflow-y: auto;
 }
 
 html {
@@ -39,11 +38,12 @@ body {
 	font-size: 10px;
 	background-color: var(--bg);
 	transition: none;
-	font-weight: 400;
+	font-weight: var(--paragraph-weight);
 	font-family: "Inter", Arial, Helvetica, sans-serif;
 	min-height: 100vh;
 	min-height: -webkit-fill-available;
 	margin-left: calc(100vw - 100%);
+	overflow: hidden;
 
 	*:focus {
 		outline: 2px solid var(--accent-color);
@@ -82,7 +82,6 @@ main {
 
 p {
 	font-size: 1.8rem;
-	font-weight: var(--paragraph-weight);
 }
 
 h1 {
@@ -159,7 +158,6 @@ svg {
 
 	a {
 		border-radius: 3px;
-		transition: background-color 0.2s ease;
 		justify-self: flex-start;
 		padding: 0.2rem 1rem;
 
@@ -190,6 +188,7 @@ svg {
 	border-radius: 3px;
 	font-size: 1.4rem;
 	flex-shrink: 0;
+	font-weight: calc(var(--paragraph-weight) + 100);
 }
 
 .post-tag {
@@ -265,20 +264,16 @@ svg {
 .main-missing {
 	color: var(--text-color);
 	margin: 0;
-	padding: 15rem 0 0 0;
+	padding: 10rem 0 0 0;
 	flex-direction: column;
 	align-items: center;
 	justify-content: flex-start;
 	min-height: 90vh;
 
-	h1 {
-		font-size: 10rem;
-		color: var(--accent-color);
-	}
-
 	p {
-		margin: 1rem 0;
+		margin: 2rem 0;
 		text-align: center;
+		font-size: 2rem;
 	}
 
 	nav {
@@ -289,12 +284,15 @@ svg {
 		list-style-type: none;
 
 		a {
-			background: var(--light-bg);
+			background: transparent;
+			border: none;
 			padding: 1.6rem 3rem;
 			border-radius: 3px;
+			font-weight: 900;
 
-			&:hover {
-				background: var(--accent-bg);
+			&:hover,
+			&:focus {
+				background: var(--opacity-bg);
 			}
 		}
 	}

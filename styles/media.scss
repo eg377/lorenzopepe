@@ -5,6 +5,14 @@
 	}
 }
 
+@media screen and (max-width: 40rem) {
+	.main-article {
+		.aside {
+			margin-left: 4px;
+		}
+	}
+}
+
 @media screen and (max-width: 500px) {
 	.nav-wrapper {
 		transition: none;
@@ -105,18 +113,6 @@
 	.main-about {
 		.about-title {
 			flex-direction: column;
-		}
-	}
-
-	.main-missing {
-		padding-top: 8rem;
-	}
-}
-
-@media screen and (max-width: 600px) {
-	.main-missing {
-		h1 {
-			font-size: 6rem;
 		}
 	}
 }
