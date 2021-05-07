@@ -1,4 +1,5 @@
 import { timestampToDate } from "../../utils/timestampToDate";
+import { Emoji } from "../Emoji";
 
 interface PostFooterProps {
 	timestamp: number;
@@ -22,18 +23,18 @@ export const PostFooter: React.FC<PostFooterProps> = ({
 				className="date"
 				dateTime={new Date(timestamp * 1000).toDateString()}
 			>
+				<Emoji value="⌛" description="Published on" />{" "}
 				{timestampToDate(timestamp)}
 			</time>
 			<div>
 				<p>
-					<span role="img" aria-label="Light bulb emoji">
-						💡
-					</span>{" "}
+					<Emoji value="💡" description="Feeling enlightened?" />{" "}
 					Found this post helpful ?{" "}
 				</p>
 				<p>
-					Share it on
+					Let me know on{" "}
 					<a
+						className="blog-link"
 						href={`https://twitter.com/intent/tweet?text=${escapedTitle} ${encodedHref} by ${twitterHandle}`}
 						rel="noreferrer noopener canonical"
 						target="_blank"

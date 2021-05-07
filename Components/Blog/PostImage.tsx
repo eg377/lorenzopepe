@@ -24,7 +24,7 @@ export const PostImage: React.FC<{ imageData: ImageData }> = ({
 	} = imageData;
 
 	return (
-		<figure>
+		<figure className="post-image">
 			<div
 				className="image-container"
 				// unfortunately the image is not exposed by next and it's not possible to use a ref there
