@@ -12,8 +12,6 @@ class MyDocument extends Document {
 						type="font/woff2"
 						crossOrigin="anonymous"
 					/>
-					<link rel="preload" href="/images/sun3D.png" as="image" />
-					<link rel="preload" href="/images/moon3D.png" as="image" />
 					<link
 						rel="apple-touch-icon"
 						sizes="180x180"
