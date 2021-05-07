@@ -14,7 +14,10 @@ const ColorPicker = dynamic(
 
 export const ColorPickerDemo: React.FC = () => {
 	return (
-		<Demo height="407px" href="TEMP">
+		<Demo
+			height="407px"
+			href="https://github.com/lorenzored98/lorenzopepe/blob/dev/BlogDemos/ColorPicker/index.tsx"
+		>
 			<ColorPicker />
 		</Demo>
 	);
@@ -22,7 +25,10 @@ export const ColorPickerDemo: React.FC = () => {
 
 export const UnstyledRangesDemo: React.FC = () => {
 	return (
-		<Demo height="200px" href="TEMP">
+		<Demo
+			height="200px"
+			href="https://github.com/lorenzored98/lorenzopepe/blob/dev/BlogDemos/ColorPicker/UnstyledRanges.tsx"
+		>
 			<UnstyledRanges />
 		</Demo>
 	);
@@ -30,7 +36,10 @@ export const UnstyledRangesDemo: React.FC = () => {
 
 export const StyledHueRangeDemo: React.FC = () => {
 	return (
-		<Demo height="100px" href="TEMP">
+		<Demo
+			height="100px"
+			href="https://github.com/lorenzored98/lorenzopepe/blob/dev/BlogDemos/ColorPicker/StyledRanges.tsx#L4"
+		>
 			<StyledHueRange />
 		</Demo>
 	);
@@ -38,7 +47,10 @@ export const StyledHueRangeDemo: React.FC = () => {
 
 export const StyledAlphaRangeDemo: React.FC = () => {
 	return (
-		<Demo height="100px" href="TEMP">
+		<Demo
+			height="100px"
+			href="https://github.com/lorenzored98/lorenzopepe/blob/dev/BlogDemos/ColorPicker/StyledRanges.tsx#L36"
+		>
 			<StyledAlphaRange />
 		</Demo>
 	);
