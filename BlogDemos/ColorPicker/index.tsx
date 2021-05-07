@@ -1,103 +1,130 @@
+import * as React from "react";
 import {
-	Dispatch,
-	SetStateAction,
-	useCallback,
-	useEffect,
-	useRef,
-	useState,
-	TouchEvent,
-} from "react";
-import {
+	fillCanvas,
+	getPointerPosition,
+	hexToHsv,
+	hsvToHex,
 	hsvToHsl,
-	hslToHsv,
 	hsvToRgb,
 	rgbToHsv,
-	hsvToHex,
-	hexToHsv,
+	toColorInput,
+	validateStartColor,
 } from "./utils";
 
-type Tuple4<T> = [T, T, T, T];
+import style from "./index.module.scss";
 
 interface ColorPickerProps {
 	onChange?: (color: string) => void;
+	startColor?: string;
 }
 
-// might do conversions here and pass them down
-export const ColorPicker: React.FC<ColorPickerProps> = ({ onChange }) => {
-	const [hsva, setHsva] = useState<Tuple4<number>>([0, 100, 100, 100]);
-	useEffect(() => {
-		const color = hsvToHex(
-			hsva[0] / 360,
-			hsva[1] / 100,
-			hsva[2] / 100,
-			hsva[3]
-		);
-		onChange && onChange("#" + color);
-	}, [hsva, onChange]);
+export type Color = {
+	hue: number;
+	saturation: number;
+	value: number;
+	alpha: number;
+};
+
+export const ColorPicker: React.FC<ColorPickerProps> = ({
+	onChange,
+	startColor,
+}) => {
+	const [color, setColor] = React.useState<Color>(
+		validateStartColor(startColor)
+	);
+
+	React.useEffect(() => {
+		if (onChange) {
+			const hex = hsvToHex(
+				color.hue,
+				color.saturation,
+				color.value,
+				color.alpha
+			);
+			if (hex) {
+				onChange("#" + hex);
+			}
+		}
+	}, [color, onChange]);
+
+	const { r, g, b } = hsvToRgb(color.hue, color.saturation, color.value);
 
 	return (
-		<div className="color-picker-wrapper">
-			<div>
-				<GradientCanvas hsva={hsva} setHsva={setHsva} />
-				<HueStrip
-					hue={hsva[0]}
-					setHue={(h: number) =>
-						setHsva([h, hsva[1], hsva[2], hsva[3]])
-					}
+		<div className={style.color_picker}>
+			<div className={style.range_inputs_container}>
+				<GradientCanvas color={color} setColor={setColor} />
+				<HueRangeInput
+					hue={color.hue}
+					setHue={(h: number) => setColor({ ...color, hue: h })}
 				/>
-				<AlphaStrip
-					hsva={hsva}
-					setAlpha={(alpha: number) =>
-						setHsva([hsva[0], hsva[1], hsva[2], alpha])
-					}
+				<AlphaRangeInput
+					color={color}
+					setAlpha={(a: number) => setColor({ ...color, alpha: a })}
 				/>
 			</div>
-			<ColorInfo hsva={hsva} setHsva={setHsva} />
+			<div className={style.color_info}>
+				<div
+					className={style.color_preview}
+					style={{
+						backgroundColor: `rgba(${r},${g},${b}, ${color.alpha}`,
+					}}
+				></div>
+				<RGBInput color={color} setColor={setColor} />
+				<HSVInput color={color} setColor={setColor} />
+				<HSLInput color={color} setColor={setColor} />
+				<HEXInput color={color} setColor={setColor} />
+			</div>
 		</div>
 	);
 };
 
-interface GradientCanvasProps {
-	hsva: Tuple4<number>;
-	setHsva: Dispatch<SetStateAction<Tuple4<number>>>;
+/**
+ *
+ *
+ *
+ *
+ *
+ */
+
+interface ChildInputProps {
+	color: Color;
+	setColor: (c: Color) => void;
 }
 
-const GradientCanvas: React.FC<GradientCanvasProps> = ({ hsva, setHsva }) => {
-	const [size, setSize] = useState<DOMRect | null>(null);
-	const ctxRef = useRef<CanvasRenderingContext2D | null>(null);
-	const canvasRef = useRef<HTMLCanvasElement | null>(null);
+const GradientCanvas: React.FC<ChildInputProps> = ({ color, setColor }) => {
+	const [size, setSize] = React.useState<DOMRect | null>(null);
+	const ctxRef = React.useRef<CanvasRenderingContext2D | null>(null);
+	const canvasRef = React.useRef<HTMLCanvasElement | null>(null);
 
-	const [h, s, v, a] = hsva;
-	// defaults;
-	const pickerSize = 20;
-	const pointerX = size ? (s / 100) * size.width : 0;
-	const pointerY = size ? size.height - (v / 100) * size.height : 0;
+	const { hue, saturation, value, alpha } = color;
 
-	const callbackRef = useCallback((node: HTMLCanvasElement) => {
+	const canvasCursorSize = 20;
+	const cursorX = size ? (saturation / 100) * size.width : 0;
+	const cursorY = size ? size.height - (value / 100) * size.height : 0;
+
+	const ref = React.useCallback((node: HTMLCanvasElement | null) => {
 		if (node !== null) {
 			setSize(node.getBoundingClientRect());
 			ctxRef.current = node.getContext("2d");
-
-			// add touch listeners
 			canvasRef.current = node;
 		}
 	}, []);
 
-	useEffect(() => {
+	React.useEffect(() => {
 		if (size && ctxRef.current) {
-			const [r, g, b] = hsvToRgb(h / 360, 1, 1);
+			const { r, g, b } = hsvToRgb(hue, 100, 100);
 			fillCanvas(
 				ctxRef.current,
-				`rgba(${r}, ${g}, ${b}, ${a / 100})`,
+				`rgba(${r}, ${g}, ${b}, ${alpha})`,
 				size.width,
 				size.height
 			);
 		}
-	}, [size, h, a]);
+	}, [size, hue, alpha]);
 
 	// non passive listener for ios that does not support pointer events
-	useEffect(() => {
-		const touchMove = (e: TouchEvent<HTMLCanvasElement>) => {
+	React.useEffect(() => {
+		const touchMove = (e: globalThis.TouchEvent) => {
 			e.preventDefault();
 			if (!size) return;
 			const [x, y] = getPointerPosition(
@@ -106,15 +133,15 @@ const GradientCanvas: React.FC<GradientCanvasProps> = ({ hsva, setHsva }) => {
 				e.touches[0].clientY
 			);
 
-			setHsva([
-				h,
-				(x / size.width) * 100,
-				100 - (y / size.height) * 100,
-				a,
-			]);
+			setColor({
+				hue,
+				saturation: (x / size.width) * 100,
+				value: 100 - (y / size.height) * 100,
+				alpha,
+			});
 		};
 
-		canvasRef.current?.addEventListener("touchmove", touchMove as any, {
+		canvasRef.current?.addEventListener("touchmove", touchMove, {
 			passive: false,
 		});
 
@@ -124,44 +151,42 @@ const GradientCanvas: React.FC<GradientCanvasProps> = ({ hsva, setHsva }) => {
 				touchMove as any
 			);
 		};
-	}, [h, a, size, setHsva]);
+	}, [hue, alpha, size, setColor]);
 
 	return (
-		<div className="gradient-canvas-container">
-			<div className="checkered" />
+		<div className={style.gradient_canvas_container}>
+			<div className={style.canvas_bg_checkered} />
 			<canvas
-				ref={callbackRef}
+				ref={ref}
+				width={size?.width}
+				height={size?.height}
 				onKeyDown={(e) => {
-					if (e.currentTarget === document.activeElement) {
-						const [h, s, v, a] = hsva;
-						if (e.key === "ArrowUp") {
-							setHsva([h, s, Math.min(v + 1, 100), a]);
-						} else if (e.key === "ArrowDown") {
-							setHsva([h, s, Math.max(v - 1, 0), a]);
-						} else if (e.key === "ArrowLeft") {
-							setHsva([h, Math.max(s - 1, 0), v, a]);
-						} else if (e.key === "ArrowRight") {
-							setHsva([h, Math.min(s + 1, 100), v, a]);
-						}
+					// don't prevent default here or it may mess up tabbing ecc..
+					if (e.key === "ArrowUp") {
+						e.preventDefault();
+						setColor({
+							...color,
+							value: Math.min(value + 1, 100),
+						});
+					} else if (e.key === "ArrowDown") {
+						e.preventDefault();
+						setColor({
+							...color,
+							value: Math.max(value - 1, 0),
+						});
+					} else if (e.key === "ArrowLeft") {
+						e.preventDefault();
+						setColor({
+							...color,
+							saturation: Math.max(saturation - 1, 0),
+						});
+					} else if (e.key === "ArrowRight") {
+						e.preventDefault();
+						setColor({
+							...color,
+							saturation: Math.min(saturation + 1, 100),
+						});
 					}
-				}}
-				onTouchStart={(e) => {
-					const bbox = e.currentTarget.getBoundingClientRect();
-
-					const [x, y] = getPointerPosition(
-						bbox,
-						e.touches[0].clientX,
-						e.touches[0].clientY
-					);
-
-					setHsva([
-						h,
-						(x / bbox.width) * 100,
-						100 - (y / bbox.height) * 100,
-						a,
-					]);
-
-					setSize(bbox);
 				}}
 				onPointerDown={(e) => {
 					const bbox = e.currentTarget.getBoundingClientRect();
@@ -173,12 +198,12 @@ const GradientCanvas: React.FC<GradientCanvasProps> = ({ hsva, setHsva }) => {
 						e.clientY
 					);
 
-					setHsva([
-						h,
-						(x / bbox.width) * 100,
-						100 - (y / bbox.height) * 100,
-						a,
-					]);
+					setColor({
+						hue,
+						saturation: (x / bbox.width) * 100,
+						value: 100 - (y / bbox.height) * 100,
+						alpha,
+					});
 
 					setSize(bbox);
 				}}
@@ -191,51 +216,66 @@ const GradientCanvas: React.FC<GradientCanvasProps> = ({ hsva, setHsva }) => {
 							e.clientY
 						);
 
-						setHsva([
-							h,
-							(x / size.width) * 100,
-							100 - (y / size.height) * 100,
-							a,
-						]);
+						setColor({
+							hue,
+							saturation: (x / size.width) * 100,
+							value: 100 - (y / size.height) * 100,
+							alpha,
+						});
 					}
 				}}
-				width={size?.width}
-				height={size?.height}
-				style={{
-					touchAction: "none",
+				onTouchStart={(e) => {
+					const bbox = e.currentTarget.getBoundingClientRect();
+
+					const [x, y] = getPointerPosition(
+						bbox,
+						e.touches[0].clientX,
+						e.touches[0].clientY
+					);
+					setColor({
+						hue,
+						saturation: (x / bbox.width) * 100,
+						value: 100 - (y / bbox.height) * 100,
+						alpha,
+					});
+
+					setSize(bbox);
 				}}
 				tabIndex={0}
-				aria-valuetext={"#" + hsvToHex(h / 360, s / 100, v / 100, a)}
-				aria-label="Color Picker"
 			/>
-			{/* PICKER */}
 			<div
-				className="canvas-picker"
+				className={style.canvas_cursor}
 				style={{
-					width: `${pickerSize}px`,
-					height: `${pickerSize}px`,
-					transform: `translate(${pointerX - pickerSize / 2}px,${
-						pointerY - pickerSize / 2
+					width: `${canvasCursorSize}px`,
+					height: `${canvasCursorSize}px`,
+					transform: `translate(${cursorX - canvasCursorSize / 2}px,${
+						cursorY - canvasCursorSize / 2
 					}px)`,
-					touchAction: "none",
-					pointerEvents: "none",
 				}}
 			>
-				<div></div>
+				<div />
 			</div>
 		</div>
 	);
 };
 
-interface HueStripProps {
+/**
+ *
+ *
+ *
+ *
+ *
+ */
+
+interface HueRangeInputProps {
 	hue: number;
 	setHue: (h: number) => void;
 }
 
-const HueStrip: React.FC<HueStripProps> = ({ hue, setHue }) => {
-	const inputRef = useRef<HTMLInputElement | null>(null);
+const HueRangeInput: React.FC<HueRangeInputProps> = ({ hue, setHue }) => {
+	const inputRef = React.useRef<HTMLInputElement | null>(null);
 
-	useEffect(() => {
+	React.useEffect(() => {
 		if (inputRef.current) {
 			inputRef.current.style.setProperty(
 				"--thumb-color",
@@ -247,7 +287,7 @@ const HueStrip: React.FC<HueStripProps> = ({ hue, setHue }) => {
 	return (
 		<input
 			aria-label="Hue"
-			className="hue-strip"
+			className={style.hue_range_input}
 			type="range"
 			min={0}
 			max={360}
@@ -256,40 +296,56 @@ const HueStrip: React.FC<HueStripProps> = ({ hue, setHue }) => {
 			onChange={(e) => {
 				setHue(Number(e.target.value));
 			}}
-			style={{
-				background:
-					"linear-gradient(to right, rgb(255, 0, 0) 0%, rgb(255, 255, 0) 17%, rgb(0, 255, 0) 33%, rgb(0, 255, 255) 50%, rgb(0, 0, 255) 67%, rgb(255, 0, 255) 83%, rgb(255, 0, 0) 100%)",
-			}}
 		/>
 	);
 };
 
-interface AlphaStripProps {
-	hsva: Tuple4<number>;
-	setAlpha: (opacity: number) => void;
+/**
+ *
+ *
+ *
+ *
+ *
+ */
+
+interface AlphaRangeInputProps {
+	color: Color;
+	setAlpha: (a: number) => void;
 }
 
-const AlphaStrip: React.FC<AlphaStripProps> = ({ hsva, setAlpha }) => {
-	const inputRef = useRef<HTMLInputElement | null>(null);
-	const [r, g, b] = hsvToRgb(hsva[0] / 360, hsva[1] / 100, hsva[2] / 100);
+const AlphaRangeInput: React.FC<AlphaRangeInputProps> = ({
+	color,
+	setAlpha,
+}) => {
+	const inputRef = React.useRef<HTMLInputElement | null>(null);
+
+	React.useEffect(() => {
+		if (inputRef.current) {
+			const { hue, saturation, lightness } = hsvToHsl(
+				color.hue,
+				color.saturation,
+				color.value
+			);
+			inputRef.current.style.setProperty(
+				"--thumb-color",
+				`hsla(${hue}, ${saturation}%, ${lightness}%, ${color.alpha})`
+			);
+		}
+	}, [color]);
+
+	const { r, g, b } = hsvToRgb(color.hue, color.saturation, color.value);
+
 	return (
-		<div
-			className="alpha-input-wrapper"
-			style={{
-				background:
-					"linear-gradient(45deg, #acacac 25%, transparent 25%), linear-gradient(-45deg, #acacac 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #acacac 75%), linear-gradient(-45deg, transparent 75%, #acacac 75%)",
-				backgroundSize: "10px 10px",
-				backgroundPosition: " 0 0, 0 5px, 5px -5px, -5px 0px",
-			}}
-		>
+		<div className={style.alpha_background_checkered}>
 			<input
-				aria-label="Hue"
-				className="hue-strip"
+				aria-label="Alpha"
+				className={style.alpha_range_input}
 				type="range"
 				min={0}
-				max={100}
+				max={1}
+				step={0.01}
 				ref={inputRef}
-				value={hsva[3]}
+				value={color.alpha}
 				onChange={(e) => {
 					setAlpha(Number(e.target.value));
 				}}
@@ -301,272 +357,318 @@ const AlphaStrip: React.FC<AlphaStripProps> = ({ hsva, setAlpha }) => {
 	);
 };
 
-interface ColorInfoProps {
-	hsva: Tuple4<number>;
-	setHsva: Dispatch<SetStateAction<Tuple4<number>>>;
-}
-// info with colors, RGB, HSL, ecc..
-const ColorInfo: React.FC<ColorInfoProps> = ({ hsva, setHsva }) => {
-	// had trouble when using a string
-	// using this to prevent react not rerendering component
-	const [hexInput, setHexInput] = useState<{ value: string }>({ value: "" });
-	const hexInputFocus = useRef<boolean>(false);
+/**
+ *
+ *
+ *
+ *
+ *
+ */
 
-	const [h, s, v, a] = hsva;
-	const [r, g, b] = hsvToRgb(h / 360, s / 100, v / 100);
-	const hsl = hsvToHsl(h, s, v);
-	const hex = hsvToHex(h / 360, s / 100, v / 100, a);
-
+const RGBInput: React.FC<ChildInputProps> = ({ color, setColor }) => {
+	const { r, g, b } = hsvToRgb(color.hue, color.saturation, color.value);
 	return (
-		<div className="color-info">
-			<div
-				className="color-preview"
-				style={{
-					backgroundColor: `rgba(${r},${g},${b}, ${a / 100})`,
+		<fieldset>
+			<legend>RGB</legend>
+
+			<input
+				aria-label="Rgb red"
+				type="number"
+				inputMode="numeric"
+				min={0}
+				max={255}
+				value={r !== 0 ? r.toString().replace(/^0+/, "") : 0}
+				onChange={(e) => {
+					let val = Number(e.target.value) || 0;
+					if (val > 255) val = 255;
+					const hsv = rgbToHsv(val, g, b);
+					setColor({
+						hue: hsv.hue,
+						saturation: hsv.saturation,
+						value: hsv.value,
+						alpha: color.alpha,
+					});
 				}}
 			/>
-			<div className="input-group">
-				<fieldset>
-					<legend>HSV</legend>
-					<input
-						aria-label="Hsv hue"
-						type="number"
-						min={0}
-						max={360}
-						value={Math.round(h)}
-						onChange={(e) => {
-							const val = Number(e.target.value) || 0;
-							setHsva([val <= 360 ? val : 360, s, v, a]);
-						}}
-					/>
-					<input
-						aria-label="Hsv saturation"
-						type="number"
-						min={0}
-						max={100}
-						value={Math.round(s)}
-						onChange={(e) => {
-							const val = Number(e.target.value) || 0;
-							setHsva([h, val <= 100 ? val : 100, v, a]);
-						}}
-					/>
-					<input
-						aria-label="Hsv value"
-						type="number"
-						min={0}
-						max={100}
-						value={Math.round(v)}
-						onChange={(e) => {
-							const val = Number(e.target.value) || 0;
-							setHsva([h, s, val <= 100 ? val : 100, a]);
-						}}
-					/>
-					<AlphaInput
-						alpha={a}
-						setAlpha={(a: number) => setHsva([h, s, v, a])}
-					/>
-				</fieldset>
 
-				<fieldset>
-					<legend>RGB</legend>
-					<input
-						aria-label="Rgb red"
-						type="number"
-						min={0}
-						max={255}
-						value={r}
-						onChange={(e) => {
-							let val = Number(e.target.value) || 0;
-							if (val > 255) val = 255;
-							const newHsv = rgbToHsv(val, g, b);
-							setHsva([...newHsv, a]);
-						}}
-					/>
-					<input
-						aria-label="Rgb blue"
-						type="number"
-						min={0}
-						max={255}
-						value={g}
-						onChange={(e) => {
-							let val = Number(e.target.value) || 0;
-							if (val > 255) val = 255;
-							const newHsv = rgbToHsv(r, val, b);
-							setHsva([...newHsv, a]);
-						}}
-					/>
-					<input
-						aria-label="Rgb green"
-						type="number"
-						min={0}
-						max={255}
-						value={b}
-						onChange={(e) => {
-							let val = Number(e.target.value) || 0;
-							if (val > 255) val = 255;
-							const newHsv = rgbToHsv(r, g, val);
-							setHsva([...newHsv, a]);
-						}}
-					/>
-					<AlphaInput
-						alpha={a}
-						setAlpha={(a: number) => setHsva([h, s, v, a])}
-					/>
-				</fieldset>
+			<input
+				aria-label="Rgb green"
+				type="number"
+				inputMode="numeric"
+				min={0}
+				max={255}
+				value={g !== 0 ? g.toString().replace(/^0+/, "") : 0}
+				onChange={(e) => {
+					let val = Number(e.target.value) || 0;
+					if (val > 255) val = 255;
+					const hsv = rgbToHsv(r, val, b);
+					setColor({
+						hue: hsv.hue,
+						saturation: hsv.saturation,
+						value: hsv.value,
+						alpha: color.alpha,
+					});
+				}}
+			/>
 
-				<label htmlFor="hex-input">HEX</label>
-				<div
-					style={{
-						display: "flex",
-						justifyContent: "flex-start",
-						alignItems: "center",
-						marginBottom: "1rem",
-					}}
-				>
-					<span>#</span>
-					<input
-						id="hex-input"
-						aria-label="Hex color"
-						onFocus={() => (hexInputFocus.current = true)}
-						onBlur={() => {
-							// check that hex is valid
-							if (
-								!hexInput.value.trim() ||
-								hexInput.value !== hex
-							) {
-								setHsva([h, s, v, a]);
-							}
+			<input
+				aria-label="Rgb blue"
+				type="number"
+				inputMode="numeric"
+				min={0}
+				max={255}
+				value={b !== 0 ? b.toString().replace(/^0+/, "") : 0}
+				onChange={(e) => {
+					let val = Number(e.target.value) || 0;
+					if (val > 255) val = 255;
+					const hsv = rgbToHsv(r, g, val);
+					setColor({
+						hue: hsv.hue,
+						saturation: hsv.saturation,
+						value: hsv.value,
+						alpha: color.alpha,
+					});
+				}}
+			/>
 
-							hexInputFocus.current = false;
-						}}
-						type="string"
-						value={hexInputFocus.current ? hexInput.value : hex}
-						onChange={(e) => {
-							setHexInput({ value: e.target.value });
-							const newHsv = hexToHsv(e.target.value);
-							if (newHsv) {
-								setHsva([...newHsv, a]);
-							}
-						}}
-					/>
-				</div>
+			<AlphaInput
+				alpha={color.alpha}
+				setAlpha={(a) => setColor({ ...color, alpha: a })}
+			/>
+		</fieldset>
+	);
+};
 
-				<fieldset>
-					<legend>HSL</legend>
-					<input
-						aria-label="Hsl hue"
-						type="number"
-						min={0}
-						max={360}
-						value={Math.round(h)}
-						onChange={(e) => {
-							const val = Number(e.target.value) || 0;
-							setHsva([val <= 360 ? val : 360, s, v, a]);
-						}}
-					/>
-					<input
-						aria-label="Hsl saturation"
-						type="number"
-						min={0}
-						max={100}
-						value={Math.round(hsl[1])}
-						onChange={(e) => {
-							const val = Number(e.target.value) || 0;
-							const newHsv = hslToHsv(
-								h,
-								val <= 100 ? val : 100,
-								hsl[2]
-							);
+/**
+ *
+ *
+ *
+ *
+ *
+ */
 
-							setHsva([...newHsv, a]);
-						}}
-					/>
-					<input
-						aria-label="Hsl lightness"
-						type="number"
-						min={0}
-						max={100}
-						value={Math.round(hsl[2])}
-						onChange={(e) => {
-							const val = Number(e.target.value) || 0;
-							const newHsv = hslToHsv(
-								h,
-								hsl[1],
-								val <= 100 ? val : 100
-							);
-							setHsva([...newHsv, a]);
-						}}
-					/>
-					<AlphaInput
-						alpha={a}
-						setAlpha={(a: number) => setHsva([h, s, v, a])}
-					/>
-				</fieldset>
-			</div>
-		</div>
+const HSVInput: React.FC<ChildInputProps> = ({ color, setColor }) => {
+	return (
+		<fieldset>
+			<legend>HSV</legend>
+
+			<input
+				aria-label="HSV Hue"
+				type="number"
+				inputMode="numeric"
+				min={0}
+				max={360}
+				value={toColorInput(color.hue)}
+				onChange={(e) => {
+					let val = Number(e.target.value) || 0;
+					if (val > 360) val = 360;
+					setColor({
+						...color,
+						hue: val,
+					});
+				}}
+			/>
+
+			<input
+				aria-label="HSV Saturation"
+				type="number"
+				inputMode="numeric"
+				min={0}
+				max={100}
+				value={toColorInput(color.saturation)}
+				onChange={(e) => {
+					let val = Number(e.target.value) || 0;
+					if (val > 100) val = 100;
+					setColor({
+						...color,
+						saturation: val,
+					});
+				}}
+			/>
+
+			<input
+				aria-label="HSV Value"
+				type="number"
+				inputMode="numeric"
+				min={0}
+				max={100}
+				value={toColorInput(color.value)}
+				onChange={(e) => {
+					let val = Number(e.target.value) || 0;
+					if (val > 100) val = 100;
+					setColor({
+						...color,
+						value: val,
+					});
+				}}
+			/>
+
+			<AlphaInput
+				alpha={color.alpha}
+				setAlpha={(a) => setColor({ ...color, alpha: a })}
+			/>
+		</fieldset>
+	);
+};
+
+/**
+ *
+ *
+ *
+ *
+ *
+ */
+
+const HSLInput: React.FC<ChildInputProps> = ({ color, setColor }) => {
+	const { hue, saturation, lightness } = hsvToHsl(
+		color.hue,
+		color.saturation,
+		color.value
+	);
+
+	return (
+		<fieldset>
+			<legend>HSL</legend>
+			<input
+				aria-label="HSL Hue"
+				type="number"
+				inputMode="numeric"
+				min={0}
+				max={360}
+				value={toColorInput(hue)}
+				onChange={(e) => {
+					let val = Number(e.target.value) || 0;
+					if (val > 360) val = 360;
+					setColor({
+						...color,
+						hue: val,
+					});
+				}}
+			/>
+
+			<input
+				aria-label="HSL Saturation"
+				type="number"
+				inputMode="numeric"
+				min={0}
+				max={100}
+				value={toColorInput(saturation)}
+				onChange={(e) => {
+					let val = Number(e.target.value) || 0;
+					if (val > 100) val = 100;
+					const hsv = rgbToHsv(color.hue, val, color.value);
+					setColor({
+						hue: hsv.hue,
+						saturation: hsv.saturation,
+						value: hsv.value,
+						alpha: color.alpha,
+					});
+				}}
+			/>
+
+			<input
+				aria-label="HSL Lightness"
+				type="number"
+				inputMode="numeric"
+				min={0}
+				max={100}
+				value={toColorInput(lightness)}
+				onChange={(e) => {
+					let val = Number(e.target.value) || 0;
+					if (val > 100) val = 100;
+					const hsv = rgbToHsv(color.hue, color.saturation, val);
+					setColor({
+						hue: hsv.hue,
+						saturation: hsv.saturation,
+						value: hsv.value,
+						alpha: color.alpha,
+					});
+				}}
+			/>
+
+			<AlphaInput
+				alpha={color.alpha}
+				setAlpha={(a) => setColor({ ...color, alpha: a })}
+			/>
+		</fieldset>
 	);
 };
 
 interface AlphaInputProps {
 	alpha: number;
-	setAlpha: (alpha: number) => void;
+	setAlpha: (a: number) => void;
 }
 
 const AlphaInput: React.FC<AlphaInputProps> = ({ alpha, setAlpha }) => {
 	return (
 		<input
-			aria-label="Alpha value"
+			aria-label="Alpha"
 			type="number"
+			inputMode="decimal"
 			step={0.01}
 			min={0}
 			max={1}
-			value={Math.round(alpha) / 100}
+			value={
+				alpha !== 0 ? Number(alpha.toString().replace(/^0+/, "")) : 0
+			}
 			onChange={(e) => {
-				const val = Number(e.target.value) * 100 || 0;
-				setAlpha(val <= 100 ? val : 100);
+				const val = Number(e.target.value);
+				setAlpha(val);
 			}}
 		/>
 	);
 };
 
-const fillCanvas = (
-	ctx: CanvasRenderingContext2D,
-	color: string,
-	width: number,
-	height: number
-): void => {
-	ctx.clearRect(0, 0, width, height);
-	ctx.fillStyle = color;
-	ctx.fillRect(0, 0, width, height);
+/**
+ *
+ *
+ *
+ *
+ *
+ */
 
-	// create white horizontal and black vertical gradient
-	const whiteGradient = ctx.createLinearGradient(0, 0, width, 0);
-	whiteGradient.addColorStop(0, "rgba(255, 255, 255, 1)");
-	whiteGradient.addColorStop(1, "rgba(255, 255, 255, 0)");
-	ctx.fillStyle = whiteGradient;
-	ctx.fillRect(0, 0, width, height);
+const HEXInput: React.FC<ChildInputProps> = ({ color, setColor }) => {
+	const hex = hsvToHex(color.hue, color.saturation, color.value, color.alpha);
+	const [hexInputValue, setHexInputValue] = React.useState(hex);
+	const focusRef = React.useRef(false);
 
-	// black vertical
-	const blackGradient = ctx.createLinearGradient(0, 0, 0, height);
-	blackGradient.addColorStop(0, "rgba(0, 0, 0, 0)");
-	blackGradient.addColorStop(1, "rgba(0, 0, 0, 1)");
-	ctx.fillStyle = blackGradient;
-	ctx.fillRect(0, 0, width, height);
-};
+	return (
+		<div>
+			<label htmlFor="hex-input">HEX</label>
+			<div>
+				<span>#</span>
+				<input
+					id="hex-input"
+					aria-label="Hex color"
+					onFocus={() => {
+						focusRef.current = true;
+						setHexInputValue(hex);
+					}}
+					onBlur={() => {
+						// check that hex is valid
+						if (!hexInputValue.trim() || hexInputValue !== hex) {
+							setColor(color);
+						}
 
-const getPointerPosition = (
-	bbox: DOMRect,
-	x: number,
-	y: number
-): [number, number] => {
-	let pointerX = x - bbox.left;
-	let pointerY = y - bbox.top;
+						focusRef.current = false;
+						setHexInputValue(hex);
+					}}
+					value={focusRef.current ? hexInputValue : hex}
+					type="string"
+					onChange={(e) => {
+						if (e.target.value.length > 8) {
+							return;
+						}
 
-	if (pointerX < 0) pointerX = 0;
-	if (pointerY < 0) pointerY = 0;
+						setHexInputValue(e.target.value);
 
-	return [
-		pointerX > bbox.width ? bbox.width : pointerX,
-		pointerY > bbox.height ? bbox.height : pointerY,
-	];
+						const newHsv = hexToHsv(e.target.value);
+						if (newHsv) {
+							setColor({ ...newHsv });
+						}
+					}}
+				/>
+			</div>
+		</div>
+	);
 };
