@@ -16,7 +16,7 @@ export const ColorPickerDemo: React.FC = () => {
 	return (
 		<Demo
 			height="407px"
-			href="https://github.com/lorenzored98/lorenzopepe/blob/dev/BlogDemos/ColorPicker/index.tsx"
+			href="https://github.com/lorenzored98/lorenzopepe/blob/master/BlogDemos/ColorPicker/index.tsx"
 		>
 			<ColorPicker />
 		</Demo>
@@ -27,7 +27,7 @@ export const UnstyledRangesDemo: React.FC = () => {
 	return (
 		<Demo
 			height="200px"
-			href="https://github.com/lorenzored98/lorenzopepe/blob/dev/BlogDemos/ColorPicker/UnstyledRanges.tsx"
+			href="https://github.com/lorenzored98/lorenzopepe/blob/master/BlogDemos/ColorPicker/UnstyledRanges.tsx"
 		>
 			<UnstyledRanges />
 		</Demo>
@@ -38,7 +38,7 @@ export const StyledHueRangeDemo: React.FC = () => {
 	return (
 		<Demo
 			height="100px"
-			href="https://github.com/lorenzored98/lorenzopepe/blob/dev/BlogDemos/ColorPicker/StyledRanges.tsx#L4"
+			href="https://github.com/lorenzored98/lorenzopepe/blob/master/BlogDemos/ColorPicker/StyledRanges.tsx#L4"
 		>
 			<StyledHueRange />
 		</Demo>
@@ -49,7 +49,7 @@ export const StyledAlphaRangeDemo: React.FC = () => {
 	return (
 		<Demo
 			height="100px"
-			href="https://github.com/lorenzored98/lorenzopepe/blob/dev/BlogDemos/ColorPicker/StyledRanges.tsx#L36"
+			href="https://github.com/lorenzored98/lorenzopepe/blob/master/BlogDemos/ColorPicker/StyledRanges.tsx#L36"
 		>
 			<StyledAlphaRange />
 		</Demo>
