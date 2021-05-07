@@ -1,30 +1,36 @@
 .main-article {
 	padding-bottom: 10rem;
 
+	section {
+		margin-top: 4rem;
+	}
+
 	h1 {
 		font-weight: 900;
 		text-align: center;
 		font-size: 5rem;
-		margin-bottom: 3rem;
 		color: var(--accent-color);
+		margin-bottom: 2rem;
 	}
 
 	h2 {
 		font-weight: 800;
 		font-size: 3.4rem;
-		margin: 5rem 0 0 1rem;
+		margin-bottom: 2rem;
 	}
 
 	h3 {
-		margin-top: 3rem;
 		font-weight: 700;
-		padding-left: 1rem;
+		margin: 2rem 0;
+	}
+
+	h4 {
+		margin: 1rem 0;
 	}
 
 	ul,
 	ol {
-		margin-left: 3rem;
-		margin-top: 2rem;
+		margin: 2rem 0 0 3rem;
 	}
 
 	ol {
@@ -54,13 +60,13 @@
 		font-size: 1.8rem;
 		padding-left: 1rem;
 		font-weight: var(--paragraph-weight);
-		margin-top: 2rem;
 		position: relative;
+		margin-bottom: 2rem;
 	}
 
 	p {
-		margin-top: 1.4rem;
-		padding: 0 1rem;
+		// padding: 0 1rem;
+		margin: 1rem 0;
 	}
 
 	strong {
@@ -74,87 +80,159 @@
 		letter-spacing: 0.05rem;
 	}
 
-	blockquote {
-		background: var(--light-bg);
-		border-left: 5px solid var(--link-highlight);
-		margin-top: 2rem;
-		padding: 1.5rem 0;
+	figcaption {
+		font-size: 1.4rem;
+		margin: 0.4rem 0 0 auto;
+
+		a {
+			margin: 0;
+			color: var(--accent-color);
+			font-weight: 400;
+		}
+	}
+
+	.aside {
+		display: flex;
+		position: relative;
+		padding-left: 30px;
+		color: #314150;
 		border-radius: 3px;
 
+		.inline-code {
+			font-weight: 500;
+		}
+
 		p {
-			margin-top: 0;
+			margin: 0;
+			font-weight: 400;
+			font-size: 1.6rem;
+		}
+
+		&.info {
+			--accent-color: rgb(65, 112, 240);
+			--link-highlight: rgb(130, 160, 223);
+
+			border-left: 5px solid var(--accent-color);
+			background: rgb(224, 235, 255);
+
+			.inline-code {
+				background-color: rgba(0, 0, 255, 0.15);
+			}
+		}
+
+		&.success {
+			--accent-color: rgb(25, 179, 84);
+			--link-highlight: rgb(136, 197, 136);
+
+			border-left: 5px solid var(--accent-color);
+			background: rgb(215, 255, 215);
+
+			.inline-code {
+				background-color: rgba(0, 133, 0, 0.2);
+			}
+		}
+
+		&.warning {
+			--accent-color: rgb(255, 208, 0);
+			--link-highlight: #ffd64e;
+
+			border-left: 5px solid var(--accent-color);
+			background: #fff6da;
+
+			.inline-code {
+				background-color: rgba(255, 251, 0, 0.2);
+			}
+		}
+
+		&.danger {
+			--accent-color: rgb(255, 74, 74);
+			--link-highlight: rgb(255, 146, 152);
+
+			border-left: 5px solid var(--accent-color);
+			background: rgb(255, 221, 215);
+
+			.inline-code {
+				background-color: rgb(255, 192, 192);
+			}
+		}
+
+		.svg-wrapper {
+			position: absolute;
+			top: 0;
+			left: 0;
+			transform: translate(-55%, -50%);
+			display: flex;
+			padding: 0.4rem;
+			border-radius: 50%;
+			background: var(--bg);
+
+			svg {
+				width: 36px;
+				height: 36px;
+
+				* {
+					fill: none;
+					stroke: var(--accent-color);
+				}
+
+				.filled {
+					fill: var(--accent-color);
+				}
+			}
+		}
+
+		.content {
+			width: 100%;
+			padding: 2rem 0;
 		}
 	}
 
 	.blog-link {
-		color: var(--accent-color);
-		text-decoration: underline;
-		text-underline-offset: 3px;
-		text-decoration-thickness: 0.15em;
+		padding: 0.2rem 0;
+		box-shadow: inset 0 -2px 0 var(--accent-color);
+		transition: box-shadow 0.2s cubic-bezier(0.33, 0.66, 0.66, 1);
 
-		&:hover {
-			color: var(--link-highlight);
-			border-color: var(--link-highlight);
+		&:hover,
+		&:focus {
+			box-shadow: inset 0 -10px 0 var(--link-highlight);
 		}
 	}
 
-	figure {
+	.post-image {
 		display: flex;
 		flex-direction: column;
-		margin-bottom: 2rem;
+		align-items: center;
 
 		.image-container {
 			width: 100%;
-			position: relative;
 			border-radius: 10px;
 			overflow: hidden;
 		}
+	}
 
-		figcaption {
-			display: flex;
-			justify-content: flex-end;
-			font-size: 1.4rem;
-			margin-top: 1rem;
+	.post-video {
+		display: flex;
+		align-items: center;
+		flex-direction: column;
 
-			a {
-				margin: 0 0.4rem;
-				color: var(--accent-color);
-				font-weight: 400;
-			}
+		video {
+			width: 100%;
+			height: 100%;
 		}
 	}
 
 	footer {
-		margin-top: 15rem;
 		display: flex;
 		flex-direction: column;
 
 		div {
 			border-top: 1px solid var(--separator);
 			display: flex;
-			justify-content: flex-start;
-			align-items: center;
 			flex-wrap: wrap;
 		}
 
 		p {
-			margin: 1rem 1rem 0 0;
-			padding: 0;
-			line-height: 3rem;
-		}
-
-		a {
-			margin-left: 1rem;
-			padding: 0.6rem 1.4rem;
-			font-size: 1.8rem;
-			border: none;
-			color: var(--text-color);
-			background: var(--opacity-bg);
-			border-radius: 3px;
-
-			&:hover {
-				background: var(--accent-bg);
-			}
+			padding: 0 0 0 4px;
 		}
 
 		.date {
@@ -175,7 +253,14 @@
 		background: var(--opacity-bg);
 		font-size: 1.7rem;
 		border-radius: 3px;
-		font-weight: var(--bold-weight);
+		font-weight: 400;
+	}
+
+	.code-wrapper,
+	.demo-wrapper,
+	.aside,
+	figure {
+		margin: 3rem 0;
 	}
 }
 
@@ -194,6 +279,3 @@
 		background-color: #ffa7c4;
 	}
 }
-
-// only allow 1 between margin top and bottom ?
-// remove margin from h2s and add it to sections?
