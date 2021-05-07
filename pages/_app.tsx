@@ -37,6 +37,14 @@ const mdxComponents = {
 			</h2>
 		);
 	},
+	h3: (props: any) => {
+		const id = props.children.replace(/\s/g, "-");
+		return (
+			<h3 id={`${id}`}>
+				<a href={`#${id}`}>{props.children}</a>
+			</h3>
+		);
+	},
 };
 
 const App: React.FC<AppProps> = ({ Component, pageProps }: AppProps) => {
