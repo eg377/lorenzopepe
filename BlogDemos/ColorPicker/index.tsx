@@ -377,7 +377,7 @@ const RGBInput: React.FC<ChildInputProps> = ({ color, setColor }) => {
 				inputMode="numeric"
 				min={0}
 				max={255}
-				value={r !== 0 ? r.toString().replace(/^0+/, "") : 0}
+				value={toColorInput(r)}
 				onChange={(e) => {
 					let val = Number(e.target.value) || 0;
 					if (val > 255) val = 255;
@@ -397,7 +397,7 @@ const RGBInput: React.FC<ChildInputProps> = ({ color, setColor }) => {
 				inputMode="numeric"
 				min={0}
 				max={255}
-				value={g !== 0 ? g.toString().replace(/^0+/, "") : 0}
+				value={toColorInput(g)}
 				onChange={(e) => {
 					let val = Number(e.target.value) || 0;
 					if (val > 255) val = 255;
@@ -417,7 +417,7 @@ const RGBInput: React.FC<ChildInputProps> = ({ color, setColor }) => {
 				inputMode="numeric"
 				min={0}
 				max={255}
-				value={b !== 0 ? b.toString().replace(/^0+/, "") : 0}
+				value={toColorInput(b)}
 				onChange={(e) => {
 					let val = Number(e.target.value) || 0;
 					if (val > 255) val = 255;
