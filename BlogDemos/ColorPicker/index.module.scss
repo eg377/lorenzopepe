@@ -7,23 +7,6 @@
 	display: flex;
 }
 
-@media screen and (max-width: 700px) {
-	.color_picker {
-		flex-direction: column;
-		justify-content: flex-start;
-		align-items: center;
-		max-width: 340px;
-
-		.color_info {
-			margin: 0;
-		}
-
-		.color_preview {
-			margin-top: 2rem;
-		}
-	}
-}
-
 .gradient_canvas_container {
 	position: relative;
 	width: 300px;
@@ -70,6 +53,11 @@
 }
 
 .range_inputs_container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+
 	input[type="range"]::-webkit-slider-runnable-track {
 		width: 300px;
 		height: 14px;
@@ -177,4 +165,46 @@
 	max-width: 320px;
 	height: 60px;
 	border-radius: 3px;
+}
+
+@media screen and (max-width: 700px) {
+	.color_picker {
+		flex-direction: column;
+		justify-content: flex-start;
+		align-items: center;
+		max-width: 340px;
+
+		.color_info {
+			margin: 0;
+		}
+
+		.color_preview {
+			margin-top: 2rem;
+		}
+	}
+}
+
+@media screen and (max-width: 400px) {
+	.gradient_canvas_container {
+		width: 250px;
+		height: 250px;
+	}
+
+	.range_inputs_container {
+		input[type="range"]::-webkit-slider-runnable-track {
+			width: 250px;
+		}
+
+		input[type="range"]::-moz-range-track {
+			width: 250px;
+		}
+	}
+
+	.hue_range_input {
+		width: 250px;
+	}
+
+	.alpha_range_input {
+		width: 250px;
+	}
 }
