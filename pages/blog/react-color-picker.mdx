@@ -63,7 +63,7 @@ export const metadata = {
 	Photo by <LinkTo href="https://unsplash.com/@ymoran">MORAN</LinkTo> on <LinkTo href="https://unsplash.com/photos/lcNOgk19b7w">Unsplash</LinkTo>
 </PostImage>
 
-Does my job boil down to giving the correct color to a pixel at the right place ? <Emoji value="🤔" description="Thinking..."/>
+Does my job boil down to giving the correct color to a pixel at the right place? <Emoji value="🤔" description="Thinking..."/>
 
 <section>
 
@@ -73,7 +73,7 @@ The blog post hasn't even started and I'm already here with a _warning_ <Emoji v
 Color pickers are often found inside a [dialog](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog) or a dropdown. Building those components so that they have proper UX 
 and behave as _expected_ is not trivial.
 
-Being that this is not the main focus of this blog post, I'm going to assume that the `<ColorPicker>` will be always visibile. 
+Being that this is not the main focus of this blog post, I'm going to assume that the `<ColorPicker>` will be always visible. 
 
 Also, this is not a tutorial _on_ React specifically, most knowledge will be taken for granted.
 
@@ -87,7 +87,7 @@ What is the correct way to represent a color picker?
 
 Depending on your background you may have used software with different representations of color pickers. 
 
-For this blog post I decided to build something similar to the VSCode / developer console color picker, which I assume is the one developers are familiar with.
+For this blog post, I decided to build something similar to the VSCode / developer console color picker, which I assume is the one developers are familiar with.
 
 <PostImage
 	imageData={images[1]}
@@ -101,15 +101,15 @@ For this blog post I decided to build something similar to the VSCode / develope
 
 ## Theory Behind The Picker
 
-This is not going to be an in-depth explanation about the color model that I've chosen to use or about how colors work, it's more about getting everyone on the same page with some basic informations.
+This is not going to be an in-depth explanation about the color model that I've chosen to use or about how colors work, it's more about getting everyone on the same page.
 
 I've decided to use the HSV color model for the internal state because it's the easiest when it comes to doing math and representing it with a `<canvas>`. 
 
 From Wikipedia: <q>The HSV color model is an alternative representation of the RGB color model designed in the 1970s by computer graphics researchers to more closely align with the way 
 human vision perceives color-making attributes.</q>
 
-The "correct" way to represent this model is by using a cylinder which is a 3D representation. We want to have something in 2D for our picker so we need to slice into the cylinder.
-A picture is worth a thousand word, here is what I mean. The section we care about is highlighted in red.
+The "correct" way to represent this model is by using a cylinder which is a 3D representation. We want to have something in 2D for our picker so we need to cut into the cylinder.
+A picture is worth a thousand words, here is what I mean. The section we care about is highlighted in red.
 
 <PostImage
 	imageData={images[2]}
@@ -117,10 +117,10 @@ A picture is worth a thousand word, here is what I mean. The section we care abo
 	HSV Cylinder by <LinkTo href="https://en.wikipedia.org/wiki/HSL_and_HSV#/media/File:HSV_color_solid_cylinder_saturation_gray.png">Wikipedia</LinkTo>
 </PostImage>
 
-The picker will support different color models. The color conversion functions I've used are either adapted from wikipedia or stackoverflow. 
-You can find the source links along with my version on [github](https://github.com/lorenzored98/lorenzopepe/blob/master/BlogDemos/ColorPicker/utils.ts), but I won't explain them in this blog post.
+The picker will support different color models. The color conversion functions I've used are either adapted from Wikipedia or Stackoverflow. 
+You can find the source links along with my version on [Github](https://github.com/lorenzored98/lorenzopepe/blob/master/BlogDemos/ColorPicker/utils.ts), but I won't explain them in this blog post.
 
-If you want to know more about colors I recommend this [twitter thread](https://twitter.com/biovf/status/1316122959677984768) which is full of very good articles written by people way
+If you want to know more about colors I recommend this [Twitter thread](https://twitter.com/biovf/status/1316122959677984768) which is full of very good articles written by people way
 more qualified than me <Emoji value="😆" description="Laughing!" />.
 
 </section>
@@ -131,7 +131,7 @@ more qualified than me <Emoji value="😆" description="Laughing!" />.
 
 Let's start by building a wrapper component for our picker. Here we will hold the internal state of the picker which is going to be an object containing the hue, saturation, value and alpha.
 
-A color picker will generally receive two things from it's parent: a callback function that will be called whenever the color changes and a starting color.
+A color picker will generally receive two things from its parent: a callback function that will be called whenever the color changes and a starting color.
 
 ```tsx [ColorPicker.tsx] numbered
 interface ColorPickerProps {
@@ -184,7 +184,7 @@ The `onChange` callback receives a hex code trying to mimic the `<input type="co
 ## Hue and Alpha
 
 Whenever is possible I try to use native HTML elements instead of building a custom one. Given that both hue and alpha can be expressed with a range, 0-360 and 0-1 respectively, it makes sense to 
-use the `<input type="range">` element. Even if this means you have to add [300 lines of css](https://css-tricks.com/styling-cross-browser-compatible-range-inputs-css/) 
+use the `<input type="range">` element. Even if this means you have to add [300 lines of CSS](https://css-tricks.com/styling-cross-browser-compatible-range-inputs-css/) 
 to make it pretty <Emoji value="🙃" description="I'm sarcastic!" /> . 
 
 It's not all bad, though, the advantages outweigh the disadvantages. You get accessibility, validation, and keyboard controls 
@@ -194,7 +194,7 @@ by default which are always tricky to implement in custom inputs.
 
 <Aside type="info">
 
-Not very exiciting, are they ? This is a perfect example to show that CSS is not just about making things look good, it can also drastically improves the functionalities of components when used properly. 
+Not very exciting, are they? This is a perfect example to show that CSS is not just about making things look good, it can also drastically improves the functionalities of components when used properly. 
 This may seem obvious but it's worth pointing out.
 
 </Aside>
@@ -230,9 +230,9 @@ Doing this in CSS is quite easy using the `linear-gradient` function. It's made 
 ```
 
 While we are at it let's style what is commonly referred to as the `thumb` of the input with the currently selected color. It may seem as easy as setting `background-color: transparent` and let
-the underlying gradient pass through. Sinec the `thumb` is generally bigger than the `track` doing this would result in the `thumb` being only half colored. To fix this we need some good old javascript.
+the underlying gradient pass through. Since the `thumb` is generally bigger than the `track` doing this would result in the `thumb` being only half colored. To fix this we need some good old javascript.
 
-Taking advantages of the fact that css variables are reactive and that we can update them using javascript, it becomes pretty easy to get our desired effect, 
+Taking advantages of the fact that CSS variables are reactive and that we can update them using javascript, it becomes pretty easy to get our desired effect, 
 resulting in a component that looks like this:
 
 ```tsx [HueRangeInput.tsx] numbered {9-16}
@@ -283,7 +283,7 @@ const HueRangeInput: React.FC<HueRangeInputProps> = ({ hue, setHue }) => {
 }
 ```
 
-Adding some CSS and this is the result.
+Let's add some CSS and we get this result.
 
 <StyledHueRangeDemo />
 
@@ -292,7 +292,7 @@ too transparent so that we don't blend in with the website background color.
 
 We also need to pass the whole color object since we are going to use the RGB color model for this gradient. 
 
-For the sake of of brevity I'll only show the differences.
+For the sake of brevity, I'll only show the differences.
 
 ```tsx [AlphaRangeInput.tsx] numbered {	21, 29, 42-44}
 interface AlphaRangeInputProps {
@@ -349,7 +349,7 @@ const AlphaRangeInput: React.FC<AlphaRangeInputProps> = ({
 
 <Aside type="warning">
 
- I tested these components on a small amount of devices / browsers. As of May 2021 they work on the latest versions chrome, firefox and iOS safari but you may want to make more tests if you are going to use 
+ I tested these components on a small  number of devices/browsers. As of May 2021, they work on the latest versions of chrome, firefox and iOS safari but you may want to make more tests if you are going to use 
 them in production.
 
 </Aside>
@@ -361,7 +361,7 @@ them in production.
 ## The Canvas
 
 The canvas component is the _core_ of the color picker. It shares many similarities with the previous components but there is one fundamental difference. There is no native element that can represent a 
-"2D" range input. We could use 2 range inputs, one horizontal and one vertical if we really wanted to _use the platform ™_ . 
+"2D" range input. We could use 2 range inputs, one horizontal and one vertical if we _really_ wanted to _use the platform ™_. 
 
 This is unfortunately one of those cases where using the native elements just doesn't cut it and it would result in a bad user experience.
 
@@ -397,12 +397,12 @@ export const GradientCanvas: React.FC<GradientCanvasProps> = ({
 };
 ```
 
-I'm passing a [callback ref](https://reactjs.org/docs/refs-and-the-dom.html#callback-refs) to the canvas element. Wrapping the function inside a `useCallback` hook prevents a new function being created on each render
-and acts like a sort of `componentDidMount` function.
+I'm passing a [callback ref](https://reactjs.org/docs/refs-and-the-dom.html#callback-refs) to the canvas element. Wrapping the function inside a `useCallback` hook prevents a new function from being created on each render
+and acts as a sort of `componentDidMount` function.
 
 Now we need to display the gradient. To get the desired effect we are going to paint the canvas with our color, which is going to be in RGBa, then we paint over it with two gradients:
 
-1. An horizontal white gradient, from left to right, from 1 to 0 alpha.
+1. A horizontal white gradient, from left to right, from 1 to 0 alpha.
 2. A vertical black gradient, from top to bottom, from 0 to 1 alpha.
 
 ```typescript [fillCanvas.ts]
@@ -448,11 +448,11 @@ React.useEffect(() => {
 //
 ```
 
-Right now if we change the hue or alpha, the canvas will be updated with a new gradient. Cool!
+Right now if we change the hue or the alpha, the canvas will be updated with a new gradient. Cool!
 
 Let's add the core functionalities.
 
-First we need a checkered background similar to the one we used in the `AlphaRangeInput` component. Same reasoning, it's to avoid blending with the background when the alpha becomes too low.
+First, we need a checkered background similar to the one we used in the `AlphaRangeInput` component. The reason is the same, it's to avoid blending with the background when the alpha becomes too low.
 
 ```tsx [GradientCanvas.tsx] {4-4}
 //
@@ -496,17 +496,12 @@ return (
 	width: 100%;
 }
 ```
-
-Now we need to add a way to pick a color from the canvas. 
-
-First of all we need a marker positioned on the currently selected color. To do so we use two transparent `<div>`. The smaller one will have a white border
-and the bigger one a black border. This is to avoid losing the picker when going over very light / dark colors.
-
-To position the marker we need to find its coordinates inside the canvas. 
-
-To find the `x` we divide our saturation by 100 and multiply it for the canvas width. 
-To find the `y` we divide our  value by 100, multiply it for the canvas height and then subtract the result of this operation from the canvas height. 
-This is because the origin of the canvas is on the top left.
+Now we need to add a way to pick a color from the canvas.To do that, we need a marker that will be positioned on the currently selected color.
+The marker is composed of two transparent `<div>`s. The smaller one will have a white border and the bigger one a black border.
+This is done to avoid losing the picker when going over very light/dark colors.
+To position the marker we need to find its coordinates inside the canvas.
+To find the x we divide our saturation by 100 and multiply it for the canvas width.
+To find the y we divide our value by 100, multiply it for the canvas height and then subtract the result of this operation from the canvas height. This is because the origin of the canvas is on the top left.
 
 ```tsx [GradientCanvas.tsx]
 //
@@ -600,7 +595,7 @@ We need to set a `tabindex` both for accessibility's sake and because the event 
 
 To implement the pointer events we are going to use the `pointerDown` and `pointerMove` listeners. 
 
-Pointer events are great and have good coverage but they are not supported in older version of some browsers.
+Pointer events are great and have good coverage but they are not supported on older versions of some browsers.
 
 <PostImage
 	imageData={images[3]}
@@ -608,7 +603,7 @@ Pointer events are great and have good coverage but they are not supported in ol
 	Pointer events support chart by <LinkTo href="https://caniuse.com/pointer">Caniuse</LinkTo>
 </PostImage>
 
-We have already written the logic for positioning the marker from a given color, it's just a matter of reversing the operation. Given a point inside the canvas we can easily map it to a color and once
+We have already written the logic for positioning the marker from a given color, it's just a matter of reversing the operation. Given a point inside the canvas, we can easily map it to a color and once
 the state is updated the marker is going to move. This allows us to avoid storing the marker position inside the state and the various problems that arise whenever you have more than a 
 [single source of truth](https://en.wikipedia.org/wiki/Single_source_of_truth).
 
@@ -637,7 +632,7 @@ the state is updated the marker is going to move. This allows us to avoid storin
 ```
 
 The `setPointerCapture` allows us to drag the pointer device outside the component while still retaining control over it until it is released. 
-Another way to do this is to listen to events on the `window` or the `document` interface.
+Another way to do this is to listen to events on the `window` or on the `document` interface.
 
 The `onPointerMove` listener is the same, just wrapped inside the condition that `e.buttons === 1` to check that the left mouse button is pressed, there is touch contact or there is pen contact. 
 There is no need to `setPointerCapture` at this stage.
@@ -645,14 +640,14 @@ There is no need to `setPointerCapture` at this stage.
 You may have noticed that this component is bugged <Emoji value="🐛" description="Bug" /> right now. If we scroll or resize the page, the marker will receive an offset from the position it was 
 at since we never recalculate the bounding box of the canvas. 
 
-My first fix consisted in adding a resize and a scroll event listener inside the `callbackRef`. On "mount" they will be added and on "unmount" they will be removed. Unfortunately this solution
-and other solution that work the same way (think adding an `useEffect` with those event listeners) are far from perfect. They work well but `getBoundingClientRect` is somewhat expensive to call 
+My first fix consisted of adding a resize and a scroll event listener inside the `callbackRef`. On "mount" they will be added and on "unmount" they will be removed. Unfortunately, this solution
+and other solutions that work the same way (think adding an `useEffect` with those event listeners) are far from perfect. They work well but `getBoundingClientRect` is somewhat expensive to call 
 as it will trigger [layout trashing](https://kellegous.com/j/2013/01/26/layout-performance/).
 
 To solve this problem you may want to debounce the function, cache the return value, only call it if the canvas is currently visible on the screen or you may want to go a different route 
 and have the listeners store the offsets in some ref that you will pass to the `getPointerPosition` function.
 
-As you can see there are multiple ways of solving this but I chose to tackle it in a different way. All of those solutions are overkill since we don't need to have the correct size _at all times_. 
+As you can see there are multiple ways of solving this but I chose to tackle it differently. All of those solutions are overkill since we don't need to have the correct size _at all times_. 
 
 We only need to have the correct size on the first interaction with the picker, so let's recalculate the bounding box on the `onPointerDown` listener.
 
@@ -688,10 +683,10 @@ multiple times.
 
 </Aside>
 
-There is still a situation in which we could get wrong measurements of our canvas. If the user tries to scroll or resize the page while he's interacting with the picker we 
+There is still a situation in which we could get the wrong measurements of our canvas. If the user tries to scroll or resize the page while he's interacting with the picker we 
 have no way of updating the size.
 
-Realistically there is very little chanche of resizing happening when the user is interacting with the picker but scrolling, even if by a mistake, does happen. To fix this, 
+Realistically there is very little chance of resizing happening when the user is interacting with the picker but scrolling, even if by a mistake, does happen. To fix this, 
 when the user is interacting with the picker, we can either disable scrolling or adding a scroll or a resize event listeners to recalculate the bounding box 
 that will be removed once they are done using the picker.
 
@@ -703,13 +698,13 @@ Touch events will serve as a fallback in case pointer events are not available o
 
 Luckily enough I still have my old smartphone with iOS 12.4.9 installed so that I could properly test these functionalities <Emoji value="😅" description="Whew!" />.
 
-First of all let's add an `onTouchStart` listener. This is very similar to our `onPointerDown` listener, only differences are the removal of `setPointerCapture` and the usage of the `event.touches` interface to
+First of all, let's add an `onTouchStart` listener. This is very similar to our `onPointerDown` listener, the only differences are the removal of `setPointerCapture` and the usage of the `event.touches` interface to
 get the touch position.
 
-At this point I tought that there would be no problems and that `onTouchMove` would behave similarly to `onPointerMove`. I tried to implement it and I noticed that while I was interacting with the 
+At this point, I thought that there would be no problems and that `onTouchMove` would behave similarly to `onPointerMove`. I tried to implement it and I noticed that while I was interacting with the 
 picker the screen would scroll. 
 
-This is due to the fact that CSS `touch-action: none` is not supported on the version of iOS I was using to test touch events. 
+This is because  CSS `touch-action: none` isn't supported on the version of iOS I was using to test touch events. 
 
 <PostVideo
 	src="/videos/colorpicker_ios12_bug.mp4"
@@ -728,7 +723,7 @@ error.
 	imageData={images[4]}
 />
 
-By default React treats certain events, including `onTouchMove`, as passive. This is due to [better performance](https://developers.google.com/web/updates/2017/01/scrolling-intervention) on 
+By default, React treats certain events, including `onTouchMove`, as passive. This is due to [better performance](https://developers.google.com/web/updates/2017/01/scrolling-intervention) on 
 passive listeners. 
 
 At the time of writing React does not expose an API to set `{ passive:false }`, on JSX event listeners.
@@ -790,7 +785,7 @@ Dealing with events in our callback ref would remove the need to keep a canvas r
 
 </Aside>
 
-For brevity's sake I won't cover the `onMouseDown` and `onMouseMove` event listeners but they are almost an exact copy of the pointer ones.
+For brevity's sake, I won't cover the `onMouseDown` and `onMouseMove` event listeners but they are almost an exact copy of the pointer ones.
 
 </section>
 
@@ -798,13 +793,13 @@ For brevity's sake I won't cover the `onMouseDown` and `onMouseMove` event liste
 
 ## The Inputs
 
-One of the requirement of this color picker was to support different color models, namely, RGB, HSL, HSV and HEX. There isn't much of a difference between between the first when it comes down
+One of the requirements of this color picker was to support different color models, namely, RGB, HSL, HSV and HEX. There isn't much of a difference between the first when it comes down
 to building React components, it's only a matter of converting the user input to HSV, which is the color model used internally in the picker. The HEX component is a bit trickier to implement.
 
 <Aside type="info">
 
 The RGB, HSL and HSV color models could be represented using `<input type="range"/>`. I chose to go with `<input type="text"/>` because of two reasons. The first being that I find it clearer and more natural
-to have text inputs for these kind of components. The second reason is that I've already shown how to implement ranges when we dealt with the hue and the alpha inputs.
+to have text inputs for these kinds of components. The second reason is that I've already shown how to implement ranges when we dealt with the hue and the alpha inputs.
 
 </Aside>
 
@@ -862,7 +857,7 @@ Since this component input value is controlled by our parent state, setting an i
 
 The solution I came up with is to use an `useState` hook that will store our input value, allowing us to store invalid values and to use a `useRef` hook to store whether the component is focused or not.
 
-When the component is focused it uses his own state and when it loses focus we can validate and fall back to displaying our parent component state. 
+When the component is focused it uses its state and when it loses focus we can validate and fall back to displaying our parent component state. 
 
 ```tsx [HEXInputComponent.tsx] numbered
 interface HEXInputProps {
@@ -922,7 +917,7 @@ export const HEXInput: React.FC<HEXInputProps> = ({ color, setColor }) => {
 
 ## Accessibility
 
-You may have noticed that I didn't go in depth about accessibility in this blog post and that I've only added what was necessary to make the color picker work. 
+You may have noticed that I didn't go in-depth about accessibility in this blog post and that I've only added what was necessary to make the color picker work. 
 
 Don't get me wrong, despite this section being the last of the blog post, accessibility was one the first things I considered and researched before building the color picker.
 
@@ -931,7 +926,7 @@ Most of the resources I've found are about accessible color palettes and contras
 
 I was quite discouraged after finding out that many color pickers didn't even have the correct HTML5 elements, let alone proper accessibility. 
 
-It seems like accessibility is an afterthought _at best_. And I'd like to say that this is not an attack to the websites or to the developers that have built those color pickers. 
+It seems like accessibility is an afterthought _at best_. And I'd like to say that I'm not attacking the websites or the developers that have built those color pickers. 
 It's a bigger problem that is radicated in the way that web development is taught, but this is a whole different topic that requires a blog post of its own.
 
 Enough with the ranting, let's fix this!
@@ -941,11 +936,11 @@ Enough with the ranting, let's fix this!
 The great advantage of using native HTML elements is that we don't have to do much to make it properly accessible! 
 
 When grouping multiple inputs make sure to use the `<fieldset>` element and the `<legend>` element to provide a caption to the group.
-Usually these elements are used inside a `<form>` but it's [perfectly valid](https://accessibilitytips.com/2009/04/30/using-fieldsets-outside-of-forms/) to use them outside.
+Usually, these elements are used inside a `<form>` but it's [perfectly valid](https://accessibilitytips.com/2009/04/30/using-fieldsets-outside-of-forms/) to use them outside.
 
 Giving a proper `aria-label` is also necessary if we don't use the `<label>` element.
 
-Let's also add the `min` and `max` attributes to our `<input type="number" />` elements. To facilitate the usage of on screen keyboards we use the `inputmode` attribute (in React the m is capitalized) which
+Let's also add the `min` and `max` attributes to our `<input type="number" />` elements. To facilitate the usage of on-screen keyboards we use the `inputmode` attribute (in React the m is capitalized) which
 is going to be:
 
 -	`inputMode="text"` for the hex input.
@@ -959,17 +954,17 @@ Don't worry you did not miss the implementation of the alpha input (not to be co
 </Aside>
 
 Since the alpha input deals with decimal numbers let's add the `step` attribute. This indicates the amount that is going to be added or removed to the input value when using the input controls.
-In our case a value of 0.01 is perfect since alpha goes from 0 to 1.
+In our case, a value of 0.01 is perfect since alpha goes from 0 to 1.
 
 ### Fixing The Canvas
 
-The `<canvas>` element does not provide any API to make it's content accessible. We are going to resort to using our trusty ARIA attributes and 
+The `<canvas>` element does not provide any API to make its content accessible. We are going to resort to using our trusty ARIA attributes and 
 some _mostly unknown_ [tips](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Hit_regions_and_accessibility).
 
-First of all we need an an `aria-label` to indicate that our canvas is a color picker, an `aria-description` to describe how to use it and the available keyboard shortcuts, and an 
+First of all, we need an `aria-label` to indicate that our canvas is a color picker, an `aria-description` to describe how to use it and the available keyboard shortcuts, and an 
 `aria-valuetext` with the current hex value. 
 
-According to [MDN](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Hit_regions_and_accessibility#fallback_content) we can put content inside the canvas element. This is going to be used as a 
+According to [MDN](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Hit_regions_and_accessibility#fallback_content), we can put content inside the canvas element. This is going to be used as a 
 fallback in case the browser doesn't support canvas rendering (extremely rare) but, more importantly, is helpful to assistive technology users.
 
 <Aside type="info">
@@ -988,7 +983,7 @@ Adding all the missing input components and some CSS <Emoji value="🎀" descrip
 
 <ColorPickerDemo />
 
-This is the complete picker, as always you are free to use the source code which can be found on [github](https://github.com/lorenzored98/lorenzopepe/tree/master/BlogDemos/ColorPicker).
+This is the complete picker, as always you are free to use the source code which can be found on [Github](https://github.com/lorenzored98/lorenzopepe/tree/master/BlogDemos/ColorPicker).
 
 </section>
 
