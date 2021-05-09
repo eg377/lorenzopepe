@@ -29,7 +29,7 @@ export const PostFooter: React.FC<PostFooterProps> = ({
 			<div>
 				<p>
 					<Emoji value="💡" description="Feeling enlightened?" />{" "}
-					Found this post helpful ?{" "}
+					Found this post helpful?{" "}
 				</p>
 				<p>
 					Let me know on{" "}
