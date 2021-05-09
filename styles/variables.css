@@ -5,11 +5,9 @@
 	--text-color: #314150;
 	--text-color-bold: #151944;
 	--accent-color: #7646fd;
-	--accent-color-bright: #e730de;
 	--accent-bg: #c9bbf7;
 	--link-highlight: #ccb9ff;
 	--paragraph-weight: 400;
-	--bold-weight: 500;
 	--separator: rgb(196, 195, 201);
 	--img-filters: brightness(1) contrast(1);
 }
@@ -21,11 +19,9 @@
 	--text-color: #e4e1f1;
 	--text-color-bold: #fafbfc;
 	--accent-color: #ffa7c4;
-	--accent-color-bright: #da0079;
 	--accent-bg: #be4a99;
 	--link-highlight: #ff85ae;
 	--paragraph-weight: 300;
-	--bold-weight: 400;
-	--separator: rgb(72, 70, 73);
+	--separator: rgba(169, 171, 196, 0.589);
 	--img-filters: brightness(0.9) contrast(1.1);
 }

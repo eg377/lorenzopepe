@@ -210,6 +210,10 @@ svg {
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
+
+		h2 {
+			font-weight: 700;
+		}
 	}
 
 	p {
@@ -224,15 +228,16 @@ svg {
 		p {
 			margin: 0 1rem 2rem 0;
 		}
+	}
 
-		a {
-			padding: 1rem 2rem;
-			background: var(--light-bg);
-			border-radius: 3px;
+	.blog-link {
+		padding: 0.2rem 0;
+		box-shadow: inset 0 -2px 0 var(--accent-color);
+		transition: box-shadow 0.2s cubic-bezier(0.33, 0.66, 0.66, 1);
 
-			&:hover {
-				background: var(--accent-bg);
-			}
+		&:hover,
+		&:focus {
+			box-shadow: inset 0 -10px 0 var(--link-highlight);
 		}
 	}
 }
@@ -257,7 +262,7 @@ svg {
 	svg {
 		width: 3rem;
 		height: 3rem;
-		fill: var(--text-color);
+		fill: var(--text-color-bold);
 	}
 }
 
