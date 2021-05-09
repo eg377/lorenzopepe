@@ -713,7 +713,7 @@ This is because  CSS `touch-action: none` isn't supported on the version of iOS 
 	width={300}
 	height={532}
 >
-The `onTouchMove` event scrolls the page.  
+The <code className="inline-code">onTouchMove</code> event scrolls the page.  
 </PostVideo>
 
 The solution is to call `event.preventDefault()` inside our listener. Unfortunately, this does not work on React event listeners. If you try to call `event.preventDefault()` inside a listener you get an 
