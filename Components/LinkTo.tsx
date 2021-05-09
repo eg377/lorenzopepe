@@ -2,6 +2,7 @@ interface LinkToProps {
 	href: string;
 	className?: string;
 	style?: React.CSSProperties;
+	label?: string;
 }
 
 export const LinkTo: React.FC<LinkToProps> = ({
@@ -9,6 +10,7 @@ export const LinkTo: React.FC<LinkToProps> = ({
 	style,
 	href,
 	children,
+	label,
 }) => {
 	return (
 		<a
@@ -17,6 +19,7 @@ export const LinkTo: React.FC<LinkToProps> = ({
 			rel="noopener noreferrer"
 			style={style}
 			className={className}
+			data-label={label}
 		>
 			{children}
 		</a>
