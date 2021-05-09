@@ -1,7 +1,6 @@
 import { Fragment } from "react";
 import Head from "next/head";
 import { Socials } from "../Components/Socials";
-import AboutMe from "../Components/about-me.mdx";
 import { Emoji } from "../Components/Emoji";
 import { LinkTo } from "../Components/LinkTo";
 
@@ -24,14 +23,40 @@ const About: React.FC = () => {
 				</h2>
 				<Socials />
 			</div>
-			<AboutMe />
+			<p>
+				I'm a <strong>freelance front-end web developer</strong> born
+				and raised in Italy.
+			</p>
+			<p>
+				I've been surfing the web since I was a child. This made me very
+				passionate about <strong>user experience</strong> and{" "}
+				<strong>accessibility</strong>.
+			</p>
+			<p>
+				Most of my work has been on building{" "}
+				<strong>web applications</strong> but I'm also experienced in
+				coding beautiful interactive{" "}
+				<strong>data visualizations</strong> and{" "}
+				<strong>creative experiences</strong> powered by{" "}
+				<LinkTo
+					href="https://gl-experiments.vercel.app/"
+					className="blog-link"
+					label="Link to my webgl experiments website"
+				>
+					WebGL
+				</LinkTo>
+				.
+			</p>
 			<footer>
-				<p>Feel free to reach out! </p>
-				<span>
-					<LinkTo href="mailto:info@lorenzopepe.dev">
+				<p>
+					Feel free to reach out at{" "}
+					<LinkTo
+						href="mailto:info@lorenzopepe.dev"
+						className="blog-link"
+					>
 						info@lorenzopepe.dev
 					</LinkTo>
-				</span>
+				</p>
 			</footer>
 		</Fragment>
 	);
