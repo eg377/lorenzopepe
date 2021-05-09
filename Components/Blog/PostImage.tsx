@@ -31,7 +31,7 @@ export const PostImage: React.FC<{ imageData: ImageData }> = ({
 				// using a placeholder as a background image
 				ref={(node) => {
 					if (node !== null) {
-						const image = node.childNodes[1].childNodes[1] as
+						const image = node.querySelector("img") as
 							| HTMLImageElement
 							| undefined;
 						if (!image) return;
