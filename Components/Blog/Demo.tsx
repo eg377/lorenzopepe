@@ -28,4 +28,8 @@ export const Demo: React.FC<DemoProps> = ({ height, children, href }) => {
 	);
 };
 
-export const DemoLoading: React.FC = () => <div className="demo-loading"></div>;
+export const DemoLoading: React.FC = () => (
+	<div className="demo-loading">
+		<div />
+	</div>
+);
